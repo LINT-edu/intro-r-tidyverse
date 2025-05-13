@@ -1,0 +1,32 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Curso Introdução ao R e Tidyverse"
+  navbar:
+    left:
+      - text: "Início"
+        href: index.qmd
+      - text: "Material"
+        menu:
+          - text: "Aula 01: Introdução ao R"
+            href: material/aula01-introducao-r.qmd
+          - text: "Aula 02: Importar Dados"
+            href: material/aula02-importar.qmd
+          - text: "Aula 03: Arrumar Dados"
+            href: material/aula03-arrumar.qmd
+          - text: "Aula 04: Transformar Dados"
+            href: material/aula04-transformar.qmd
+          - text: "Aula 05: Visualizar Dados"
+            href: material/aula05-visualizar.qmd
+          - text: "Aula 06: Modelar Dados"
+            href: material/aula06-modelar.qmd
+          - text: "Aula 07: Comunicar Resultados"
+            href: material/aula07-comunicar.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true

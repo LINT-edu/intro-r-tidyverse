@@ -1,0 +1,105 @@
+---
+title: "Aula 05 – Visualizar Dados com ggplot2"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+execute:
+  cache: true
+---
+
+## Objetivos da Aula
+
+- Compreender os princípios da gramática dos gráficos implementada no `ggplot2`.
+- Construir visualizações com `ggplot()`, mapeando variáveis estéticas.
+- Adicionar camadas como `geom_point()`, `geom_bar()`, `geom_line()`.
+- Personalizar rótulos, cores, escalas e temas gráficos.
+
+## Introdução
+
+A criação de gráficos no `ggplot2` segue a lógica da **gramática dos gráficos** (grammar of graphics), onde gráficos são construídos camada por camada.
+
+Essa abordagem modular permite construir visualizações complexas de forma controlada e transparente.
+
+## Carregando pacotes necessários
+
+O pacote `ggplot2` já está incluído no `tidyverse`.
+
+```{r}
+#| eval: false
+library(tidyverse)
+```
+
+## Conhecendo a estrutura de `ggplot()`
+
+A função `ggplot()` serve como ponto de partida, onde definimos os dados e os mapeamentos estéticos — isto é, quais variáveis serão representadas nos eixos ou em outras propriedades visuais.
+
+```{r}
+#| eval: false
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy))
+```
+
+## Adicionando camadas com `+`
+
+As camadas (`geoms`) definem o tipo de gráfico. Abaixo, criamos um gráfico de dispersão com `geom_point()`.
+
+```{r}
+#| eval: false
+ggplot(data = mpg, aes(x = displ, y = hwy)) +
+  geom_point()
+```
+
+## Mapeando variáveis estéticas
+
+Mapear variáveis para cor, forma ou tamanho adiciona dimensão à visualização.
+
+```{r}
+#| eval: false
+ggplot(mpg, aes(x = displ, y = hwy, color = class)) +
+  geom_point()
+```
+
+## Gráficos de barras com `geom_bar()`
+
+O `geom_bar()` pode ser usado de duas formas: com contagem automática ou com `stat = "identity"` quando os valores já estão agregados.
+
+```{r}
+#| eval: false
+ggplot(mpg, aes(x = class)) +
+  geom_bar()
+```
+
+## Gráficos de linhas com `geom_line()`
+
+Usado principalmente para séries temporais ou relações contínuas ordenadas.
+
+```{r}
+#| eval: false
+data <- tibble(tempo = 1:10, valor = cumsum(rnorm(10)))
+
+ggplot(data, aes(x = tempo, y = valor)) +
+  geom_line()
+```
+
+## Personalizando o gráfico: títulos, cores e temas
+
+Podemos adicionar rótulos, modificar escalas e aplicar temas para tornar os gráficos mais informativos e estéticos.
+
+```{r}
+#| eval: false
+ggplot(mpg, aes(x = displ, y = hwy, color = class)) +
+  geom_point() +
+  labs(title = "Eficiência por tipo de carro",
+       x = "Tamanho do motor (L)",
+       y = "MPG rodovia",
+       color = "Classe") +
+  theme_minimal()
+```
+
+## Exercícios
+
+1. Crie um gráfico de dispersão de `mpg` com `hwy` vs. `displ`.
+2. Mapeie a variável `drv` na cor dos pontos.
+3. Crie um gráfico de barras com a contagem de veículos por `class`.
+4. Gere um gráfico de linhas com dados simulados de série temporal.
+5. Aplique um tema diferente ao gráfico e adicione título e rótulos.

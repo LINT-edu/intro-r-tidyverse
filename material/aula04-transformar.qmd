@@ -1,0 +1,115 @@
+---
+title: "Aula 04 – Transformar Dados com dplyr"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+execute:
+  cache: true
+---
+
+## Objetivos da Aula
+
+- Utilizar funções do pacote `dplyr` para transformar e manipular dados.
+- Aplicar operações fundamentais como `filter()`, `select()`, `mutate()`, `arrange()` e `summarise()`.
+- Compreender o uso de `group_by()` para operações por grupos.
+- Escrever fluxos de transformação com o operador pipe (`%>%`).
+
+## Introdução
+
+Transformar dados significa aplicar operações que mudam seu conteúdo ou estrutura — seja filtrando linhas, criando colunas, reordenando registros ou agrupando valores. O pacote `dplyr` oferece uma sintaxe concisa e poderosa para essas tarefas, mantendo a legibilidade e o fluxo lógico da análise.
+
+## Carregando pacotes necessários
+
+Vamos utilizar o `tidyverse`, que já inclui o `dplyr` e outros pacotes úteis para o fluxo de trabalho com dados.
+
+```{r}
+#| eval: false
+library(tidyverse)
+```
+
+## Explorando o conjunto de dados
+
+Antes de transformar, precisamos conhecer a estrutura dos dados. Vamos usar o conjunto `starwars`, incluso no `dplyr`, que contém informações sobre personagens da saga Star Wars.
+
+```{r}
+#| eval: false
+starwars
+glimpse(starwars)
+```
+
+## Selecionando colunas com `select()`
+
+Selecionamos apenas as colunas de interesse, o que é útil para focar na análise e reduzir ruído visual.
+
+```{r}
+#| eval: false
+starwars %>%
+  select(name, height, mass)
+```
+
+## Filtrando linhas com `filter()`
+
+Filtramos observações que atendem a uma condição lógica. Útil para trabalhar com subconjuntos dos dados.
+
+```{r}
+#| eval: false
+starwars %>%
+  filter(species == "Human")
+```
+
+## Criando novas colunas com `mutate()`
+
+Criamos variáveis derivadas a partir das existentes.
+
+```{r}
+#| eval: false
+starwars %>%
+  mutate(imc = mass / (height/100)^2)  # índice de massa corporal
+```
+
+## Reordenando linhas com `arrange()`
+
+Ordenamos os dados com base em uma ou mais colunas.
+
+```{r}
+#| eval: false
+starwars %>%
+  arrange(height)
+
+starwars %>%
+  arrange(desc(mass))
+```
+
+## Resumindo dados com `summarise()` e `group_by()`
+
+Agrupamos os dados por uma variável e, em seguida, aplicamos operações de resumo.
+
+```{r}
+#| eval: false
+starwars %>%
+  group_by(species) %>%
+  summarise(media_altura = mean(height, na.rm = TRUE))
+```
+
+## Combinando tudo em um fluxo
+
+As funções do `dplyr` podem ser encadeadas com o operador `%>%`, criando fluxos de transformação legíveis e concisos.
+
+```{r}
+#| eval: false
+starwars %>%
+  filter(!is.na(mass)) %>%
+  mutate(imc = mass / (height/100)^2) %>%
+  group_by(species) %>%
+  summarise(media_imc = mean(imc, na.rm = TRUE)) %>%
+  arrange(desc(media_imc))
+```
+
+## Exercícios
+
+1. Selecione apenas as colunas `name`, `birth_year` e `species`.
+2. Filtre apenas personagens com massa maior que 100.
+3. Crie uma nova coluna chamada `altura_m` com a altura em metros.
+4. Agrupe os dados por `species` e calcule a média da altura.
+5. Ordene os resultados de forma decrescente pela média da altura.

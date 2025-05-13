@@ -1,0 +1,16 @@
+---
+title: "Bem-vindo ao curso"
+format: html
+---
+
+# Introdução
+
+Este é um curso introdutório ao R com foco em ciência de dados usando o pacote `tidyverse`.
+
+Ao longo das aulas, você aprenderá:
+
+- A base da linguagem R
+- Como importar, arrumar, transformar, visualizar e modelar dados
+- Como gerar relatórios reprodutíveis
+
+Use o menu acima para navegar entre os módulos.

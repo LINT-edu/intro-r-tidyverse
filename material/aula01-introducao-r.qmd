@@ -1,0 +1,217 @@
+---
+title: "Aula 01 – Introdução ao R"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+execute: 
+  cache: true
+---
+
+## Objetivos da Aula
+
+-   Explorar os fundamentos da linguagem R com profundidade conceitual.
+-   Compreender a estrutura de objetos, vetores e funções no R.
+-   Trabalhar com listas e data frames, reconhecendo suas estruturas e coerções.
+-   Entender como o ambiente do R é organizado para análise reprodutível.
+
+## O que é R e RStudio?
+
+O **R** é uma linguagem de programação orientada a análise de dados, estatística e visualização gráfica. Ele é interpretado, fortemente tipado e vetorizado por padrão. O **RStudio** é um ambiente de desenvolvimento integrado (IDE) que facilita a organização e execução de projetos em R.
+
+## O R como linguagem interpretada e vetorizada
+
+A seguir, apresentamos operações aritméticas básicas e vetorizadas que mostram como o R interpreta e processa expressões matemáticas.
+
+```{r}
+#| eval: false
+1 + 1
+(5 + 3) / 2
+4 ^ 2
+```
+
+A vetorização é uma das características mais poderosas do R. Este bloco mostra como operações são aplicadas a vetores de forma eficiente.
+
+```{r}
+#| eval: false
+x <- c(1, 2, 3)
+x * 2
+x + c(10, 20, 30)
+```
+
+Este exemplo mostra como o R lida com vetores de tamanhos diferentes usando reciclagem de valores.
+
+```{r}
+#| eval: false
+c(1, 2) + c(10, 20, 30, 40)
+```
+
+::: callout-note
+O R realiza **reciclagem de vetores** quando os comprimentos não são múltiplos. Isso pode causar erros silenciosos.
+:::
+
+## Criando Objetos e entendendo Tipos
+
+Neste bloco, mostramos como criar objetos em R e verificar seus tipos usando a função `class()`.
+
+```{r}
+#| eval: false
+a <- 5
+b <- "texto"
+c <- TRUE
+class(a)
+class(b)
+class(c)
+```
+
+Aqui vemos como o R trata diferentes tipos de dados dentro de um vetor, aplicando coerção automática.
+
+```{r}
+#| eval: false
+coerced <- c(1, "a", TRUE)
+coerced
+class(coerced)
+```
+
+::: callout-note
+Coerção é o processo pelo qual o R converte automaticamente os tipos de dados de um vetor para um tipo comum, sempre que necessário. Isso ocorre porque vetores são homogêneos: todos os seus elementos devem ser do mesmo tipo. Quando há mistura de tipos, o R aplica regras de coerção, convertendo todos os elementos para o tipo mais genérico que possa representar todos os valores presentes.
+
+A hierarquia de coerção no R segue a ordem: `logical` \< `integer` \< `double` \< `character`. Portanto, se misturarmos números e textos, o vetor será convertido para `character`, pois é o tipo mais abrangente.
+:::
+
+## Vetores
+
+Apresentamos aqui como criar vetores de diferentes tipos: numéricos, caracteres e lógicos.
+
+```{r}
+#| eval: false
+v1 <- c(10, 20, 30)
+v2 <- c("A", "B", "C")
+v3 <- c(TRUE, FALSE, TRUE)
+```
+
+Mostramos como acessar elementos de um vetor e como atribuir nomes aos elementos para facilitar a leitura.
+
+```{r}
+#| eval: false
+v1[1]
+v2[1:2]
+names(v1) <- c("João", "Maria", "Pedro")
+v1["Maria"]
+```
+
+## Funções e Argumentos
+
+Este bloco mostra como utilizar funções básicas em R, passar argumentos e interpretar o retorno.
+
+```{r}
+#| eval: false
+media <- mean(v1)
+log10(media)
+mean(v1, trim = 0.1)
+```
+
+## Listas: objetos heterogêneos e estruturados
+
+Este bloco demonstra a criação de listas, que permitem agrupar diferentes tipos de dados em uma única estrutura.
+
+```{r}
+minha_lista <- list(
+  nome = "Ana",
+  idade = 28,
+  notas = c(9.5, 8.3, 7.9),
+  aprovado = TRUE
+)
+```
+
+Mostramos como acessar os elementos de uma lista utilizando diferentes sintaxes e como inspecionar sua estrutura.
+
+```{r}
+#| eval: false
+minha_lista$nome
+minha_lista[["idade"]]
+minha_lista["notas"]
+str(minha_lista)
+```
+
+Exemplo de listas aninhadas, com acesso a elementos em subníveis.
+
+```{r}
+lista_aninhada <- list(
+  aluno = minha_lista,
+  turma = "Biologia",
+  extra = list(projeto = "Estatística", nota_final = 9.8)
+)
+lista_aninhada$extra$nota_final
+```
+
+## Data Frames
+
+A seguir, criamos um `data.frame`, a principal estrutura para armazenar dados tabulares em R.
+
+```{r}
+df <- data.frame(
+  nome = c("Ana", "Bruno", "Carlos"),
+  idade = c(28, 35, 31),
+  aprovado = c(TRUE, TRUE, FALSE)
+)
+
+df
+```
+
+Exploramos a estrutura do `data.frame`, como acessar colunas, linhas e tipos de variáveis com `str()` e `sapply()`.
+
+```{r}
+str(df)
+df$idade
+df[1, ]
+df[1:2, "nome"]
+sapply(df, class)
+```
+
+## Dúvidas Frequentes de Iniciantes
+
+1.  **Qual a diferença entre `=` e `<-`?**\
+    Ambos operadores podem ser usados para atribuição de valores a objetos, mas `<-` é o operador preferido na comunidade R, por tornar o código mais legível e por evitar confusões com argumentos nomeados dentro de funções.
+
+2.  **Por que o R mostra um `+` no console?**\
+    Isso ocorre quando você começa uma expressão incompleta. O `+` indica que o R está aguardando o restante da linha para finalizar o comando. Exemplo: digitar `mean(` sem fechar o parêntese resultará nisso.
+
+3.  **Como salvar o ambiente de trabalho?**\
+    Evite depender do salvamento automático de objetos. Prefira salvar scripts (`.R` ou `.Rmd`) e reexecutar seu código. Isso melhora a reprodutibilidade e evita acúmulo de objetos obsoletos na memória.
+
+4.  **Data frames são listas?**\
+    Sim. Um `data.frame` é tecnicamente uma lista onde cada elemento (coluna) é um vetor da mesma extensão. Essa estrutura permite que colunas tenham tipos diferentes, mas exige consistência no número de linhas.
+
+## Como Pedir Ajuda no R?
+
+Este bloco mostra formas de acessar ajuda interna no R e consultar vignettes.
+
+```{r}
+#| eval: false
+?mean
+args(log)
+vignette(package = "ggplot2")
+```
+
+## Exercícios
+
+**Vetores e estatísticas básicas**
+
+1\. Crie um vetor numérico com 10 valores aleatórios e calcule a média, mediana e desvio padrão.
+
+**Tipos e coerção**
+
+2\. Crie um vetor misto e verifique o tipo resultante. Interprete a coerção.
+
+**Data Frames**
+
+3\. Monte um `data.frame` com colunas nome, idade, sexo, altura e aprovado. 4. Use `str()` e `sapply()` para inspecionar seu `data.frame`.
+
+------------------------------------------------------------------------
+
+### Fóruns úteis:
+
+-   [discourse](https://discourse.curso-r.com/)
+-   [Stackoverflow](https://stackoverflow.com/questions/tagged/r)
+-   [R-Ladies](https://rladies.org/)

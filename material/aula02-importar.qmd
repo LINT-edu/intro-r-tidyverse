@@ -1,0 +1,135 @@
+---
+title: "Aula 02 – Importação de Dados com Tidyverse"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+execute: 
+  cache: true
+---
+
+## Objetivos da Aula
+
+- Compreender a estrutura e filosofia do tidyverse.
+- Reconhecer as principais ferramentas de importação de dados (`readr`, `readxl`, `here`).
+- Utilizar funções como `read_csv()`, `read_excel()` e `here()` com segurança.
+- Interpretar mensagens de importação e controlar encoding, separadores e tipos de colunas.
+
+## O que é o Tidyverse?
+
+O **tidyverse** é uma coleção de pacotes desenvolvidos para facilitar o trabalho com dados no R. Ele oferece uma abordagem integrada e coerente para:
+
+- Importar (`readr`, `readxl`, `here`);
+- Organizar e transformar (`dplyr`, `tidyr`);
+- Visualizar (`ggplot2`);
+- Modelar e comunicar resultados (`broom`, `rmarkdown`, etc.).
+
+A proposta central do tidyverse é tornar o fluxo de trabalho mais fluido e legível — criando um “dialeto” amigável da linguagem R para análise de dados.
+
+```{r}
+#| eval: false
+
+install.packages("tidyverse")
+library(tidyverse)
+
+```
+
+## Estrutura Tidy: Dados arrumados
+
+Antes de importar `dados`, é importante compreender a estrutura ideal de organização dos dados: os chamados **dados arrumados**. Essa estrutura é a base para a compatibilidade com a maioria das ferramentas do tidyverse.
+
+O conceito de **dados arrumados (tidy dados)** é definido por três regras principais:
+
+1. Cada variável em uma coluna;
+2. Cada observação em uma linha;
+3. Cada célula contém apenas um valor.
+
+Esses princípios facilitam a análise, visualização e transformação dos dados ao longo do projeto.
+
+## Começando por importar dados
+
+Com a estrutura tidy em mente, iniciamos agora a prática de **importação de dados** no R. Nesta aula, abordaremos como importar arquivos `.csv` e `.xlsx` de forma organizada e reprodutível.
+
+## Usando o pacote `here` para caminhos seguros
+
+Antes de realizar a importação de arquivos, é essencial definir os caminhos corretamente. O pacote `here` nos ajuda a construir caminhos relativos ao projeto, evitando problemas comuns com `setwd()` e garantindo portabilidade entre sistemas.
+
+```{r}
+#| eval: false
+
+install.packages("here")
+library(here)
+
+here::here("data", "exemplo.csv")
+
+```
+
+## Importando arquivos `.csv` com `readr::read_csv()`
+
+A função `read_csv()` do pacote `readr` é uma das formas mais eficientes e seguras de importar dados delimitados por vírgulas. Ela reconhece automaticamente os tipos de colunas, permite ajustes de encoding e é altamente compatível com fluxos tidyverse.
+
+```{r}
+#| eval: false
+
+data <- read_csv(
+  here::here("data", "exemplo.csv"),
+  locale = readr::locale(encoding = "UTF-8")
+)
+```
+
+::: callout-note
+📌 `read_csv()` identifica automaticamente os tipos de coluna, mas você pode forçar ou revisar com `col_types`.
+:::
+
+## Importando arquivos `.xlsx` com `readxl::read_excel()`
+
+Planilhas do Excel também são comumente usadas para armazenamento de dados. O pacote `readxl`, parte do ecossistema tidyverse, permite importar arquivos `.xlsx` com facilidade.
+
+```{r}
+#| eval: false
+
+data <- read_excel(
+  here::here("data", "exemplo.xlsx"),
+  sheet = "Plan1"
+)
+
+```
+
+## Lidando com arquivos `.csv2` (separador `;` e decimal `,`)
+
+Arquivos `.csv2` são comuns em contextos brasileiros e europeus, utilizando `;` como separador e `,` como separador decimal. O `readr` oferece a função `read_csv2()` para lidar com esse padrão.
+
+```{r}
+#| eval: false
+
+data <- readr::read_csv2(
+  here::here("data", "exemplo_brasil.csv")
+)
+
+```
+
+## Explorando o conteúdo dos dados importados
+
+Após a importação, é fundamental examinar a estrutura dos dados. As funções `glimpse()` e `spec()` permitem inspecionar rapidamente as colunas e os tipos inferidos pelo R. A função `View()` também pode ser usada para abrir uma visualização interativa da tabela no RStudio, semelhante a uma planilha.
+
+```{r}
+#| eval: false
+
+dplyr::glimpse(data)
+readr::spec(data)
+
+```
+
+```{r}
+#| eval: false
+View(data)
+```
+
+Use `glimpse()` para uma visão geral rápida e `spec()` para ver a inferência de tipos feita automaticamente.
+
+## Exercícios
+
+1. Importe um arquivo `.csv` de sua escolha com `readr::read_csv()` usando `here()`.
+2. Importe uma planilha `.xlsx` usando `readxl::read_excel()`.
+3. Verifique os tipos de cada coluna com `spec()` e `glimpse()`.
+4. Teste a função `read_csv2()` com um arquivo brasileiro e explique a diferença.

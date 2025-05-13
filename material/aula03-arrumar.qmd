@@ -1,0 +1,111 @@
+---
+title: "Aula 03 – Arrumar Dados com tidyr"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+execute: 
+  cache: true
+---
+
+## Objetivos da Aula
+
+- Compreender o que são dados arrumados (*tidy data*).
+- Utilizar funções do pacote `tidyr` para organizar dados em formato adequado para análise.
+- Transformar dados amplos em longos e vice-versa com `pivot_longer()` e `pivot_wider()`.
+- Separar e unir colunas com `separate()` e `unite()`.
+
+## Por que arrumar os dados?
+
+A maior parte dos pacotes do tidyverse — como `ggplot2`, `dplyr`, `purrr` — pressupõe que seus dados estejam no formato **tidy**. Esse formato facilita operações como filtragem, visualização, modelagem e comunicação de resultados.
+
+## Carregando pacotes necessários
+
+Nesta etapa, carregamos os pacotes essenciais para trabalhar com dados no estilo tidy. O `tidyverse` engloba tanto o `tidyr`, que será o foco da aula, quanto pacotes auxiliares como `dplyr` e `ggplot2`.
+
+```{r}
+#| eval: false
+library(tidyverse)  # carrega tidyr, dplyr, ggplot2, etc.
+```
+
+## Estrutura comum de dados desarrumados
+
+Antes de aprender a arrumar os dados, é importante reconhecer como se apresentam conjuntos de dados desorganizados. Esta seção discute os padrões mais comuns de dados desarrumados e por que eles dificultam a análise.
+Aqui alguns padrões para reconhecer formatos "desarrumados", como:
+
+- Dados com valores em nomes de colunas;
+- Múltiplas variáveis em uma única coluna;
+- Observações espalhadas em várias tabelas.
+
+## Transformando dados amplos em longos com `pivot_longer()`
+
+Agora vamos aprender a transformar dados em formato "amplo" (com variáveis nos nomes das colunas) para o formato "longo" — o formato ideal para a maioria das análises e visualizações no tidyverse.
+
+Vamos usar um exemplo em que temos colunas representando diferentes anos e queremos reorganizá-las em formato longo.
+
+```{r}
+#| eval: false
+
+wide_data <- tibble(
+  estado = c("SP", "RJ", "MG"),
+  `2020` = c(100, 80, 90),
+  `2021` = c(110, 85, 95)
+)
+
+long_data <- wide_data %>%
+  pivot_longer(
+    cols = c(`2020`, `2021`),
+    names_to = "ano",
+    values_to = "valor"
+  )
+```
+
+## Transformando dados longos em amplos com `pivot_wider()`
+
+Às vezes é útil inverter a operação anterior, convertendo dados do formato longo para o formato amplo — por exemplo, ao gerar tabelas para relatórios ou comparações visuais lado a lado.
+
+Agora fazemos o caminho inverso, útil por exemplo para gerar tabelas.
+
+```{r}
+#| eval: false
+wide_again <- long_data %>%
+  pivot_wider(
+    names_from = ano,
+    values_from = valor
+  )
+```
+
+::: {.callout-note}
+O operador `%>%`, conhecido como **pipe**, é utilizado para encadear funções em R de forma legível. Ele permite passar o resultado de uma expressão como primeiro argumento da próxima função.
+:::
+
+## Separando colunas com `separate()`
+
+Quando uma única coluna contém mais de uma variável combinada (por exemplo, "nome-idade"), podemos separá-la em múltiplas colunas usando a função `separate()`.
+
+```{r}
+#| eval: false
+df <- tibble(pessoa = c("Joao-25", "Maria-30"))
+
+df_sep <- df %>%
+  separate(pessoa, into = c("nome", "idade"), sep = "-")
+```
+
+## Unindo colunas com `unite()`
+
+O oposto da separação: se quisermos combinar duas ou mais colunas em uma só (por exemplo, reconstruir "nome-idade"), utilizamos a função `unite()`.
+
+```{r}
+#| eval: false
+df_unido <- df_sep %>%
+  unite("pessoa", nome, idade, sep = "-")
+```
+
+## Exercícios
+
+Estes exercícios reforçam o conteúdo abordado, permitindo aplicar `pivot_longer()`, `pivot_wider()`, `separate()` e `unite()` em situações práticas.
+
+1. Converta um conjunto de dados amplo para o formato longo usando `pivot_longer()`.
+2. Faça a operação inversa com `pivot_wider()`.
+3. Use `separate()` para dividir uma coluna composta.
+4. Use `unite()` para reconstruí-la.
