@@ -127,11 +127,12 @@ iris %>% rename(Sepal_Length = Sepal.Length) %>% head()
 ## 9. Pipeline completo: filtrar, criar coluna e resumir
 
 ```{python}
+#| eval: false
 iris_filtered = (
     iris[iris['target'] != 'setosa']
     .assign(Sepal.Area = lambda df: df['sepal length (cm)'] * df['sepal width (cm)'])
     .groupby('target')
-    .agg(mean_area=('Sepal.Area', 'mean'))
+    .agg(mean_area = ('Sepal.Area', 'mean'))
 )
 iris_filtered
 ```
