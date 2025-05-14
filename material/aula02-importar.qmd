@@ -60,7 +60,7 @@ Antes de realizar a importação de arquivos, é essencial definir os caminhos c
 install.packages("here")
 library(here)
 
-here::here("data", "exemplo.csv")
+here::here("data", "example.csv")
 
 ```
 
@@ -72,7 +72,7 @@ A função `read_csv()` do pacote `readr` é uma das formas mais eficientes e se
 #| eval: false
 
 data <- read_csv(
-  here::here("data", "exemplo.csv"),
+  here::here("data", "example.csv"),
   locale = readr::locale(encoding = "UTF-8")
 )
 ```
@@ -89,7 +89,7 @@ Planilhas do Excel também são comumente usadas para armazenamento de dados. O 
 #| eval: false
 
 data <- read_excel(
-  here::here("data", "exemplo.xlsx"),
+  here::here("data", "example.xlsx"),
   sheet = "Plan1"
 )
 
@@ -103,7 +103,7 @@ Arquivos `.csv2` são comuns em contextos brasileiros e europeus, utilizando `;`
 #| eval: false
 
 data <- readr::read_csv2(
-  here::here("data", "exemplo_brasil.csv")
+  here::here("data", "example_brazil.csv")
 )
 
 ```
