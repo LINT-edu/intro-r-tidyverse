@@ -207,7 +207,7 @@
     "href": "material/aula02-importar.html#importando-arquivos-.xlsx-com-readxlread_excel",
     "title": "Aula 02 – Importação de Dados com Tidyverse",
     "section": "Importando arquivos .xlsx com readxl::read_excel()",
-    "text": "Importando arquivos .xlsx com readxl::read_excel()\nPlanilhas do Excel também são comumente usadas para armazenamento de dados. O pacote readxl, parte do ecossistema tidyverse, permite importar arquivos .xlsx com facilidade.\n\ndata &lt;- read_excel(\n  here::here(\"data\", \"example.xlsx\"),\n  sheet = \"Plan1\"\n)"
+    "text": "Importando arquivos .xlsx com readxl::read_excel()\nPlanilhas do Excel também são comumente usadas para armazenamento de dados. O pacote readxl, parte do ecossistema tidyverse, permite importar arquivos .xlsx com facilidade.\n\ninstall.packages(\"readxl\")\n\nInstalling package into '/home/oandrefonseca/R/x86_64-pc-linux-gnu-library/4.4'\n(as 'lib' is unspecified)\n\nlibrary(readxl)\n\n\ndata &lt;- readxl::read_excel(\n  here::here(\"data\", \"example.xlsx\")\n)"
   },
   {
     "objectID": "material/aula02-importar.html#lidando-com-arquivos-.csv2-separador-e-decimal",
