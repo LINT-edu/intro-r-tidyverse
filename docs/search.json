@@ -509,5 +509,47 @@
     "title": "Bem-vindo ao curso",
     "section": "",
     "text": "iris_filtered = (\n    iris[iris['target'] != 'setosa']\n    .assign(Sepal.Area = lambda df: df['sepal length (cm)'] * df['sepal width (cm)'])\n    .groupby('target')\n    .agg(mean_area = ('Sepal.Area', 'mean'))\n)\niris_filtered\n\n\niris %&gt;%\n  filter(Species != \"setosa\") %&gt;%\n  mutate(Sepal.Area = Sepal.Length * Sepal.Width) %&gt;%\n  group_by(Species) %&gt;%\n  summarise(mean_area = mean(Sepal.Area))\n\n# A tibble: 2 × 2\n  Species    mean_area\n  &lt;fct&gt;          &lt;dbl&gt;\n1 versicolor      16.5\n2 virginica       19.7"
+  },
+  {
+    "objectID": "material/desafio01-barplot_expressao.html",
+    "href": "material/desafio01-barplot_expressao.html",
+    "title": "Desafio 01 – Gráfico de expressão gênica",
+    "section": "",
+    "text": "Desenvolver um script em R que, dado um identificador de gene (Ensembl ID), gere automaticamente um gráfico de barras representando os níveis de expressão (em TPM) desse gene em diferentes subáreas do cérebro humano, utilizando dados da plataforma Human Protein Atlas."
+  },
+  {
+    "objectID": "material/desafio01-barplot_expressao.html#objetivo",
+    "href": "material/desafio01-barplot_expressao.html#objetivo",
+    "title": "Desafio 01 – Gráfico de expressão gênica",
+    "section": "",
+    "text": "Desenvolver um script em R que, dado um identificador de gene (Ensembl ID), gere automaticamente um gráfico de barras representando os níveis de expressão (em TPM) desse gene em diferentes subáreas do cérebro humano, utilizando dados da plataforma Human Protein Atlas."
+  },
+  {
+    "objectID": "material/desafio01-barplot_expressao.html#requisitos-técnicos",
+    "href": "material/desafio01-barplot_expressao.html#requisitos-técnicos",
+    "title": "Desafio 01 – Gráfico de expressão gênica",
+    "section": "Requisitos Técnicos",
+    "text": "Requisitos Técnicos\n\nUtilizar os pacotes tidyverse, especialmente ggplot2, para manipulação e visualização dos dados.\nO script deve aceitar como entrada um Ensembl Gene ID (por exemplo, ENSG00000146648 para o gene EGFR).\nA saída deve ser um gráfico de barras onde:\n\nO eixo X representa as subáreas do cérebro (por exemplo, córtex cerebral, cerebelo, hipotálamo).\nO eixo Y representa os níveis de expressão em TPM (Transcripts Per Million).\n\nO gráfico deve ser estilizado de forma clara e informativa, semelhante aos gráficos apresentados na plataforma Human Protein Atlas."
+  },
+  {
+    "objectID": "material/desafio01-barplot_expressao.html#instruções-para-obtenção-dos-dados",
+    "href": "material/desafio01-barplot_expressao.html#instruções-para-obtenção-dos-dados",
+    "title": "Desafio 01 – Gráfico de expressão gênica",
+    "section": "Instruções para Obtenção dos Dados",
+    "text": "Instruções para Obtenção dos Dados\n\nAcesse o portal a pagina Human Protein Atlas – Brain Atlas.\nClique em rna_brain_region_hpa.tsv.zip.\nExtrai o arquivo dentro da pasta data.\nCarregue o arquivo no R com:\n\n\nlibrary(readr)\n\n# Substitua o caminho conforme necessário\nbrain_data &lt;- read_tsv(here::here(\"data/rna_brain_region_hpa.tsv\"))\n\n\n\n\nGene\nGene name\nBrain region\nTPM\npTPM\nnTPM\n\n\n\n\nENSG00000000003\nTSPAN6\namygdala\n4.5\n6.1\n7.0\n\n\nENSG00000000003\nTSPAN6\nbasal ganglia\n6.8\n10.2\n7.6\n\n\nENSG00000000003\nTSPAN6\ncerebellum\n6.5\n9.2\n7.2\n\n\nENSG00000000003\nTSPAN6\ncerebral cortex\n4.4\n6.7\n5.6\n\n\nENSG00000000003\nTSPAN6\nchoroid plexus\n26.8\n34.9\n48.2\n\n\n…\n…\n…\n…\n…\n…"
+  },
+  {
+    "objectID": "material/desafio01-barplot_expressao.html#entregáveis",
+    "href": "material/desafio01-barplot_expressao.html#entregáveis",
+    "title": "Desafio 01 – Gráfico de expressão gênica",
+    "section": "Entregáveis",
+    "text": "Entregáveis\n\nScript R (expressao_gene_cerebro.R): Script funcional que realiza as seguintes etapas:\n\nRecebe um o identificador como entrada.\nObtém os dados de expressão gênica correspondentes às subáreas do cérebro humano.\nGera e salva um gráfico de barras representando os níveis de expressão.\n\nGráfico de Exemplo: Imagem do gráfico gerado para um gene de exemplo (por exemplo, EGFR), salva em formato PNG ou PDF."
+  },
+  {
+    "objectID": "material/desafio01-barplot_expressao.html#dicas",
+    "href": "material/desafio01-barplot_expressao.html#dicas",
+    "title": "Desafio 01 – Gráfico de expressão gênica",
+    "section": "Dicas",
+    "text": "Dicas\n\nCertifique-se de que os dados estão no formato adequado para o ggplot2.\nPara garantir a reprodutibilidade, inclua no script a instalação e carregamento dos pacotes necessários.(Bioconductor, Stack Overflow)"
   }
 ]

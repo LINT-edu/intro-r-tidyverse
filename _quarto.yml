@@ -24,6 +24,10 @@ website:
             href: material/aula06-modelar.qmd
           - text: "Aula 07: Comunicar Resultados"
             href: material/aula07-comunicar.qmd
+      - text: "Desafio"
+        menu:
+          - text: "Desafio 01: Barplot do expressão"
+            href: material/desafio01-barplot_expressao.qmd
 
 format:
   html:

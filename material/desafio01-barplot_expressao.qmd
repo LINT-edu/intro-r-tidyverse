@@ -1,0 +1,65 @@
+---
+title: "Desafio 01 – Gráfico de expressão gênica"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+execute: 
+  cache: true
+---
+
+## Objetivo
+
+Desenvolver um script em R que, dado um identificador de gene (Ensembl ID), gere automaticamente um gráfico de barras representando os níveis de expressão (em TPM) desse gene em diferentes subáreas do cérebro humano, utilizando dados da plataforma [Human Protein Atlas](https://www.proteinatlas.org/).
+
+## Requisitos Técnicos
+
+-   Utilizar os pacotes `tidyverse`, especialmente `ggplot2`, para manipulação e visualização dos dados.
+-   O script deve aceitar como entrada um Ensembl Gene ID (por exemplo, `ENSG00000146648` para o gene `EGFR`).
+-   A saída deve ser um gráfico de barras onde:
+    -   O eixo X representa as subáreas do cérebro (por exemplo, córtex cerebral, cerebelo, hipotálamo).
+    -   O eixo Y representa os níveis de expressão em TPM (Transcripts Per Million).
+-   O gráfico deve ser estilizado de forma clara e informativa, semelhante aos gráficos apresentados na plataforma Human Protein Atlas.
+
+## Instruções para Obtenção dos Dados
+
+1. Acesse o portal a pagina [Human Protein Atlas – Brain Atlas](https://www.proteinatlas.org/humanproteome/brain/data#hpa_brain_regions_rna).
+2. Clique em **rna_brain_region_hpa.tsv.zip**.
+3. Extrai o arquivo dentro da pasta `data`.
+4. Carregue o arquivo no R com:
+
+```{r}
+#| eval: false
+
+library(readr)
+
+# Substitua o caminho conforme necessário
+brain_data <- read_tsv(here::here("data/rna_brain_region_hpa.tsv"))
+
+```
+
+
+| Gene            | Gene name | Brain region    | TPM  | pTPM | nTPM |
+| --------------- | --------- | --------------- | ---- | ---- | ---- |
+| ENSG00000000003 | TSPAN6    | amygdala        | 4.5  | 6.1  | 7.0  |
+| ENSG00000000003 | TSPAN6    | basal ganglia   | 6.8  | 10.2 | 7.6  |
+| ENSG00000000003 | TSPAN6    | cerebellum      | 6.5  | 9.2  | 7.2  |
+| ENSG00000000003 | TSPAN6    | cerebral cortex | 4.4  | 6.7  | 5.6  |
+| ENSG00000000003 | TSPAN6    | choroid plexus  | 26.8 | 34.9 | 48.2 |
+| ...             | ...       | ...             | ...  | ...  | ...  |
+
+## Entregáveis
+
+1.  **Script R (`expressao_gene_cerebro.R`)**: Script funcional que realiza as seguintes etapas:
+
+    -   Recebe um o identificador como entrada.
+    -   Obtém os dados de expressão gênica correspondentes às subáreas do cérebro humano.
+    -   Gera e salva um gráfico de barras representando os níveis de expressão.
+
+2.  **Gráfico de Exemplo**: Imagem do gráfico gerado para um gene de exemplo (por exemplo, EGFR), salva em formato PNG ou PDF.
+
+## Dicas
+
+-   Certifique-se de que os dados estão no formato adequado para o `ggplot2`.
+-   Para garantir a reprodutibilidade, inclua no script a instalação e carregamento dos pacotes necessários.([Bioconductor](https://www.bioconductor.org/packages/release/bioc/vignettes/HPAanalyze/inst/doc/b_HPAanalyze_indepth.html?utm_source=chatgpt.com "Working with Human Protein Atlas (HPA) data in R with HPAanalyze"), [Stack Overflow](https://stackoverflow.com/questions/70765003/how-can-i-plot-gene-expression-data-in-bar-graph-using-ggplot2?utm_source=chatgpt.com "How can I plot gene expression data in bar graph using ggplot2?"))
+
