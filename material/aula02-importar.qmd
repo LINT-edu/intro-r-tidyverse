@@ -86,11 +86,17 @@ data <- read_csv(
 Planilhas do Excel também são comumente usadas para armazenamento de dados. O pacote `readxl`, parte do ecossistema tidyverse, permite importar arquivos `.xlsx` com facilidade.
 
 ```{r}
+
+install.packages("readxl")
+library(readxl)
+
+```
+
+```{r}
 #| eval: false
 
-data <- read_excel(
-  here::here("data", "example.xlsx"),
-  sheet = "Plan1"
+data <- readxl::read_excel(
+  here::here("data", "example.xlsx")
 )
 
 ```
