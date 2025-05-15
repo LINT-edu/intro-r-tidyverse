@@ -1,45 +1,73 @@
 [
   {
-    "objectID": "material/aula01-introducao-r.html",
-    "href": "material/aula01-introducao-r.html",
-    "title": "Aula 01 – Introdução ao R",
-    "section": "",
-    "text": "Explorar os fundamentos da linguagem R com profundidade conceitual.\nCompreender a estrutura de objetos, vetores e funções no R.\nTrabalhar com listas e data frames, reconhecendo suas estruturas e coerções.\nEntender como o ambiente do R é organizado para análise reprodutível."
-  },
-  {
-    "objectID": "material/aula01-introducao-r.html#ajuda-interna",
-    "href": "material/aula01-introducao-r.html#ajuda-interna",
-    "title": "Aula 01 – Introdução ao R",
-    "section": "Ajuda interna",
-    "text": "Ajuda interna\nUse o ? ou help() para ver a documentação de uma função:\n\n?mean\nhelp(log)"
-  },
-  {
-    "objectID": "material/aula01-introducao-r.html#vignettes",
-    "href": "material/aula01-introducao-r.html#vignettes",
-    "title": "Aula 01 – Introdução ao R",
-    "section": "Vignettes",
-    "text": "Vignettes\n\nvignette(package = \"dplyr\")"
-  },
-  {
-    "objectID": "material/aula01-introducao-r.html#pesquisar-no-google",
-    "href": "material/aula01-introducao-r.html#pesquisar-no-google",
-    "title": "Aula 01 – Introdução ao R",
-    "section": "Pesquisar no Google",
-    "text": "Pesquisar no Google\n\nError in log(\"a\") r"
-  },
-  {
-    "objectID": "material/aula01-introducao-r.html#fóruns-e-comunidade",
-    "href": "material/aula01-introducao-r.html#fóruns-e-comunidade",
-    "title": "Aula 01 – Introdução ao R",
-    "section": "Fóruns e Comunidade",
-    "text": "Fóruns e Comunidade\n\nStack Overflow\ndiscourse.curso-r.com\nR-Ladies Brasil\n\n\n\n\n\n\n\nNote\n\n\n\n🧪 Dica prática: Crie perguntas reprodutíveis. Use pequenos exemplos que possam ser testados por outras pessoas."
-  },
-  {
     "objectID": "material/aula03-arrumar.html",
     "href": "material/aula03-arrumar.html",
     "title": "Aula 03 – Arrumar Dados com tidyr",
     "section": "",
     "text": "Compreender o que são dados arrumados (tidy data).\nUtilizar funções do pacote tidyr para organizar dados em formato adequado para análise.\nTransformar dados amplos em longos e vice-versa com pivot_longer() e pivot_wider().\nSeparar e unir colunas com separate() e unite()."
+  },
+  {
+    "objectID": "material/aula03-arrumar.html#objetivos-da-aula",
+    "href": "material/aula03-arrumar.html#objetivos-da-aula",
+    "title": "Aula 03 – Arrumar Dados com tidyr",
+    "section": "",
+    "text": "Compreender o que são dados arrumados (tidy data).\nUtilizar funções do pacote tidyr para organizar dados em formato adequado para análise.\nTransformar dados amplos em longos e vice-versa com pivot_longer() e pivot_wider().\nSeparar e unir colunas com separate() e unite()."
+  },
+  {
+    "objectID": "material/aula03-arrumar.html#por-que-arrumar-os-dados",
+    "href": "material/aula03-arrumar.html#por-que-arrumar-os-dados",
+    "title": "Aula 03 – Arrumar Dados com tidyr",
+    "section": "Por que arrumar os dados?",
+    "text": "Por que arrumar os dados?\nA maior parte dos pacotes do tidyverse — como ggplot2, dplyr, purrr — pressupõe que seus dados estejam no formato tidy. Esse formato facilita operações como filtragem, visualização, modelagem e comunicação de resultados."
+  },
+  {
+    "objectID": "material/aula03-arrumar.html#carregando-pacotes-necessários",
+    "href": "material/aula03-arrumar.html#carregando-pacotes-necessários",
+    "title": "Aula 03 – Arrumar Dados com tidyr",
+    "section": "Carregando pacotes necessários",
+    "text": "Carregando pacotes necessários\nNesta etapa, carregamos os pacotes essenciais para trabalhar com dados no estilo tidy. O tidyverse engloba tanto o tidyr, que será o foco da aula, quanto pacotes auxiliares como dplyr e ggplot2.\n\nlibrary(tidyverse)  # carrega tidyr, dplyr, ggplot2, etc."
+  },
+  {
+    "objectID": "material/aula03-arrumar.html#estrutura-comum-de-dados-desarrumados",
+    "href": "material/aula03-arrumar.html#estrutura-comum-de-dados-desarrumados",
+    "title": "Aula 03 – Arrumar Dados com tidyr",
+    "section": "Estrutura comum de dados desarrumados",
+    "text": "Estrutura comum de dados desarrumados\nAntes de aprender a arrumar os dados, é importante reconhecer como se apresentam conjuntos de dados desorganizados. Esta seção discute os padrões mais comuns de dados desarrumados e por que eles dificultam a análise. Aqui alguns padrões para reconhecer formatos “desarrumados”, como:\n\nDados com valores em nomes de colunas;\nMúltiplas variáveis em uma única coluna;\nObservações espalhadas em várias tabelas."
+  },
+  {
+    "objectID": "material/aula03-arrumar.html#transformando-dados-amplos-em-longos-com-pivot_longer",
+    "href": "material/aula03-arrumar.html#transformando-dados-amplos-em-longos-com-pivot_longer",
+    "title": "Aula 03 – Arrumar Dados com tidyr",
+    "section": "Transformando dados amplos em longos com pivot_longer()",
+    "text": "Transformando dados amplos em longos com pivot_longer()\nAgora vamos aprender a transformar dados em formato “amplo” (com variáveis nos nomes das colunas) para o formato “longo” — o formato ideal para a maioria das análises e visualizações no tidyverse.\nVamos usar um exemplo em que temos colunas representando diferentes anos e queremos reorganizá-las em formato longo.\n\nwide_data &lt;- tibble(\n  estado = c(\"SP\", \"RJ\", \"MG\"),\n  `2020` = c(100, 80, 90),\n  `2021` = c(110, 85, 95)\n)\n\nlong_data &lt;- wide_data %&gt;%\n  pivot_longer(\n    cols = c(`2020`, `2021`),\n    names_to = \"ano\",\n    values_to = \"valor\"\n  )"
+  },
+  {
+    "objectID": "material/aula03-arrumar.html#transformando-dados-longos-em-amplos-com-pivot_wider",
+    "href": "material/aula03-arrumar.html#transformando-dados-longos-em-amplos-com-pivot_wider",
+    "title": "Aula 03 – Arrumar Dados com tidyr",
+    "section": "Transformando dados longos em amplos com pivot_wider()",
+    "text": "Transformando dados longos em amplos com pivot_wider()\nÀs vezes é útil inverter a operação anterior, convertendo dados do formato longo para o formato amplo — por exemplo, ao gerar tabelas para relatórios ou comparações visuais lado a lado.\nAgora fazemos o caminho inverso, útil por exemplo para gerar tabelas.\n\nwide_again &lt;- long_data %&gt;%\n  pivot_wider(\n    names_from = ano,\n    values_from = valor\n  )\n\n\n\n\n\n\n\nNote\n\n\n\nO operador %&gt;%, conhecido como pipe, é utilizado para encadear funções em R de forma legível. Ele permite passar o resultado de uma expressão como primeiro argumento da próxima função."
+  },
+  {
+    "objectID": "material/aula03-arrumar.html#separando-colunas-com-separate",
+    "href": "material/aula03-arrumar.html#separando-colunas-com-separate",
+    "title": "Aula 03 – Arrumar Dados com tidyr",
+    "section": "Separando colunas com separate()",
+    "text": "Separando colunas com separate()\nQuando uma única coluna contém mais de uma variável combinada (por exemplo, “nome-idade”), podemos separá-la em múltiplas colunas usando a função separate().\n\ndf &lt;- tibble(pessoa = c(\"Joao-25\", \"Maria-30\"))\n\ndf_sep &lt;- df %&gt;%\n  separate(pessoa, into = c(\"nome\", \"idade\"), sep = \"-\")"
+  },
+  {
+    "objectID": "material/aula03-arrumar.html#unindo-colunas-com-unite",
+    "href": "material/aula03-arrumar.html#unindo-colunas-com-unite",
+    "title": "Aula 03 – Arrumar Dados com tidyr",
+    "section": "Unindo colunas com unite()",
+    "text": "Unindo colunas com unite()\nO oposto da separação: se quisermos combinar duas ou mais colunas em uma só (por exemplo, reconstruir “nome-idade”), utilizamos a função unite().\n\ndf_unido &lt;- df_sep %&gt;%\n  unite(\"pessoa\", nome, idade, sep = \"-\")"
+  },
+  {
+    "objectID": "material/aula03-arrumar.html#exercícios",
+    "href": "material/aula03-arrumar.html#exercícios",
+    "title": "Aula 03 – Arrumar Dados com tidyr",
+    "section": "Exercícios",
+    "text": "Exercícios\nEstes exercícios reforçam o conteúdo abordado, permitindo aplicar pivot_longer(), pivot_wider(), separate() e unite() em situações práticas.\n\nConverta um conjunto de dados amplo para o formato longo usando pivot_longer().\nFaça a operação inversa com pivot_wider().\nUse separate() para dividir uma coluna composta.\nUse unite() para reconstruí-la."
   },
   {
     "objectID": "material/aula05-visualizar.html",
@@ -49,32 +77,81 @@
     "text": "Compreender os princípios da gramática dos gráficos implementada no ggplot2.\nConstruir visualizações com ggplot(), mapeando variáveis estéticas.\nAdicionar camadas como geom_point(), geom_bar(), geom_line().\nPersonalizar rótulos, cores, escalas e temas gráficos."
   },
   {
-    "objectID": "material/aula02-importar.html",
-    "href": "material/aula02-importar.html",
-    "title": "Aula 02 – Importação de Dados com Tidyverse",
+    "objectID": "material/aula05-visualizar.html#objetivos-da-aula",
+    "href": "material/aula05-visualizar.html#objetivos-da-aula",
+    "title": "Aula 05 – Visualizar Dados com ggplot2",
     "section": "",
-    "text": "Compreender a estrutura e filosofia do tidyverse.\nReconhecer as principais ferramentas de importação de dados (readr, readxl, here).\nUtilizar funções como read_csv(), read_excel() e here() com segurança.\nInterpretar mensagens de importação e controlar encoding, separadores e tipos de colunas."
+    "text": "Compreender os princípios da gramática dos gráficos implementada no ggplot2.\nConstruir visualizações com ggplot(), mapeando variáveis estéticas.\nAdicionar camadas como geom_point(), geom_bar(), geom_line().\nPersonalizar rótulos, cores, escalas e temas gráficos."
   },
   {
-    "objectID": "material/aula06-modelar.html",
-    "href": "material/aula06-modelar.html",
-    "title": "Aula 06",
-    "section": "",
-    "text": "Em construção\nConteúdo da aula 06."
+    "objectID": "material/aula05-visualizar.html#introdução",
+    "href": "material/aula05-visualizar.html#introdução",
+    "title": "Aula 05 – Visualizar Dados com ggplot2",
+    "section": "Introdução",
+    "text": "Introdução\nA criação de gráficos no ggplot2 segue a lógica da gramática dos gráficos (grammar of graphics), onde gráficos são construídos camada por camada.\nEssa abordagem modular permite construir visualizações complexas de forma controlada e transparente."
   },
   {
-    "objectID": "material/aula04-transformar.html",
-    "href": "material/aula04-transformar.html",
-    "title": "Aula 04 – Transformar Dados com dplyr",
-    "section": "",
-    "text": "Utilizar funções do pacote dplyr para transformar e manipular dados.\nAplicar operações fundamentais como filter(), select(), mutate(), arrange() e summarise().\nCompreender o uso de group_by() para operações por grupos.\nEscrever fluxos de transformação com o operador pipe (%&gt;%)."
+    "objectID": "material/aula05-visualizar.html#carregando-pacotes-necessários",
+    "href": "material/aula05-visualizar.html#carregando-pacotes-necessários",
+    "title": "Aula 05 – Visualizar Dados com ggplot2",
+    "section": "Carregando pacotes necessários",
+    "text": "Carregando pacotes necessários\nO pacote ggplot2 já está incluído no tidyverse.\n\nlibrary(tidyverse)"
   },
   {
-    "objectID": "material/aula07-comunicar.html",
-    "href": "material/aula07-comunicar.html",
-    "title": "Aula 07",
+    "objectID": "material/aula05-visualizar.html#conhecendo-a-estrutura-de-ggplot",
+    "href": "material/aula05-visualizar.html#conhecendo-a-estrutura-de-ggplot",
+    "title": "Aula 05 – Visualizar Dados com ggplot2",
+    "section": "Conhecendo a estrutura de ggplot()",
+    "text": "Conhecendo a estrutura de ggplot()\nA função ggplot() serve como ponto de partida, onde definimos os dados e os mapeamentos estéticos — isto é, quais variáveis serão representadas nos eixos ou em outras propriedades visuais.\n\nggplot(data = mpg, mapping = aes(x = displ, y = hwy))"
+  },
+  {
+    "objectID": "material/aula05-visualizar.html#adicionando-camadas-com",
+    "href": "material/aula05-visualizar.html#adicionando-camadas-com",
+    "title": "Aula 05 – Visualizar Dados com ggplot2",
+    "section": "Adicionando camadas com +",
+    "text": "Adicionando camadas com +\nAs camadas (geoms) definem o tipo de gráfico. Abaixo, criamos um gráfico de dispersão com geom_point().\n\nggplot(data = mpg, aes(x = displ, y = hwy)) +\n  geom_point()"
+  },
+  {
+    "objectID": "material/aula05-visualizar.html#mapeando-variáveis-estéticas",
+    "href": "material/aula05-visualizar.html#mapeando-variáveis-estéticas",
+    "title": "Aula 05 – Visualizar Dados com ggplot2",
+    "section": "Mapeando variáveis estéticas",
+    "text": "Mapeando variáveis estéticas\nMapear variáveis para cor, forma ou tamanho adiciona dimensão à visualização.\n\nggplot(mpg, aes(x = displ, y = hwy, color = class)) +\n  geom_point()"
+  },
+  {
+    "objectID": "material/aula05-visualizar.html#gráficos-de-barras-com-geom_bar",
+    "href": "material/aula05-visualizar.html#gráficos-de-barras-com-geom_bar",
+    "title": "Aula 05 – Visualizar Dados com ggplot2",
+    "section": "Gráficos de barras com geom_bar()",
+    "text": "Gráficos de barras com geom_bar()\nO geom_bar() pode ser usado de duas formas: com contagem automática ou com stat = \"identity\" quando os valores já estão agregados.\n\nggplot(mpg, aes(x = class)) +\n  geom_bar()"
+  },
+  {
+    "objectID": "material/aula05-visualizar.html#gráficos-de-linhas-com-geom_line",
+    "href": "material/aula05-visualizar.html#gráficos-de-linhas-com-geom_line",
+    "title": "Aula 05 – Visualizar Dados com ggplot2",
+    "section": "Gráficos de linhas com geom_line()",
+    "text": "Gráficos de linhas com geom_line()\nUsado principalmente para séries temporais ou relações contínuas ordenadas.\n\ndata &lt;- tibble(tempo = 1:10, valor = cumsum(rnorm(10)))\n\nggplot(data, aes(x = tempo, y = valor)) +\n  geom_line()"
+  },
+  {
+    "objectID": "material/aula05-visualizar.html#personalizando-o-gráfico-títulos-cores-e-temas",
+    "href": "material/aula05-visualizar.html#personalizando-o-gráfico-títulos-cores-e-temas",
+    "title": "Aula 05 – Visualizar Dados com ggplot2",
+    "section": "Personalizando o gráfico: títulos, cores e temas",
+    "text": "Personalizando o gráfico: títulos, cores e temas\nPodemos adicionar rótulos, modificar escalas e aplicar temas para tornar os gráficos mais informativos e estéticos.\n\nggplot(mpg, aes(x = displ, y = hwy, color = class)) +\n  geom_point() +\n  labs(title = \"Eficiência por tipo de carro\",\n       x = \"Tamanho do motor (L)\",\n       y = \"MPG rodovia\",\n       color = \"Classe\") +\n  theme_minimal()"
+  },
+  {
+    "objectID": "material/aula05-visualizar.html#exercícios",
+    "href": "material/aula05-visualizar.html#exercícios",
+    "title": "Aula 05 – Visualizar Dados com ggplot2",
+    "section": "Exercícios",
+    "text": "Exercícios\n\nCrie um gráfico de dispersão de mpg com hwy vs. displ.\nMapeie a variável drv na cor dos pontos.\nCrie um gráfico de barras com a contagem de veículos por class.\nGere um gráfico de linhas com dados simulados de série temporal.\nAplique um tema diferente ao gráfico e adicione título e rótulos."
+  },
+  {
+    "objectID": "material/aula01-introducao-r.html",
+    "href": "material/aula01-introducao-r.html",
+    "title": "Aula 01 – Introdução ao R",
     "section": "",
-    "text": "Em construção\nConteúdo da aula 07."
+    "text": "Explorar os fundamentos da linguagem R com profundidade conceitual.\nCompreender a estrutura de objetos, vetores e funções no R.\nTrabalhar com listas e data frames, reconhecendo suas estruturas e coerções.\nEntender como o ambiente do R é organizado para análise reprodutível."
   },
   {
     "objectID": "material/aula01-introducao-r.html#objetivos-da-aula",
@@ -154,11 +231,11 @@
     "text": "Exercícios\nVetores e estatísticas básicas\n1. Crie um vetor numérico com 10 valores aleatórios e calcule a média, mediana e desvio padrão.\nTipos e coerção\n2. Crie um vetor misto e verifique o tipo resultante. Interprete a coerção.\nData Frames\n3. Monte um data.frame com colunas nome, idade, sexo, altura e aprovado. 4. Use str() e sapply() para inspecionar seu data.frame.\n\n\nFóruns úteis:\n\ndiscourse\nStackoverflow\nR-Ladies"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Bem-vindo ao curso",
+    "objectID": "material/aula02-importar.html",
+    "href": "material/aula02-importar.html",
+    "title": "Aula 02 – Importação de Dados com Tidyverse",
     "section": "",
-    "text": "Este é um curso introdutório ao R com foco em ciência de dados usando o pacote tidyverse.\nAo longo das aulas, você aprenderá:\n\nA base da linguagem R\nComo importar, arrumar, transformar, visualizar e modelar dados\nComo gerar relatórios reprodutíveis\n\nUse o menu acima para navegar entre os módulos.\n\n\nAntes de começar…\nEste documento tem como objetivo oferecer uma comparação prática entre duas das bibliotecas mais populares para manipulação de dados: pandas em Python e tidyverse em R. Utilizando o dataset clássico Iris, são apresentadas operações fundamentais de ciência de dados em ambas as linguagens, organizadas de forma paralela.\nA proposta não é apenas mostrar como realizar tarefas específicas, mas também facilitar a transferência de conhecimento entre linguagens. Muitas vezes, cientistas de dados e pesquisadores se deparam com a necessidade de migrar seus fluxos de trabalho entre R e Python (ou vice-versa), seja por demanda de projetos colaborativos, requisitos institucionais ou preferência da equipe técnica.\nAo intercalar cada operação com sua respectiva implementação em R e Python, o leitor pode compreender como os conceitos se traduzem entre os ecossistemas. Essa estrutura favorece o aprendizado comparado e reforça a capacidade de raciocínio lógico ao destacar diferenças e semelhanças de sintaxe e paradigma entre as duas abordagens.\nEste material pode ser útil tanto para iniciantes quanto para usuários intermediários que desejam reforçar sua fluência em múltiplas linguagens de análise de dados.\n\n\n\n\nimport pandas as pd\nfrom sklearn.datasets import load_iris\n\niris_data = load_iris(as_frame=True)\niris = iris_data.frame\n\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.0.4     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\ndata(iris)\n\n\n\n\n\niris.head()\n\n   sepal length (cm)  sepal width (cm)  ...  petal width (cm)  target\n0                5.1               3.5  ...               0.2       0\n1                4.9               3.0  ...               0.2       0\n2                4.7               3.2  ...               0.2       0\n3                4.6               3.1  ...               0.2       0\n4                5.0               3.6  ...               0.2       0\n\n[5 rows x 5 columns]\n\n\n\nhead(iris)\n\n  Sepal.Length Sepal.Width Petal.Length Petal.Width Species\n1          5.1         3.5          1.4         0.2  setosa\n2          4.9         3.0          1.4         0.2  setosa\n3          4.7         3.2          1.3         0.2  setosa\n4          4.6         3.1          1.5         0.2  setosa\n5          5.0         3.6          1.4         0.2  setosa\n6          5.4         3.9          1.7         0.4  setosa\n\n\n\n\n\n\niris_setosa = iris[iris['target'] == 'setosa']\niris_setosa.head()\n\nEmpty DataFrame\nColumns: [sepal length (cm), sepal width (cm), petal length (cm), petal width (cm), target]\nIndex: []\n\n\n\niris %&gt;% filter(Species == \"setosa\")\n\n   Sepal.Length Sepal.Width Petal.Length Petal.Width Species\n1           5.1         3.5          1.4         0.2  setosa\n2           4.9         3.0          1.4         0.2  setosa\n3           4.7         3.2          1.3         0.2  setosa\n4           4.6         3.1          1.5         0.2  setosa\n5           5.0         3.6          1.4         0.2  setosa\n6           5.4         3.9          1.7         0.4  setosa\n7           4.6         3.4          1.4         0.3  setosa\n8           5.0         3.4          1.5         0.2  setosa\n9           4.4         2.9          1.4         0.2  setosa\n10          4.9         3.1          1.5         0.1  setosa\n11          5.4         3.7          1.5         0.2  setosa\n12          4.8         3.4          1.6         0.2  setosa\n13          4.8         3.0          1.4         0.1  setosa\n14          4.3         3.0          1.1         0.1  setosa\n15          5.8         4.0          1.2         0.2  setosa\n16          5.7         4.4          1.5         0.4  setosa\n17          5.4         3.9          1.3         0.4  setosa\n18          5.1         3.5          1.4         0.3  setosa\n19          5.7         3.8          1.7         0.3  setosa\n20          5.1         3.8          1.5         0.3  setosa\n21          5.4         3.4          1.7         0.2  setosa\n22          5.1         3.7          1.5         0.4  setosa\n23          4.6         3.6          1.0         0.2  setosa\n24          5.1         3.3          1.7         0.5  setosa\n25          4.8         3.4          1.9         0.2  setosa\n26          5.0         3.0          1.6         0.2  setosa\n27          5.0         3.4          1.6         0.4  setosa\n28          5.2         3.5          1.5         0.2  setosa\n29          5.2         3.4          1.4         0.2  setosa\n30          4.7         3.2          1.6         0.2  setosa\n31          4.8         3.1          1.6         0.2  setosa\n32          5.4         3.4          1.5         0.4  setosa\n33          5.2         4.1          1.5         0.1  setosa\n34          5.5         4.2          1.4         0.2  setosa\n35          4.9         3.1          1.5         0.2  setosa\n36          5.0         3.2          1.2         0.2  setosa\n37          5.5         3.5          1.3         0.2  setosa\n38          4.9         3.6          1.4         0.1  setosa\n39          4.4         3.0          1.3         0.2  setosa\n40          5.1         3.4          1.5         0.2  setosa\n41          5.0         3.5          1.3         0.3  setosa\n42          4.5         2.3          1.3         0.3  setosa\n43          4.4         3.2          1.3         0.2  setosa\n44          5.0         3.5          1.6         0.6  setosa\n45          5.1         3.8          1.9         0.4  setosa\n46          4.8         3.0          1.4         0.3  setosa\n47          5.1         3.8          1.6         0.2  setosa\n48          4.6         3.2          1.4         0.2  setosa\n49          5.3         3.7          1.5         0.2  setosa\n50          5.0         3.3          1.4         0.2  setosa\n\n\n\n\n\n\niris_selected = iris[['sepal length (cm)', 'target']]\niris_selected.head()\n\n   sepal length (cm)  target\n0                5.1       0\n1                4.9       0\n2                4.7       0\n3                4.6       0\n4                5.0       0\n\n\n\niris %&gt;% select(Sepal.Length, Species)\n\n    Sepal.Length    Species\n1            5.1     setosa\n2            4.9     setosa\n3            4.7     setosa\n4            4.6     setosa\n5            5.0     setosa\n6            5.4     setosa\n7            4.6     setosa\n8            5.0     setosa\n9            4.4     setosa\n10           4.9     setosa\n11           5.4     setosa\n12           4.8     setosa\n13           4.8     setosa\n14           4.3     setosa\n15           5.8     setosa\n16           5.7     setosa\n17           5.4     setosa\n18           5.1     setosa\n19           5.7     setosa\n20           5.1     setosa\n21           5.4     setosa\n22           5.1     setosa\n23           4.6     setosa\n24           5.1     setosa\n25           4.8     setosa\n26           5.0     setosa\n27           5.0     setosa\n28           5.2     setosa\n29           5.2     setosa\n30           4.7     setosa\n31           4.8     setosa\n32           5.4     setosa\n33           5.2     setosa\n34           5.5     setosa\n35           4.9     setosa\n36           5.0     setosa\n37           5.5     setosa\n38           4.9     setosa\n39           4.4     setosa\n40           5.1     setosa\n41           5.0     setosa\n42           4.5     setosa\n43           4.4     setosa\n44           5.0     setosa\n45           5.1     setosa\n46           4.8     setosa\n47           5.1     setosa\n48           4.6     setosa\n49           5.3     setosa\n50           5.0     setosa\n51           7.0 versicolor\n52           6.4 versicolor\n53           6.9 versicolor\n54           5.5 versicolor\n55           6.5 versicolor\n56           5.7 versicolor\n57           6.3 versicolor\n58           4.9 versicolor\n59           6.6 versicolor\n60           5.2 versicolor\n61           5.0 versicolor\n62           5.9 versicolor\n63           6.0 versicolor\n64           6.1 versicolor\n65           5.6 versicolor\n66           6.7 versicolor\n67           5.6 versicolor\n68           5.8 versicolor\n69           6.2 versicolor\n70           5.6 versicolor\n71           5.9 versicolor\n72           6.1 versicolor\n73           6.3 versicolor\n74           6.1 versicolor\n75           6.4 versicolor\n76           6.6 versicolor\n77           6.8 versicolor\n78           6.7 versicolor\n79           6.0 versicolor\n80           5.7 versicolor\n81           5.5 versicolor\n82           5.5 versicolor\n83           5.8 versicolor\n84           6.0 versicolor\n85           5.4 versicolor\n86           6.0 versicolor\n87           6.7 versicolor\n88           6.3 versicolor\n89           5.6 versicolor\n90           5.5 versicolor\n91           5.5 versicolor\n92           6.1 versicolor\n93           5.8 versicolor\n94           5.0 versicolor\n95           5.6 versicolor\n96           5.7 versicolor\n97           5.7 versicolor\n98           6.2 versicolor\n99           5.1 versicolor\n100          5.7 versicolor\n101          6.3  virginica\n102          5.8  virginica\n103          7.1  virginica\n104          6.3  virginica\n105          6.5  virginica\n106          7.6  virginica\n107          4.9  virginica\n108          7.3  virginica\n109          6.7  virginica\n110          7.2  virginica\n111          6.5  virginica\n112          6.4  virginica\n113          6.8  virginica\n114          5.7  virginica\n115          5.8  virginica\n116          6.4  virginica\n117          6.5  virginica\n118          7.7  virginica\n119          7.7  virginica\n120          6.0  virginica\n121          6.9  virginica\n122          5.6  virginica\n123          7.7  virginica\n124          6.3  virginica\n125          6.7  virginica\n126          7.2  virginica\n127          6.2  virginica\n128          6.1  virginica\n129          6.4  virginica\n130          7.2  virginica\n131          7.4  virginica\n132          7.9  virginica\n133          6.4  virginica\n134          6.3  virginica\n135          6.1  virginica\n136          7.7  virginica\n137          6.3  virginica\n138          6.4  virginica\n139          6.0  virginica\n140          6.9  virginica\n141          6.7  virginica\n142          6.9  virginica\n143          5.8  virginica\n144          6.8  virginica\n145          6.7  virginica\n146          6.7  virginica\n147          6.3  virginica\n148          6.5  virginica\n149          6.2  virginica\n150          5.9  virginica\n\n\n\n\n\n\niris['Sepal.Area'] = iris['sepal length (cm)'] * iris['sepal width (cm)']\niris[['Sepal.Area']].head()\n\n   Sepal.Area\n0       17.85\n1       14.70\n2       15.04\n3       14.26\n4       18.00\n\n\n\niris &lt;- iris %&gt;% mutate(Sepal.Area = Sepal.Length * Sepal.Width)\niris %&gt;% select(Sepal.Area) %&gt;% head()\n\n  Sepal.Area\n1      17.85\n2      14.70\n3      15.04\n4      14.26\n5      18.00\n6      21.06\n\n\n\n\n\n\nmean_sepal = iris.groupby('target')['sepal length (cm)'].mean()\nmean_sepal\n\ntarget\n0    5.006\n1    5.936\n2    6.588\nName: sepal length (cm), dtype: float64\n\n\n\niris %&gt;% group_by(Species) %&gt;% summarise(mean_sepal = mean(Sepal.Length))\n\n# A tibble: 3 × 2\n  Species    mean_sepal\n  &lt;fct&gt;           &lt;dbl&gt;\n1 setosa           5.01\n2 versicolor       5.94\n3 virginica        6.59\n\n\n\n\n\n\niris_sorted = iris.sort_values('sepal length (cm)', ascending=False)\niris_sorted.head()\n\n     sepal length (cm)  sepal width (cm)  ...  target  Sepal.Area\n131                7.9               3.8  ...       2       30.02\n135                7.7               3.0  ...       2       23.10\n122                7.7               2.8  ...       2       21.56\n117                7.7               3.8  ...       2       29.26\n118                7.7               2.6  ...       2       20.02\n\n[5 rows x 6 columns]\n\n\n\niris %&gt;% arrange(desc(Sepal.Length)) %&gt;% head()\n\n  Sepal.Length Sepal.Width Petal.Length Petal.Width   Species Sepal.Area\n1          7.9         3.8          6.4         2.0 virginica      30.02\n2          7.7         3.8          6.7         2.2 virginica      29.26\n3          7.7         2.6          6.9         2.3 virginica      20.02\n4          7.7         2.8          6.7         2.0 virginica      21.56\n5          7.7         3.0          6.1         2.3 virginica      23.10\n6          7.6         3.0          6.6         2.1 virginica      22.80\n\n\n\n\n\n\niris_renamed = iris.rename(columns={'sepal length (cm)': 'Sepal_Length'})\niris_renamed.head()\n\n   Sepal_Length  sepal width (cm)  ...  target  Sepal.Area\n0           5.1               3.5  ...       0       17.85\n1           4.9               3.0  ...       0       14.70\n2           4.7               3.2  ...       0       15.04\n3           4.6               3.1  ...       0       14.26\n4           5.0               3.6  ...       0       18.00\n\n[5 rows x 6 columns]\n\n\n\niris %&gt;% rename(Sepal_Length = Sepal.Length) %&gt;% head()\n\n  Sepal_Length Sepal.Width Petal.Length Petal.Width Species Sepal.Area\n1          5.1         3.5          1.4         0.2  setosa      17.85\n2          4.9         3.0          1.4         0.2  setosa      14.70\n3          4.7         3.2          1.3         0.2  setosa      15.04\n4          4.6         3.1          1.5         0.2  setosa      14.26\n5          5.0         3.6          1.4         0.2  setosa      18.00\n6          5.4         3.9          1.7         0.4  setosa      21.06\n\n\n\n\n\n\niris_filtered = (\n    iris[iris['target'] != 'setosa']\n    .assign(Sepal.Area = lambda df: df['sepal length (cm)'] * df['sepal width (cm)'])\n    .groupby('target')\n    .agg(mean_area = ('Sepal.Area', 'mean'))\n)\niris_filtered\n\n\niris %&gt;%\n  filter(Species != \"setosa\") %&gt;%\n  mutate(Sepal.Area = Sepal.Length * Sepal.Width) %&gt;%\n  group_by(Species) %&gt;%\n  summarise(mean_area = mean(Sepal.Area))\n\n# A tibble: 2 × 2\n  Species    mean_area\n  &lt;fct&gt;          &lt;dbl&gt;\n1 versicolor      16.5\n2 virginica       19.7"
+    "text": "Compreender a estrutura e filosofia do tidyverse.\nReconhecer as principais ferramentas de importação de dados (readr, readxl, here).\nUtilizar funções como read_csv(), read_excel() e here() com segurança.\nInterpretar mensagens de importação e controlar encoding, separadores e tipos de colunas."
   },
   {
     "objectID": "material/aula02-importar.html#objetivos-da-aula",
@@ -231,137 +308,137 @@
     "text": "Exercícios\n\nImporte um arquivo .csv de sua escolha com readr::read_csv() usando here().\nImporte uma planilha .xlsx usando readxl::read_excel().\nVerifique os tipos de cada coluna com spec() e glimpse().\nTeste a função read_csv2() com um arquivo brasileiro e explique a diferença."
   },
   {
-    "objectID": "material/aula05-visualizar.html#objetivos-da-aula",
-    "href": "material/aula05-visualizar.html#objetivos-da-aula",
-    "title": "Aula 05 – Visualizar Dados com ggplot2",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Bem-vindo ao curso",
     "section": "",
-    "text": "Compreender os princípios da gramática dos gráficos implementada no ggplot2.\nConstruir visualizações com ggplot(), mapeando variáveis estéticas.\nAdicionar camadas como geom_point(), geom_bar(), geom_line().\nPersonalizar rótulos, cores, escalas e temas gráficos."
+    "text": "Este é um curso introdutório ao R com foco em ciência de dados usando o pacote tidyverse.\nAo longo das aulas, você aprenderá:\n\nA base da linguagem R\nComo importar, arrumar, transformar, visualizar e modelar dados\nComo gerar relatórios reprodutíveis\n\nUse o menu acima para navegar entre os módulos.\n\n\nAntes de começar…\nEste documento tem como objetivo oferecer uma comparação prática entre duas das bibliotecas mais populares para manipulação de dados: pandas em Python e tidyverse em R. Utilizando o dataset clássico Iris, são apresentadas operações fundamentais de ciência de dados em ambas as linguagens, organizadas de forma paralela.\nA proposta não é apenas mostrar como realizar tarefas específicas, mas também facilitar a transferência de conhecimento entre linguagens. Muitas vezes, cientistas de dados e pesquisadores se deparam com a necessidade de migrar seus fluxos de trabalho entre R e Python (ou vice-versa), seja por demanda de projetos colaborativos, requisitos institucionais ou preferência da equipe técnica.\nAo intercalar cada operação com sua respectiva implementação em R e Python, o leitor pode compreender como os conceitos se traduzem entre os ecossistemas. Essa estrutura favorece o aprendizado comparado e reforça a capacidade de raciocínio lógico ao destacar diferenças e semelhanças de sintaxe e paradigma entre as duas abordagens.\nEste material pode ser útil tanto para iniciantes quanto para usuários intermediários que desejam reforçar sua fluência em múltiplas linguagens de análise de dados.\n\n\n\n\nimport pandas as pd\nfrom sklearn.datasets import load_iris\n\niris_data = load_iris(as_frame=True)\niris = iris_data.frame\n\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.0.4     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\ndata(iris)\n\n\n\n\n\niris.head()\n\n   sepal length (cm)  sepal width (cm)  ...  petal width (cm)  target\n0                5.1               3.5  ...               0.2       0\n1                4.9               3.0  ...               0.2       0\n2                4.7               3.2  ...               0.2       0\n3                4.6               3.1  ...               0.2       0\n4                5.0               3.6  ...               0.2       0\n\n[5 rows x 5 columns]\n\n\n\nhead(iris)\n\n  Sepal.Length Sepal.Width Petal.Length Petal.Width Species\n1          5.1         3.5          1.4         0.2  setosa\n2          4.9         3.0          1.4         0.2  setosa\n3          4.7         3.2          1.3         0.2  setosa\n4          4.6         3.1          1.5         0.2  setosa\n5          5.0         3.6          1.4         0.2  setosa\n6          5.4         3.9          1.7         0.4  setosa\n\n\n\n\n\n\niris_setosa = iris[iris['target'] == 'setosa']\niris_setosa.head()\n\nEmpty DataFrame\nColumns: [sepal length (cm), sepal width (cm), petal length (cm), petal width (cm), target]\nIndex: []\n\n\n\niris %&gt;% filter(Species == \"setosa\")\n\n   Sepal.Length Sepal.Width Petal.Length Petal.Width Species\n1           5.1         3.5          1.4         0.2  setosa\n2           4.9         3.0          1.4         0.2  setosa\n3           4.7         3.2          1.3         0.2  setosa\n4           4.6         3.1          1.5         0.2  setosa\n5           5.0         3.6          1.4         0.2  setosa\n6           5.4         3.9          1.7         0.4  setosa\n7           4.6         3.4          1.4         0.3  setosa\n8           5.0         3.4          1.5         0.2  setosa\n9           4.4         2.9          1.4         0.2  setosa\n10          4.9         3.1          1.5         0.1  setosa\n11          5.4         3.7          1.5         0.2  setosa\n12          4.8         3.4          1.6         0.2  setosa\n13          4.8         3.0          1.4         0.1  setosa\n14          4.3         3.0          1.1         0.1  setosa\n15          5.8         4.0          1.2         0.2  setosa\n16          5.7         4.4          1.5         0.4  setosa\n17          5.4         3.9          1.3         0.4  setosa\n18          5.1         3.5          1.4         0.3  setosa\n19          5.7         3.8          1.7         0.3  setosa\n20          5.1         3.8          1.5         0.3  setosa\n21          5.4         3.4          1.7         0.2  setosa\n22          5.1         3.7          1.5         0.4  setosa\n23          4.6         3.6          1.0         0.2  setosa\n24          5.1         3.3          1.7         0.5  setosa\n25          4.8         3.4          1.9         0.2  setosa\n26          5.0         3.0          1.6         0.2  setosa\n27          5.0         3.4          1.6         0.4  setosa\n28          5.2         3.5          1.5         0.2  setosa\n29          5.2         3.4          1.4         0.2  setosa\n30          4.7         3.2          1.6         0.2  setosa\n31          4.8         3.1          1.6         0.2  setosa\n32          5.4         3.4          1.5         0.4  setosa\n33          5.2         4.1          1.5         0.1  setosa\n34          5.5         4.2          1.4         0.2  setosa\n35          4.9         3.1          1.5         0.2  setosa\n36          5.0         3.2          1.2         0.2  setosa\n37          5.5         3.5          1.3         0.2  setosa\n38          4.9         3.6          1.4         0.1  setosa\n39          4.4         3.0          1.3         0.2  setosa\n40          5.1         3.4          1.5         0.2  setosa\n41          5.0         3.5          1.3         0.3  setosa\n42          4.5         2.3          1.3         0.3  setosa\n43          4.4         3.2          1.3         0.2  setosa\n44          5.0         3.5          1.6         0.6  setosa\n45          5.1         3.8          1.9         0.4  setosa\n46          4.8         3.0          1.4         0.3  setosa\n47          5.1         3.8          1.6         0.2  setosa\n48          4.6         3.2          1.4         0.2  setosa\n49          5.3         3.7          1.5         0.2  setosa\n50          5.0         3.3          1.4         0.2  setosa\n\n\n\n\n\n\niris_selected = iris[['sepal length (cm)', 'target']]\niris_selected.head()\n\n   sepal length (cm)  target\n0                5.1       0\n1                4.9       0\n2                4.7       0\n3                4.6       0\n4                5.0       0\n\n\n\niris %&gt;% select(Sepal.Length, Species)\n\n    Sepal.Length    Species\n1            5.1     setosa\n2            4.9     setosa\n3            4.7     setosa\n4            4.6     setosa\n5            5.0     setosa\n6            5.4     setosa\n7            4.6     setosa\n8            5.0     setosa\n9            4.4     setosa\n10           4.9     setosa\n11           5.4     setosa\n12           4.8     setosa\n13           4.8     setosa\n14           4.3     setosa\n15           5.8     setosa\n16           5.7     setosa\n17           5.4     setosa\n18           5.1     setosa\n19           5.7     setosa\n20           5.1     setosa\n21           5.4     setosa\n22           5.1     setosa\n23           4.6     setosa\n24           5.1     setosa\n25           4.8     setosa\n26           5.0     setosa\n27           5.0     setosa\n28           5.2     setosa\n29           5.2     setosa\n30           4.7     setosa\n31           4.8     setosa\n32           5.4     setosa\n33           5.2     setosa\n34           5.5     setosa\n35           4.9     setosa\n36           5.0     setosa\n37           5.5     setosa\n38           4.9     setosa\n39           4.4     setosa\n40           5.1     setosa\n41           5.0     setosa\n42           4.5     setosa\n43           4.4     setosa\n44           5.0     setosa\n45           5.1     setosa\n46           4.8     setosa\n47           5.1     setosa\n48           4.6     setosa\n49           5.3     setosa\n50           5.0     setosa\n51           7.0 versicolor\n52           6.4 versicolor\n53           6.9 versicolor\n54           5.5 versicolor\n55           6.5 versicolor\n56           5.7 versicolor\n57           6.3 versicolor\n58           4.9 versicolor\n59           6.6 versicolor\n60           5.2 versicolor\n61           5.0 versicolor\n62           5.9 versicolor\n63           6.0 versicolor\n64           6.1 versicolor\n65           5.6 versicolor\n66           6.7 versicolor\n67           5.6 versicolor\n68           5.8 versicolor\n69           6.2 versicolor\n70           5.6 versicolor\n71           5.9 versicolor\n72           6.1 versicolor\n73           6.3 versicolor\n74           6.1 versicolor\n75           6.4 versicolor\n76           6.6 versicolor\n77           6.8 versicolor\n78           6.7 versicolor\n79           6.0 versicolor\n80           5.7 versicolor\n81           5.5 versicolor\n82           5.5 versicolor\n83           5.8 versicolor\n84           6.0 versicolor\n85           5.4 versicolor\n86           6.0 versicolor\n87           6.7 versicolor\n88           6.3 versicolor\n89           5.6 versicolor\n90           5.5 versicolor\n91           5.5 versicolor\n92           6.1 versicolor\n93           5.8 versicolor\n94           5.0 versicolor\n95           5.6 versicolor\n96           5.7 versicolor\n97           5.7 versicolor\n98           6.2 versicolor\n99           5.1 versicolor\n100          5.7 versicolor\n101          6.3  virginica\n102          5.8  virginica\n103          7.1  virginica\n104          6.3  virginica\n105          6.5  virginica\n106          7.6  virginica\n107          4.9  virginica\n108          7.3  virginica\n109          6.7  virginica\n110          7.2  virginica\n111          6.5  virginica\n112          6.4  virginica\n113          6.8  virginica\n114          5.7  virginica\n115          5.8  virginica\n116          6.4  virginica\n117          6.5  virginica\n118          7.7  virginica\n119          7.7  virginica\n120          6.0  virginica\n121          6.9  virginica\n122          5.6  virginica\n123          7.7  virginica\n124          6.3  virginica\n125          6.7  virginica\n126          7.2  virginica\n127          6.2  virginica\n128          6.1  virginica\n129          6.4  virginica\n130          7.2  virginica\n131          7.4  virginica\n132          7.9  virginica\n133          6.4  virginica\n134          6.3  virginica\n135          6.1  virginica\n136          7.7  virginica\n137          6.3  virginica\n138          6.4  virginica\n139          6.0  virginica\n140          6.9  virginica\n141          6.7  virginica\n142          6.9  virginica\n143          5.8  virginica\n144          6.8  virginica\n145          6.7  virginica\n146          6.7  virginica\n147          6.3  virginica\n148          6.5  virginica\n149          6.2  virginica\n150          5.9  virginica\n\n\n\n\n\n\niris['Sepal.Area'] = iris['sepal length (cm)'] * iris['sepal width (cm)']\niris[['Sepal.Area']].head()\n\n   Sepal.Area\n0       17.85\n1       14.70\n2       15.04\n3       14.26\n4       18.00\n\n\n\niris &lt;- iris %&gt;% mutate(Sepal.Area = Sepal.Length * Sepal.Width)\niris %&gt;% select(Sepal.Area) %&gt;% head()\n\n  Sepal.Area\n1      17.85\n2      14.70\n3      15.04\n4      14.26\n5      18.00\n6      21.06\n\n\n\n\n\n\nmean_sepal = iris.groupby('target')['sepal length (cm)'].mean()\nmean_sepal\n\ntarget\n0    5.006\n1    5.936\n2    6.588\nName: sepal length (cm), dtype: float64\n\n\n\niris %&gt;% group_by(Species) %&gt;% summarise(mean_sepal = mean(Sepal.Length))\n\n# A tibble: 3 × 2\n  Species    mean_sepal\n  &lt;fct&gt;           &lt;dbl&gt;\n1 setosa           5.01\n2 versicolor       5.94\n3 virginica        6.59\n\n\n\n\n\n\niris_sorted = iris.sort_values('sepal length (cm)', ascending=False)\niris_sorted.head()\n\n     sepal length (cm)  sepal width (cm)  ...  target  Sepal.Area\n131                7.9               3.8  ...       2       30.02\n135                7.7               3.0  ...       2       23.10\n122                7.7               2.8  ...       2       21.56\n117                7.7               3.8  ...       2       29.26\n118                7.7               2.6  ...       2       20.02\n\n[5 rows x 6 columns]\n\n\n\niris %&gt;% arrange(desc(Sepal.Length)) %&gt;% head()\n\n  Sepal.Length Sepal.Width Petal.Length Petal.Width   Species Sepal.Area\n1          7.9         3.8          6.4         2.0 virginica      30.02\n2          7.7         3.8          6.7         2.2 virginica      29.26\n3          7.7         2.6          6.9         2.3 virginica      20.02\n4          7.7         2.8          6.7         2.0 virginica      21.56\n5          7.7         3.0          6.1         2.3 virginica      23.10\n6          7.6         3.0          6.6         2.1 virginica      22.80\n\n\n\n\n\n\niris_renamed = iris.rename(columns={'sepal length (cm)': 'Sepal_Length'})\niris_renamed.head()\n\n   Sepal_Length  sepal width (cm)  ...  target  Sepal.Area\n0           5.1               3.5  ...       0       17.85\n1           4.9               3.0  ...       0       14.70\n2           4.7               3.2  ...       0       15.04\n3           4.6               3.1  ...       0       14.26\n4           5.0               3.6  ...       0       18.00\n\n[5 rows x 6 columns]\n\n\n\niris %&gt;% rename(Sepal_Length = Sepal.Length) %&gt;% head()\n\n  Sepal_Length Sepal.Width Petal.Length Petal.Width Species Sepal.Area\n1          5.1         3.5          1.4         0.2  setosa      17.85\n2          4.9         3.0          1.4         0.2  setosa      14.70\n3          4.7         3.2          1.3         0.2  setosa      15.04\n4          4.6         3.1          1.5         0.2  setosa      14.26\n5          5.0         3.6          1.4         0.2  setosa      18.00\n6          5.4         3.9          1.7         0.4  setosa      21.06\n\n\n\n\n\n\niris_filtered = (\n    iris[iris['target'] != 'setosa']\n    .assign(Sepal.Area = lambda df: df['sepal length (cm)'] * df['sepal width (cm)'])\n    .groupby('target')\n    .agg(mean_area = ('Sepal.Area', 'mean'))\n)\niris_filtered\n\n\niris %&gt;%\n  filter(Species != \"setosa\") %&gt;%\n  mutate(Sepal.Area = Sepal.Length * Sepal.Width) %&gt;%\n  group_by(Species) %&gt;%\n  summarise(mean_area = mean(Sepal.Area))\n\n# A tibble: 2 × 2\n  Species    mean_area\n  &lt;fct&gt;          &lt;dbl&gt;\n1 versicolor      16.5\n2 virginica       19.7"
   },
   {
-    "objectID": "material/aula05-visualizar.html#introdução",
-    "href": "material/aula05-visualizar.html#introdução",
-    "title": "Aula 05 – Visualizar Dados com ggplot2",
-    "section": "Introdução",
-    "text": "Introdução\nA criação de gráficos no ggplot2 segue a lógica da gramática dos gráficos (grammar of graphics), onde gráficos são construídos camada por camada.\nEssa abordagem modular permite construir visualizações complexas de forma controlada e transparente."
-  },
-  {
-    "objectID": "material/aula05-visualizar.html#carregando-pacotes-necessários",
-    "href": "material/aula05-visualizar.html#carregando-pacotes-necessários",
-    "title": "Aula 05 – Visualizar Dados com ggplot2",
-    "section": "Carregando pacotes necessários",
-    "text": "Carregando pacotes necessários\nO pacote ggplot2 já está incluído no tidyverse.\n\nlibrary(tidyverse)"
-  },
-  {
-    "objectID": "material/aula05-visualizar.html#conhecendo-a-estrutura-de-ggplot",
-    "href": "material/aula05-visualizar.html#conhecendo-a-estrutura-de-ggplot",
-    "title": "Aula 05 – Visualizar Dados com ggplot2",
-    "section": "Conhecendo a estrutura de ggplot()",
-    "text": "Conhecendo a estrutura de ggplot()\nA função ggplot() serve como ponto de partida, onde definimos os dados e os mapeamentos estéticos — isto é, quais variáveis serão representadas nos eixos ou em outras propriedades visuais.\n\nggplot(data = mpg, mapping = aes(x = displ, y = hwy))"
-  },
-  {
-    "objectID": "material/aula05-visualizar.html#adicionando-camadas-com",
-    "href": "material/aula05-visualizar.html#adicionando-camadas-com",
-    "title": "Aula 05 – Visualizar Dados com ggplot2",
-    "section": "Adicionando camadas com +",
-    "text": "Adicionando camadas com +\nAs camadas (geoms) definem o tipo de gráfico. Abaixo, criamos um gráfico de dispersão com geom_point().\n\nggplot(data = mpg, aes(x = displ, y = hwy)) +\n  geom_point()"
-  },
-  {
-    "objectID": "material/aula05-visualizar.html#mapeando-variáveis-estéticas",
-    "href": "material/aula05-visualizar.html#mapeando-variáveis-estéticas",
-    "title": "Aula 05 – Visualizar Dados com ggplot2",
-    "section": "Mapeando variáveis estéticas",
-    "text": "Mapeando variáveis estéticas\nMapear variáveis para cor, forma ou tamanho adiciona dimensão à visualização.\n\nggplot(mpg, aes(x = displ, y = hwy, color = class)) +\n  geom_point()"
-  },
-  {
-    "objectID": "material/aula05-visualizar.html#gráficos-de-barras-com-geom_bar",
-    "href": "material/aula05-visualizar.html#gráficos-de-barras-com-geom_bar",
-    "title": "Aula 05 – Visualizar Dados com ggplot2",
-    "section": "Gráficos de barras com geom_bar()",
-    "text": "Gráficos de barras com geom_bar()\nO geom_bar() pode ser usado de duas formas: com contagem automática ou com stat = \"identity\" quando os valores já estão agregados.\n\nggplot(mpg, aes(x = class)) +\n  geom_bar()"
-  },
-  {
-    "objectID": "material/aula05-visualizar.html#gráficos-de-linhas-com-geom_line",
-    "href": "material/aula05-visualizar.html#gráficos-de-linhas-com-geom_line",
-    "title": "Aula 05 – Visualizar Dados com ggplot2",
-    "section": "Gráficos de linhas com geom_line()",
-    "text": "Gráficos de linhas com geom_line()\nUsado principalmente para séries temporais ou relações contínuas ordenadas.\n\ndata &lt;- tibble(tempo = 1:10, valor = cumsum(rnorm(10)))\n\nggplot(data, aes(x = tempo, y = valor)) +\n  geom_line()"
-  },
-  {
-    "objectID": "material/aula05-visualizar.html#personalizando-o-gráfico-títulos-cores-e-temas",
-    "href": "material/aula05-visualizar.html#personalizando-o-gráfico-títulos-cores-e-temas",
-    "title": "Aula 05 – Visualizar Dados com ggplot2",
-    "section": "Personalizando o gráfico: títulos, cores e temas",
-    "text": "Personalizando o gráfico: títulos, cores e temas\nPodemos adicionar rótulos, modificar escalas e aplicar temas para tornar os gráficos mais informativos e estéticos.\n\nggplot(mpg, aes(x = displ, y = hwy, color = class)) +\n  geom_point() +\n  labs(title = \"Eficiência por tipo de carro\",\n       x = \"Tamanho do motor (L)\",\n       y = \"MPG rodovia\",\n       color = \"Classe\") +\n  theme_minimal()"
-  },
-  {
-    "objectID": "material/aula05-visualizar.html#exercícios",
-    "href": "material/aula05-visualizar.html#exercícios",
-    "title": "Aula 05 – Visualizar Dados com ggplot2",
-    "section": "Exercícios",
-    "text": "Exercícios\n\nCrie um gráfico de dispersão de mpg com hwy vs. displ.\nMapeie a variável drv na cor dos pontos.\nCrie um gráfico de barras com a contagem de veículos por class.\nGere um gráfico de linhas com dados simulados de série temporal.\nAplique um tema diferente ao gráfico e adicione título e rótulos."
-  },
-  {
-    "objectID": "material/aula03-arrumar.html#objetivos-da-aula",
-    "href": "material/aula03-arrumar.html#objetivos-da-aula",
-    "title": "Aula 03 – Arrumar Dados com tidyr",
+    "objectID": "index.html#comparando-linguagens",
+    "href": "index.html#comparando-linguagens",
+    "title": "Bem-vindo ao curso",
     "section": "",
-    "text": "Compreender o que são dados arrumados (tidy data).\nUtilizar funções do pacote tidyr para organizar dados em formato adequado para análise.\nTransformar dados amplos em longos e vice-versa com pivot_longer() e pivot_wider().\nSeparar e unir colunas com separate() e unite()."
+    "text": "Antes de começar…\nEste documento tem como objetivo oferecer uma comparação prática entre duas das bibliotecas mais populares para manipulação de dados: pandas em Python e tidyverse em R. Utilizando o dataset clássico Iris, são apresentadas operações fundamentais de ciência de dados em ambas as linguagens, organizadas de forma paralela.\nA proposta não é apenas mostrar como realizar tarefas específicas, mas também facilitar a transferência de conhecimento entre linguagens. Muitas vezes, cientistas de dados e pesquisadores se deparam com a necessidade de migrar seus fluxos de trabalho entre R e Python (ou vice-versa), seja por demanda de projetos colaborativos, requisitos institucionais ou preferência da equipe técnica.\nAo intercalar cada operação com sua respectiva implementação em R e Python, o leitor pode compreender como os conceitos se traduzem entre os ecossistemas. Essa estrutura favorece o aprendizado comparado e reforça a capacidade de raciocínio lógico ao destacar diferenças e semelhanças de sintaxe e paradigma entre as duas abordagens.\nEste material pode ser útil tanto para iniciantes quanto para usuários intermediários que desejam reforçar sua fluência em múltiplas linguagens de análise de dados."
   },
   {
-    "objectID": "material/aula03-arrumar.html#por-que-arrumar-os-dados",
-    "href": "material/aula03-arrumar.html#por-que-arrumar-os-dados",
-    "title": "Aula 03 – Arrumar Dados com tidyr",
-    "section": "Por que arrumar os dados?",
-    "text": "Por que arrumar os dados?\nA maior parte dos pacotes do tidyverse — como ggplot2, dplyr, purrr — pressupõe que seus dados estejam no formato tidy. Esse formato facilita operações como filtragem, visualização, modelagem e comunicação de resultados."
+    "objectID": "index.html#carregar-os-dados",
+    "href": "index.html#carregar-os-dados",
+    "title": "Bem-vindo ao curso",
+    "section": "",
+    "text": "import pandas as pd\nfrom sklearn.datasets import load_iris\n\niris_data = load_iris(as_frame=True)\niris = iris_data.frame\n\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.0.4     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\ndata(iris)"
   },
   {
-    "objectID": "material/aula03-arrumar.html#carregando-pacotes-necessários",
-    "href": "material/aula03-arrumar.html#carregando-pacotes-necessários",
-    "title": "Aula 03 – Arrumar Dados com tidyr",
-    "section": "Carregando pacotes necessários",
-    "text": "Carregando pacotes necessários\nNesta etapa, carregamos os pacotes essenciais para trabalhar com dados no estilo tidy. O tidyverse engloba tanto o tidyr, que será o foco da aula, quanto pacotes auxiliares como dplyr e ggplot2.\n\nlibrary(tidyverse)  # carrega tidyr, dplyr, ggplot2, etc."
+    "objectID": "index.html#visualizar-as-primeiras-linhas",
+    "href": "index.html#visualizar-as-primeiras-linhas",
+    "title": "Bem-vindo ao curso",
+    "section": "",
+    "text": "iris.head()\n\n   sepal length (cm)  sepal width (cm)  ...  petal width (cm)  target\n0                5.1               3.5  ...               0.2       0\n1                4.9               3.0  ...               0.2       0\n2                4.7               3.2  ...               0.2       0\n3                4.6               3.1  ...               0.2       0\n4                5.0               3.6  ...               0.2       0\n\n[5 rows x 5 columns]\n\n\n\nhead(iris)\n\n  Sepal.Length Sepal.Width Petal.Length Petal.Width Species\n1          5.1         3.5          1.4         0.2  setosa\n2          4.9         3.0          1.4         0.2  setosa\n3          4.7         3.2          1.3         0.2  setosa\n4          4.6         3.1          1.5         0.2  setosa\n5          5.0         3.6          1.4         0.2  setosa\n6          5.4         3.9          1.7         0.4  setosa"
   },
   {
-    "objectID": "material/aula03-arrumar.html#estrutura-comum-de-dados-desarrumados",
-    "href": "material/aula03-arrumar.html#estrutura-comum-de-dados-desarrumados",
-    "title": "Aula 03 – Arrumar Dados com tidyr",
-    "section": "Estrutura comum de dados desarrumados",
-    "text": "Estrutura comum de dados desarrumados\nAntes de aprender a arrumar os dados, é importante reconhecer como se apresentam conjuntos de dados desorganizados. Esta seção discute os padrões mais comuns de dados desarrumados e por que eles dificultam a análise. Aqui alguns padrões para reconhecer formatos “desarrumados”, como:\n\nDados com valores em nomes de colunas;\nMúltiplas variáveis em uma única coluna;\nObservações espalhadas em várias tabelas."
+    "objectID": "index.html#filtrar-linhas-ex-apenas-setosa",
+    "href": "index.html#filtrar-linhas-ex-apenas-setosa",
+    "title": "Bem-vindo ao curso",
+    "section": "",
+    "text": "iris_setosa = iris[iris['target'] == 'setosa']\niris_setosa.head()\n\nEmpty DataFrame\nColumns: [sepal length (cm), sepal width (cm), petal length (cm), petal width (cm), target]\nIndex: []\n\n\n\niris %&gt;% filter(Species == \"setosa\")\n\n   Sepal.Length Sepal.Width Petal.Length Petal.Width Species\n1           5.1         3.5          1.4         0.2  setosa\n2           4.9         3.0          1.4         0.2  setosa\n3           4.7         3.2          1.3         0.2  setosa\n4           4.6         3.1          1.5         0.2  setosa\n5           5.0         3.6          1.4         0.2  setosa\n6           5.4         3.9          1.7         0.4  setosa\n7           4.6         3.4          1.4         0.3  setosa\n8           5.0         3.4          1.5         0.2  setosa\n9           4.4         2.9          1.4         0.2  setosa\n10          4.9         3.1          1.5         0.1  setosa\n11          5.4         3.7          1.5         0.2  setosa\n12          4.8         3.4          1.6         0.2  setosa\n13          4.8         3.0          1.4         0.1  setosa\n14          4.3         3.0          1.1         0.1  setosa\n15          5.8         4.0          1.2         0.2  setosa\n16          5.7         4.4          1.5         0.4  setosa\n17          5.4         3.9          1.3         0.4  setosa\n18          5.1         3.5          1.4         0.3  setosa\n19          5.7         3.8          1.7         0.3  setosa\n20          5.1         3.8          1.5         0.3  setosa\n21          5.4         3.4          1.7         0.2  setosa\n22          5.1         3.7          1.5         0.4  setosa\n23          4.6         3.6          1.0         0.2  setosa\n24          5.1         3.3          1.7         0.5  setosa\n25          4.8         3.4          1.9         0.2  setosa\n26          5.0         3.0          1.6         0.2  setosa\n27          5.0         3.4          1.6         0.4  setosa\n28          5.2         3.5          1.5         0.2  setosa\n29          5.2         3.4          1.4         0.2  setosa\n30          4.7         3.2          1.6         0.2  setosa\n31          4.8         3.1          1.6         0.2  setosa\n32          5.4         3.4          1.5         0.4  setosa\n33          5.2         4.1          1.5         0.1  setosa\n34          5.5         4.2          1.4         0.2  setosa\n35          4.9         3.1          1.5         0.2  setosa\n36          5.0         3.2          1.2         0.2  setosa\n37          5.5         3.5          1.3         0.2  setosa\n38          4.9         3.6          1.4         0.1  setosa\n39          4.4         3.0          1.3         0.2  setosa\n40          5.1         3.4          1.5         0.2  setosa\n41          5.0         3.5          1.3         0.3  setosa\n42          4.5         2.3          1.3         0.3  setosa\n43          4.4         3.2          1.3         0.2  setosa\n44          5.0         3.5          1.6         0.6  setosa\n45          5.1         3.8          1.9         0.4  setosa\n46          4.8         3.0          1.4         0.3  setosa\n47          5.1         3.8          1.6         0.2  setosa\n48          4.6         3.2          1.4         0.2  setosa\n49          5.3         3.7          1.5         0.2  setosa\n50          5.0         3.3          1.4         0.2  setosa"
   },
   {
-    "objectID": "material/aula03-arrumar.html#transformando-dados-amplos-em-longos-com-pivot_longer",
-    "href": "material/aula03-arrumar.html#transformando-dados-amplos-em-longos-com-pivot_longer",
-    "title": "Aula 03 – Arrumar Dados com tidyr",
-    "section": "Transformando dados amplos em longos com pivot_longer()",
-    "text": "Transformando dados amplos em longos com pivot_longer()\nAgora vamos aprender a transformar dados em formato “amplo” (com variáveis nos nomes das colunas) para o formato “longo” — o formato ideal para a maioria das análises e visualizações no tidyverse.\nVamos usar um exemplo em que temos colunas representando diferentes anos e queremos reorganizá-las em formato longo.\n\nwide_data &lt;- tibble(\n  estado = c(\"SP\", \"RJ\", \"MG\"),\n  `2020` = c(100, 80, 90),\n  `2021` = c(110, 85, 95)\n)\n\nlong_data &lt;- wide_data %&gt;%\n  pivot_longer(\n    cols = c(`2020`, `2021`),\n    names_to = \"ano\",\n    values_to = \"valor\"\n  )"
+    "objectID": "index.html#selecionar-colunas",
+    "href": "index.html#selecionar-colunas",
+    "title": "Bem-vindo ao curso",
+    "section": "",
+    "text": "iris_selected = iris[['sepal length (cm)', 'target']]\niris_selected.head()\n\n   sepal length (cm)  target\n0                5.1       0\n1                4.9       0\n2                4.7       0\n3                4.6       0\n4                5.0       0\n\n\n\niris %&gt;% select(Sepal.Length, Species)\n\n    Sepal.Length    Species\n1            5.1     setosa\n2            4.9     setosa\n3            4.7     setosa\n4            4.6     setosa\n5            5.0     setosa\n6            5.4     setosa\n7            4.6     setosa\n8            5.0     setosa\n9            4.4     setosa\n10           4.9     setosa\n11           5.4     setosa\n12           4.8     setosa\n13           4.8     setosa\n14           4.3     setosa\n15           5.8     setosa\n16           5.7     setosa\n17           5.4     setosa\n18           5.1     setosa\n19           5.7     setosa\n20           5.1     setosa\n21           5.4     setosa\n22           5.1     setosa\n23           4.6     setosa\n24           5.1     setosa\n25           4.8     setosa\n26           5.0     setosa\n27           5.0     setosa\n28           5.2     setosa\n29           5.2     setosa\n30           4.7     setosa\n31           4.8     setosa\n32           5.4     setosa\n33           5.2     setosa\n34           5.5     setosa\n35           4.9     setosa\n36           5.0     setosa\n37           5.5     setosa\n38           4.9     setosa\n39           4.4     setosa\n40           5.1     setosa\n41           5.0     setosa\n42           4.5     setosa\n43           4.4     setosa\n44           5.0     setosa\n45           5.1     setosa\n46           4.8     setosa\n47           5.1     setosa\n48           4.6     setosa\n49           5.3     setosa\n50           5.0     setosa\n51           7.0 versicolor\n52           6.4 versicolor\n53           6.9 versicolor\n54           5.5 versicolor\n55           6.5 versicolor\n56           5.7 versicolor\n57           6.3 versicolor\n58           4.9 versicolor\n59           6.6 versicolor\n60           5.2 versicolor\n61           5.0 versicolor\n62           5.9 versicolor\n63           6.0 versicolor\n64           6.1 versicolor\n65           5.6 versicolor\n66           6.7 versicolor\n67           5.6 versicolor\n68           5.8 versicolor\n69           6.2 versicolor\n70           5.6 versicolor\n71           5.9 versicolor\n72           6.1 versicolor\n73           6.3 versicolor\n74           6.1 versicolor\n75           6.4 versicolor\n76           6.6 versicolor\n77           6.8 versicolor\n78           6.7 versicolor\n79           6.0 versicolor\n80           5.7 versicolor\n81           5.5 versicolor\n82           5.5 versicolor\n83           5.8 versicolor\n84           6.0 versicolor\n85           5.4 versicolor\n86           6.0 versicolor\n87           6.7 versicolor\n88           6.3 versicolor\n89           5.6 versicolor\n90           5.5 versicolor\n91           5.5 versicolor\n92           6.1 versicolor\n93           5.8 versicolor\n94           5.0 versicolor\n95           5.6 versicolor\n96           5.7 versicolor\n97           5.7 versicolor\n98           6.2 versicolor\n99           5.1 versicolor\n100          5.7 versicolor\n101          6.3  virginica\n102          5.8  virginica\n103          7.1  virginica\n104          6.3  virginica\n105          6.5  virginica\n106          7.6  virginica\n107          4.9  virginica\n108          7.3  virginica\n109          6.7  virginica\n110          7.2  virginica\n111          6.5  virginica\n112          6.4  virginica\n113          6.8  virginica\n114          5.7  virginica\n115          5.8  virginica\n116          6.4  virginica\n117          6.5  virginica\n118          7.7  virginica\n119          7.7  virginica\n120          6.0  virginica\n121          6.9  virginica\n122          5.6  virginica\n123          7.7  virginica\n124          6.3  virginica\n125          6.7  virginica\n126          7.2  virginica\n127          6.2  virginica\n128          6.1  virginica\n129          6.4  virginica\n130          7.2  virginica\n131          7.4  virginica\n132          7.9  virginica\n133          6.4  virginica\n134          6.3  virginica\n135          6.1  virginica\n136          7.7  virginica\n137          6.3  virginica\n138          6.4  virginica\n139          6.0  virginica\n140          6.9  virginica\n141          6.7  virginica\n142          6.9  virginica\n143          5.8  virginica\n144          6.8  virginica\n145          6.7  virginica\n146          6.7  virginica\n147          6.3  virginica\n148          6.5  virginica\n149          6.2  virginica\n150          5.9  virginica"
   },
   {
-    "objectID": "material/aula03-arrumar.html#transformando-dados-longos-em-amplos-com-pivot_wider",
-    "href": "material/aula03-arrumar.html#transformando-dados-longos-em-amplos-com-pivot_wider",
-    "title": "Aula 03 – Arrumar Dados com tidyr",
-    "section": "Transformando dados longos em amplos com pivot_wider()",
-    "text": "Transformando dados longos em amplos com pivot_wider()\nÀs vezes é útil inverter a operação anterior, convertendo dados do formato longo para o formato amplo — por exemplo, ao gerar tabelas para relatórios ou comparações visuais lado a lado.\nAgora fazemos o caminho inverso, útil por exemplo para gerar tabelas.\n\nwide_again &lt;- long_data %&gt;%\n  pivot_wider(\n    names_from = ano,\n    values_from = valor\n  )\n\n\n\n\n\n\n\nNote\n\n\n\nO operador %&gt;%, conhecido como pipe, é utilizado para encadear funções em R de forma legível. Ele permite passar o resultado de uma expressão como primeiro argumento da próxima função."
+    "objectID": "index.html#criar-nova-coluna-sepal.area",
+    "href": "index.html#criar-nova-coluna-sepal.area",
+    "title": "Bem-vindo ao curso",
+    "section": "",
+    "text": "iris['Sepal.Area'] = iris['sepal length (cm)'] * iris['sepal width (cm)']\niris[['Sepal.Area']].head()\n\n   Sepal.Area\n0       17.85\n1       14.70\n2       15.04\n3       14.26\n4       18.00\n\n\n\niris &lt;- iris %&gt;% mutate(Sepal.Area = Sepal.Length * Sepal.Width)\niris %&gt;% select(Sepal.Area) %&gt;% head()\n\n  Sepal.Area\n1      17.85\n2      14.70\n3      15.04\n4      14.26\n5      18.00\n6      21.06"
   },
   {
-    "objectID": "material/aula03-arrumar.html#separando-colunas-com-separate",
-    "href": "material/aula03-arrumar.html#separando-colunas-com-separate",
-    "title": "Aula 03 – Arrumar Dados com tidyr",
-    "section": "Separando colunas com separate()",
-    "text": "Separando colunas com separate()\nQuando uma única coluna contém mais de uma variável combinada (por exemplo, “nome-idade”), podemos separá-la em múltiplas colunas usando a função separate().\n\ndf &lt;- tibble(pessoa = c(\"Joao-25\", \"Maria-30\"))\n\ndf_sep &lt;- df %&gt;%\n  separate(pessoa, into = c(\"nome\", \"idade\"), sep = \"-\")"
+    "objectID": "index.html#agrupar-e-resumir-média-do-comprimento-da-sépala-por-espécie",
+    "href": "index.html#agrupar-e-resumir-média-do-comprimento-da-sépala-por-espécie",
+    "title": "Bem-vindo ao curso",
+    "section": "",
+    "text": "mean_sepal = iris.groupby('target')['sepal length (cm)'].mean()\nmean_sepal\n\ntarget\n0    5.006\n1    5.936\n2    6.588\nName: sepal length (cm), dtype: float64\n\n\n\niris %&gt;% group_by(Species) %&gt;% summarise(mean_sepal = mean(Sepal.Length))\n\n# A tibble: 3 × 2\n  Species    mean_sepal\n  &lt;fct&gt;           &lt;dbl&gt;\n1 setosa           5.01\n2 versicolor       5.94\n3 virginica        6.59"
   },
   {
-    "objectID": "material/aula03-arrumar.html#unindo-colunas-com-unite",
-    "href": "material/aula03-arrumar.html#unindo-colunas-com-unite",
-    "title": "Aula 03 – Arrumar Dados com tidyr",
-    "section": "Unindo colunas com unite()",
-    "text": "Unindo colunas com unite()\nO oposto da separação: se quisermos combinar duas ou mais colunas em uma só (por exemplo, reconstruir “nome-idade”), utilizamos a função unite().\n\ndf_unido &lt;- df_sep %&gt;%\n  unite(\"pessoa\", nome, idade, sep = \"-\")"
+    "objectID": "index.html#ordenar-os-dados",
+    "href": "index.html#ordenar-os-dados",
+    "title": "Bem-vindo ao curso",
+    "section": "",
+    "text": "iris_sorted = iris.sort_values('sepal length (cm)', ascending=False)\niris_sorted.head()\n\n     sepal length (cm)  sepal width (cm)  ...  target  Sepal.Area\n131                7.9               3.8  ...       2       30.02\n135                7.7               3.0  ...       2       23.10\n122                7.7               2.8  ...       2       21.56\n117                7.7               3.8  ...       2       29.26\n118                7.7               2.6  ...       2       20.02\n\n[5 rows x 6 columns]\n\n\n\niris %&gt;% arrange(desc(Sepal.Length)) %&gt;% head()\n\n  Sepal.Length Sepal.Width Petal.Length Petal.Width   Species Sepal.Area\n1          7.9         3.8          6.4         2.0 virginica      30.02\n2          7.7         3.8          6.7         2.2 virginica      29.26\n3          7.7         2.6          6.9         2.3 virginica      20.02\n4          7.7         2.8          6.7         2.0 virginica      21.56\n5          7.7         3.0          6.1         2.3 virginica      23.10\n6          7.6         3.0          6.6         2.1 virginica      22.80"
   },
   {
-    "objectID": "material/aula03-arrumar.html#exercícios",
-    "href": "material/aula03-arrumar.html#exercícios",
-    "title": "Aula 03 – Arrumar Dados com tidyr",
-    "section": "Exercícios",
-    "text": "Exercícios\nEstes exercícios reforçam o conteúdo abordado, permitindo aplicar pivot_longer(), pivot_wider(), separate() e unite() em situações práticas.\n\nConverta um conjunto de dados amplo para o formato longo usando pivot_longer().\nFaça a operação inversa com pivot_wider().\nUse separate() para dividir uma coluna composta.\nUse unite() para reconstruí-la."
+    "objectID": "index.html#renomear-colunas",
+    "href": "index.html#renomear-colunas",
+    "title": "Bem-vindo ao curso",
+    "section": "",
+    "text": "iris_renamed = iris.rename(columns={'sepal length (cm)': 'Sepal_Length'})\niris_renamed.head()\n\n   Sepal_Length  sepal width (cm)  ...  target  Sepal.Area\n0           5.1               3.5  ...       0       17.85\n1           4.9               3.0  ...       0       14.70\n2           4.7               3.2  ...       0       15.04\n3           4.6               3.1  ...       0       14.26\n4           5.0               3.6  ...       0       18.00\n\n[5 rows x 6 columns]\n\n\n\niris %&gt;% rename(Sepal_Length = Sepal.Length) %&gt;% head()\n\n  Sepal_Length Sepal.Width Petal.Length Petal.Width Species Sepal.Area\n1          5.1         3.5          1.4         0.2  setosa      17.85\n2          4.9         3.0          1.4         0.2  setosa      14.70\n3          4.7         3.2          1.3         0.2  setosa      15.04\n4          4.6         3.1          1.5         0.2  setosa      14.26\n5          5.0         3.6          1.4         0.2  setosa      18.00\n6          5.4         3.9          1.7         0.4  setosa      21.06"
+  },
+  {
+    "objectID": "index.html#pipeline-completo-filtrar-criar-coluna-e-resumir",
+    "href": "index.html#pipeline-completo-filtrar-criar-coluna-e-resumir",
+    "title": "Bem-vindo ao curso",
+    "section": "",
+    "text": "iris_filtered = (\n    iris[iris['target'] != 'setosa']\n    .assign(Sepal.Area = lambda df: df['sepal length (cm)'] * df['sepal width (cm)'])\n    .groupby('target')\n    .agg(mean_area = ('Sepal.Area', 'mean'))\n)\niris_filtered\n\n\niris %&gt;%\n  filter(Species != \"setosa\") %&gt;%\n  mutate(Sepal.Area = Sepal.Length * Sepal.Width) %&gt;%\n  group_by(Species) %&gt;%\n  summarise(mean_area = mean(Sepal.Area))\n\n# A tibble: 2 × 2\n  Species    mean_area\n  &lt;fct&gt;          &lt;dbl&gt;\n1 versicolor      16.5\n2 virginica       19.7"
+  },
+  {
+    "objectID": "material/aula06-modelar.html",
+    "href": "material/aula06-modelar.html",
+    "title": "Aula 06",
+    "section": "",
+    "text": "Em construção\nConteúdo da aula 06."
+  },
+  {
+    "objectID": "material/desafio01-barplot_expressao.html",
+    "href": "material/desafio01-barplot_expressao.html",
+    "title": "Desafio 01 – Gráfico de expressão gênica",
+    "section": "",
+    "text": "Desenvolver um script em R que, dado um identificador de gene (Ensembl ID), gere automaticamente um gráfico de barras representando os níveis de expressão (em TPM) desse gene em diferentes subáreas do cérebro humano, utilizando dados da plataforma Human Protein Atlas."
+  },
+  {
+    "objectID": "material/desafio01-barplot_expressao.html#objetivo",
+    "href": "material/desafio01-barplot_expressao.html#objetivo",
+    "title": "Desafio 01 – Gráfico de expressão gênica",
+    "section": "",
+    "text": "Desenvolver um script em R que, dado um identificador de gene (Ensembl ID), gere automaticamente um gráfico de barras representando os níveis de expressão (em TPM) desse gene em diferentes subáreas do cérebro humano, utilizando dados da plataforma Human Protein Atlas."
+  },
+  {
+    "objectID": "material/desafio01-barplot_expressao.html#requisitos-técnicos",
+    "href": "material/desafio01-barplot_expressao.html#requisitos-técnicos",
+    "title": "Desafio 01 – Gráfico de expressão gênica",
+    "section": "Requisitos Técnicos",
+    "text": "Requisitos Técnicos\n\nUtilizar os pacotes tidyverse, especialmente ggplot2, para manipulação e visualização dos dados.\nO script deve aceitar como entrada um Ensembl Gene ID (por exemplo, ENSG00000146648 para o gene EGFR).\nA saída deve ser um gráfico de barras onde:\n\nO eixo X representa as subáreas do cérebro (por exemplo, córtex cerebral, cerebelo, hipotálamo).\nO eixo Y representa os níveis de expressão em TPM (Transcripts Per Million).\n\nO gráfico deve ser estilizado de forma clara e informativa, semelhante aos gráficos apresentados na plataforma Human Protein Atlas. Ver exemplo, aqui."
+  },
+  {
+    "objectID": "material/desafio01-barplot_expressao.html#instruções-para-obtenção-dos-dados",
+    "href": "material/desafio01-barplot_expressao.html#instruções-para-obtenção-dos-dados",
+    "title": "Desafio 01 – Gráfico de expressão gênica",
+    "section": "Instruções para Obtenção dos Dados",
+    "text": "Instruções para Obtenção dos Dados\n\nAcesse o portal a pagina Human Protein Atlas – Brain Atlas.\nClique em rna_brain_region_hpa.tsv.zip.\nExtrai o arquivo dentro da pasta data.\nCarregue o arquivo no R com:\n\n\nlibrary(readr)\n\n# Substitua o caminho conforme necessário\nbrain_data &lt;- read_tsv(here::here(\"data/rna_brain_region_hpa.tsv\"))\n\n\n\n\nGene\nGene name\nBrain region\nTPM\npTPM\nnTPM\n\n\n\n\nENSG00000000003\nTSPAN6\namygdala\n4.5\n6.1\n7.0\n\n\nENSG00000000003\nTSPAN6\nbasal ganglia\n6.8\n10.2\n7.6\n\n\nENSG00000000003\nTSPAN6\ncerebellum\n6.5\n9.2\n7.2\n\n\nENSG00000000003\nTSPAN6\ncerebral cortex\n4.4\n6.7\n5.6\n\n\nENSG00000000003\nTSPAN6\nchoroid plexus\n26.8\n34.9\n48.2\n\n\n…\n…\n…\n…\n…\n…"
+  },
+  {
+    "objectID": "material/desafio01-barplot_expressao.html#entregáveis",
+    "href": "material/desafio01-barplot_expressao.html#entregáveis",
+    "title": "Desafio 01 – Gráfico de expressão gênica",
+    "section": "Entregáveis",
+    "text": "Entregáveis\n\nScript R (expressao_gene_cerebro.R): Script funcional que realiza as seguintes etapas:\n\nRecebe um o identificador como entrada.\nObtém os dados de expressão gênica correspondentes às subáreas do cérebro humano.\nGera e salva um gráfico de barras representando os níveis de expressão.\n\nGráfico de Exemplo: Imagem do gráfico gerado para um gene de exemplo (por exemplo, EGFR), salva em formato PNG ou PDF."
+  },
+  {
+    "objectID": "material/desafio01-barplot_expressao.html#dicas",
+    "href": "material/desafio01-barplot_expressao.html#dicas",
+    "title": "Desafio 01 – Gráfico de expressão gênica",
+    "section": "Dicas",
+    "text": "Dicas\n\nCertifique-se de que os dados estão no formato adequado para o ggplot2.\nPara garantir a reprodutibilidade, inclua no script a instalação e carregamento dos pacotes necessários.(Bioconductor, Stack Overflow)"
+  },
+  {
+    "objectID": "material/aula04-transformar.html",
+    "href": "material/aula04-transformar.html",
+    "title": "Aula 04 – Transformar Dados com dplyr",
+    "section": "",
+    "text": "Utilizar funções do pacote dplyr para transformar e manipular dados.\nAplicar operações fundamentais como filter(), select(), mutate(), arrange() e summarise().\nCompreender o uso de group_by() para operações por grupos.\nEscrever fluxos de transformação com o operador pipe (%&gt;%)."
   },
   {
     "objectID": "material/aula04-transformar.html#objetivos-da-aula",
@@ -441,115 +518,10 @@
     "text": "Exercícios\n\nSelecione apenas as colunas name, birth_year e species.\nFiltre apenas personagens com massa maior que 100.\nCrie uma nova coluna chamada altura_m com a altura em metros.\nAgrupe os dados por species e calcule a média da altura.\nOrdene os resultados de forma decrescente pela média da altura."
   },
   {
-    "objectID": "index.html#comparando-linguagens",
-    "href": "index.html#comparando-linguagens",
-    "title": "Bem-vindo ao curso",
+    "objectID": "material/aula07-comunicar.html",
+    "href": "material/aula07-comunicar.html",
+    "title": "Aula 07",
     "section": "",
-    "text": "Antes de começar…\nEste documento tem como objetivo oferecer uma comparação prática entre duas das bibliotecas mais populares para manipulação de dados: pandas em Python e tidyverse em R. Utilizando o dataset clássico Iris, são apresentadas operações fundamentais de ciência de dados em ambas as linguagens, organizadas de forma paralela.\nA proposta não é apenas mostrar como realizar tarefas específicas, mas também facilitar a transferência de conhecimento entre linguagens. Muitas vezes, cientistas de dados e pesquisadores se deparam com a necessidade de migrar seus fluxos de trabalho entre R e Python (ou vice-versa), seja por demanda de projetos colaborativos, requisitos institucionais ou preferência da equipe técnica.\nAo intercalar cada operação com sua respectiva implementação em R e Python, o leitor pode compreender como os conceitos se traduzem entre os ecossistemas. Essa estrutura favorece o aprendizado comparado e reforça a capacidade de raciocínio lógico ao destacar diferenças e semelhanças de sintaxe e paradigma entre as duas abordagens.\nEste material pode ser útil tanto para iniciantes quanto para usuários intermediários que desejam reforçar sua fluência em múltiplas linguagens de análise de dados."
-  },
-  {
-    "objectID": "index.html#carregar-os-dados",
-    "href": "index.html#carregar-os-dados",
-    "title": "Bem-vindo ao curso",
-    "section": "",
-    "text": "import pandas as pd\nfrom sklearn.datasets import load_iris\n\niris_data = load_iris(as_frame=True)\niris = iris_data.frame\n\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.0.4     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\ndata(iris)"
-  },
-  {
-    "objectID": "index.html#visualizar-as-primeiras-linhas",
-    "href": "index.html#visualizar-as-primeiras-linhas",
-    "title": "Bem-vindo ao curso",
-    "section": "",
-    "text": "iris.head()\n\n   sepal length (cm)  sepal width (cm)  ...  petal width (cm)  target\n0                5.1               3.5  ...               0.2       0\n1                4.9               3.0  ...               0.2       0\n2                4.7               3.2  ...               0.2       0\n3                4.6               3.1  ...               0.2       0\n4                5.0               3.6  ...               0.2       0\n\n[5 rows x 5 columns]\n\n\n\nhead(iris)\n\n  Sepal.Length Sepal.Width Petal.Length Petal.Width Species\n1          5.1         3.5          1.4         0.2  setosa\n2          4.9         3.0          1.4         0.2  setosa\n3          4.7         3.2          1.3         0.2  setosa\n4          4.6         3.1          1.5         0.2  setosa\n5          5.0         3.6          1.4         0.2  setosa\n6          5.4         3.9          1.7         0.4  setosa"
-  },
-  {
-    "objectID": "index.html#filtrar-linhas-ex-apenas-setosa",
-    "href": "index.html#filtrar-linhas-ex-apenas-setosa",
-    "title": "Bem-vindo ao curso",
-    "section": "",
-    "text": "iris_setosa = iris[iris['target'] == 'setosa']\niris_setosa.head()\n\nEmpty DataFrame\nColumns: [sepal length (cm), sepal width (cm), petal length (cm), petal width (cm), target]\nIndex: []\n\n\n\niris %&gt;% filter(Species == \"setosa\")\n\n   Sepal.Length Sepal.Width Petal.Length Petal.Width Species\n1           5.1         3.5          1.4         0.2  setosa\n2           4.9         3.0          1.4         0.2  setosa\n3           4.7         3.2          1.3         0.2  setosa\n4           4.6         3.1          1.5         0.2  setosa\n5           5.0         3.6          1.4         0.2  setosa\n6           5.4         3.9          1.7         0.4  setosa\n7           4.6         3.4          1.4         0.3  setosa\n8           5.0         3.4          1.5         0.2  setosa\n9           4.4         2.9          1.4         0.2  setosa\n10          4.9         3.1          1.5         0.1  setosa\n11          5.4         3.7          1.5         0.2  setosa\n12          4.8         3.4          1.6         0.2  setosa\n13          4.8         3.0          1.4         0.1  setosa\n14          4.3         3.0          1.1         0.1  setosa\n15          5.8         4.0          1.2         0.2  setosa\n16          5.7         4.4          1.5         0.4  setosa\n17          5.4         3.9          1.3         0.4  setosa\n18          5.1         3.5          1.4         0.3  setosa\n19          5.7         3.8          1.7         0.3  setosa\n20          5.1         3.8          1.5         0.3  setosa\n21          5.4         3.4          1.7         0.2  setosa\n22          5.1         3.7          1.5         0.4  setosa\n23          4.6         3.6          1.0         0.2  setosa\n24          5.1         3.3          1.7         0.5  setosa\n25          4.8         3.4          1.9         0.2  setosa\n26          5.0         3.0          1.6         0.2  setosa\n27          5.0         3.4          1.6         0.4  setosa\n28          5.2         3.5          1.5         0.2  setosa\n29          5.2         3.4          1.4         0.2  setosa\n30          4.7         3.2          1.6         0.2  setosa\n31          4.8         3.1          1.6         0.2  setosa\n32          5.4         3.4          1.5         0.4  setosa\n33          5.2         4.1          1.5         0.1  setosa\n34          5.5         4.2          1.4         0.2  setosa\n35          4.9         3.1          1.5         0.2  setosa\n36          5.0         3.2          1.2         0.2  setosa\n37          5.5         3.5          1.3         0.2  setosa\n38          4.9         3.6          1.4         0.1  setosa\n39          4.4         3.0          1.3         0.2  setosa\n40          5.1         3.4          1.5         0.2  setosa\n41          5.0         3.5          1.3         0.3  setosa\n42          4.5         2.3          1.3         0.3  setosa\n43          4.4         3.2          1.3         0.2  setosa\n44          5.0         3.5          1.6         0.6  setosa\n45          5.1         3.8          1.9         0.4  setosa\n46          4.8         3.0          1.4         0.3  setosa\n47          5.1         3.8          1.6         0.2  setosa\n48          4.6         3.2          1.4         0.2  setosa\n49          5.3         3.7          1.5         0.2  setosa\n50          5.0         3.3          1.4         0.2  setosa"
-  },
-  {
-    "objectID": "index.html#selecionar-colunas",
-    "href": "index.html#selecionar-colunas",
-    "title": "Bem-vindo ao curso",
-    "section": "",
-    "text": "iris_selected = iris[['sepal length (cm)', 'target']]\niris_selected.head()\n\n   sepal length (cm)  target\n0                5.1       0\n1                4.9       0\n2                4.7       0\n3                4.6       0\n4                5.0       0\n\n\n\niris %&gt;% select(Sepal.Length, Species)\n\n    Sepal.Length    Species\n1            5.1     setosa\n2            4.9     setosa\n3            4.7     setosa\n4            4.6     setosa\n5            5.0     setosa\n6            5.4     setosa\n7            4.6     setosa\n8            5.0     setosa\n9            4.4     setosa\n10           4.9     setosa\n11           5.4     setosa\n12           4.8     setosa\n13           4.8     setosa\n14           4.3     setosa\n15           5.8     setosa\n16           5.7     setosa\n17           5.4     setosa\n18           5.1     setosa\n19           5.7     setosa\n20           5.1     setosa\n21           5.4     setosa\n22           5.1     setosa\n23           4.6     setosa\n24           5.1     setosa\n25           4.8     setosa\n26           5.0     setosa\n27           5.0     setosa\n28           5.2     setosa\n29           5.2     setosa\n30           4.7     setosa\n31           4.8     setosa\n32           5.4     setosa\n33           5.2     setosa\n34           5.5     setosa\n35           4.9     setosa\n36           5.0     setosa\n37           5.5     setosa\n38           4.9     setosa\n39           4.4     setosa\n40           5.1     setosa\n41           5.0     setosa\n42           4.5     setosa\n43           4.4     setosa\n44           5.0     setosa\n45           5.1     setosa\n46           4.8     setosa\n47           5.1     setosa\n48           4.6     setosa\n49           5.3     setosa\n50           5.0     setosa\n51           7.0 versicolor\n52           6.4 versicolor\n53           6.9 versicolor\n54           5.5 versicolor\n55           6.5 versicolor\n56           5.7 versicolor\n57           6.3 versicolor\n58           4.9 versicolor\n59           6.6 versicolor\n60           5.2 versicolor\n61           5.0 versicolor\n62           5.9 versicolor\n63           6.0 versicolor\n64           6.1 versicolor\n65           5.6 versicolor\n66           6.7 versicolor\n67           5.6 versicolor\n68           5.8 versicolor\n69           6.2 versicolor\n70           5.6 versicolor\n71           5.9 versicolor\n72           6.1 versicolor\n73           6.3 versicolor\n74           6.1 versicolor\n75           6.4 versicolor\n76           6.6 versicolor\n77           6.8 versicolor\n78           6.7 versicolor\n79           6.0 versicolor\n80           5.7 versicolor\n81           5.5 versicolor\n82           5.5 versicolor\n83           5.8 versicolor\n84           6.0 versicolor\n85           5.4 versicolor\n86           6.0 versicolor\n87           6.7 versicolor\n88           6.3 versicolor\n89           5.6 versicolor\n90           5.5 versicolor\n91           5.5 versicolor\n92           6.1 versicolor\n93           5.8 versicolor\n94           5.0 versicolor\n95           5.6 versicolor\n96           5.7 versicolor\n97           5.7 versicolor\n98           6.2 versicolor\n99           5.1 versicolor\n100          5.7 versicolor\n101          6.3  virginica\n102          5.8  virginica\n103          7.1  virginica\n104          6.3  virginica\n105          6.5  virginica\n106          7.6  virginica\n107          4.9  virginica\n108          7.3  virginica\n109          6.7  virginica\n110          7.2  virginica\n111          6.5  virginica\n112          6.4  virginica\n113          6.8  virginica\n114          5.7  virginica\n115          5.8  virginica\n116          6.4  virginica\n117          6.5  virginica\n118          7.7  virginica\n119          7.7  virginica\n120          6.0  virginica\n121          6.9  virginica\n122          5.6  virginica\n123          7.7  virginica\n124          6.3  virginica\n125          6.7  virginica\n126          7.2  virginica\n127          6.2  virginica\n128          6.1  virginica\n129          6.4  virginica\n130          7.2  virginica\n131          7.4  virginica\n132          7.9  virginica\n133          6.4  virginica\n134          6.3  virginica\n135          6.1  virginica\n136          7.7  virginica\n137          6.3  virginica\n138          6.4  virginica\n139          6.0  virginica\n140          6.9  virginica\n141          6.7  virginica\n142          6.9  virginica\n143          5.8  virginica\n144          6.8  virginica\n145          6.7  virginica\n146          6.7  virginica\n147          6.3  virginica\n148          6.5  virginica\n149          6.2  virginica\n150          5.9  virginica"
-  },
-  {
-    "objectID": "index.html#criar-nova-coluna-sepal.area",
-    "href": "index.html#criar-nova-coluna-sepal.area",
-    "title": "Bem-vindo ao curso",
-    "section": "",
-    "text": "iris['Sepal.Area'] = iris['sepal length (cm)'] * iris['sepal width (cm)']\niris[['Sepal.Area']].head()\n\n   Sepal.Area\n0       17.85\n1       14.70\n2       15.04\n3       14.26\n4       18.00\n\n\n\niris &lt;- iris %&gt;% mutate(Sepal.Area = Sepal.Length * Sepal.Width)\niris %&gt;% select(Sepal.Area) %&gt;% head()\n\n  Sepal.Area\n1      17.85\n2      14.70\n3      15.04\n4      14.26\n5      18.00\n6      21.06"
-  },
-  {
-    "objectID": "index.html#agrupar-e-resumir-média-do-comprimento-da-sépala-por-espécie",
-    "href": "index.html#agrupar-e-resumir-média-do-comprimento-da-sépala-por-espécie",
-    "title": "Bem-vindo ao curso",
-    "section": "",
-    "text": "mean_sepal = iris.groupby('target')['sepal length (cm)'].mean()\nmean_sepal\n\ntarget\n0    5.006\n1    5.936\n2    6.588\nName: sepal length (cm), dtype: float64\n\n\n\niris %&gt;% group_by(Species) %&gt;% summarise(mean_sepal = mean(Sepal.Length))\n\n# A tibble: 3 × 2\n  Species    mean_sepal\n  &lt;fct&gt;           &lt;dbl&gt;\n1 setosa           5.01\n2 versicolor       5.94\n3 virginica        6.59"
-  },
-  {
-    "objectID": "index.html#ordenar-os-dados",
-    "href": "index.html#ordenar-os-dados",
-    "title": "Bem-vindo ao curso",
-    "section": "",
-    "text": "iris_sorted = iris.sort_values('sepal length (cm)', ascending=False)\niris_sorted.head()\n\n     sepal length (cm)  sepal width (cm)  ...  target  Sepal.Area\n131                7.9               3.8  ...       2       30.02\n135                7.7               3.0  ...       2       23.10\n122                7.7               2.8  ...       2       21.56\n117                7.7               3.8  ...       2       29.26\n118                7.7               2.6  ...       2       20.02\n\n[5 rows x 6 columns]\n\n\n\niris %&gt;% arrange(desc(Sepal.Length)) %&gt;% head()\n\n  Sepal.Length Sepal.Width Petal.Length Petal.Width   Species Sepal.Area\n1          7.9         3.8          6.4         2.0 virginica      30.02\n2          7.7         3.8          6.7         2.2 virginica      29.26\n3          7.7         2.6          6.9         2.3 virginica      20.02\n4          7.7         2.8          6.7         2.0 virginica      21.56\n5          7.7         3.0          6.1         2.3 virginica      23.10\n6          7.6         3.0          6.6         2.1 virginica      22.80"
-  },
-  {
-    "objectID": "index.html#renomear-colunas",
-    "href": "index.html#renomear-colunas",
-    "title": "Bem-vindo ao curso",
-    "section": "",
-    "text": "iris_renamed = iris.rename(columns={'sepal length (cm)': 'Sepal_Length'})\niris_renamed.head()\n\n   Sepal_Length  sepal width (cm)  ...  target  Sepal.Area\n0           5.1               3.5  ...       0       17.85\n1           4.9               3.0  ...       0       14.70\n2           4.7               3.2  ...       0       15.04\n3           4.6               3.1  ...       0       14.26\n4           5.0               3.6  ...       0       18.00\n\n[5 rows x 6 columns]\n\n\n\niris %&gt;% rename(Sepal_Length = Sepal.Length) %&gt;% head()\n\n  Sepal_Length Sepal.Width Petal.Length Petal.Width Species Sepal.Area\n1          5.1         3.5          1.4         0.2  setosa      17.85\n2          4.9         3.0          1.4         0.2  setosa      14.70\n3          4.7         3.2          1.3         0.2  setosa      15.04\n4          4.6         3.1          1.5         0.2  setosa      14.26\n5          5.0         3.6          1.4         0.2  setosa      18.00\n6          5.4         3.9          1.7         0.4  setosa      21.06"
-  },
-  {
-    "objectID": "index.html#pipeline-completo-filtrar-criar-coluna-e-resumir",
-    "href": "index.html#pipeline-completo-filtrar-criar-coluna-e-resumir",
-    "title": "Bem-vindo ao curso",
-    "section": "",
-    "text": "iris_filtered = (\n    iris[iris['target'] != 'setosa']\n    .assign(Sepal.Area = lambda df: df['sepal length (cm)'] * df['sepal width (cm)'])\n    .groupby('target')\n    .agg(mean_area = ('Sepal.Area', 'mean'))\n)\niris_filtered\n\n\niris %&gt;%\n  filter(Species != \"setosa\") %&gt;%\n  mutate(Sepal.Area = Sepal.Length * Sepal.Width) %&gt;%\n  group_by(Species) %&gt;%\n  summarise(mean_area = mean(Sepal.Area))\n\n# A tibble: 2 × 2\n  Species    mean_area\n  &lt;fct&gt;          &lt;dbl&gt;\n1 versicolor      16.5\n2 virginica       19.7"
-  },
-  {
-    "objectID": "material/desafio01-barplot_expressao.html",
-    "href": "material/desafio01-barplot_expressao.html",
-    "title": "Desafio 01 – Gráfico de expressão gênica",
-    "section": "",
-    "text": "Desenvolver um script em R que, dado um identificador de gene (Ensembl ID), gere automaticamente um gráfico de barras representando os níveis de expressão (em TPM) desse gene em diferentes subáreas do cérebro humano, utilizando dados da plataforma Human Protein Atlas."
-  },
-  {
-    "objectID": "material/desafio01-barplot_expressao.html#objetivo",
-    "href": "material/desafio01-barplot_expressao.html#objetivo",
-    "title": "Desafio 01 – Gráfico de expressão gênica",
-    "section": "",
-    "text": "Desenvolver um script em R que, dado um identificador de gene (Ensembl ID), gere automaticamente um gráfico de barras representando os níveis de expressão (em TPM) desse gene em diferentes subáreas do cérebro humano, utilizando dados da plataforma Human Protein Atlas."
-  },
-  {
-    "objectID": "material/desafio01-barplot_expressao.html#requisitos-técnicos",
-    "href": "material/desafio01-barplot_expressao.html#requisitos-técnicos",
-    "title": "Desafio 01 – Gráfico de expressão gênica",
-    "section": "Requisitos Técnicos",
-    "text": "Requisitos Técnicos\n\nUtilizar os pacotes tidyverse, especialmente ggplot2, para manipulação e visualização dos dados.\nO script deve aceitar como entrada um Ensembl Gene ID (por exemplo, ENSG00000146648 para o gene EGFR).\nA saída deve ser um gráfico de barras onde:\n\nO eixo X representa as subáreas do cérebro (por exemplo, córtex cerebral, cerebelo, hipotálamo).\nO eixo Y representa os níveis de expressão em TPM (Transcripts Per Million).\n\nO gráfico deve ser estilizado de forma clara e informativa, semelhante aos gráficos apresentados na plataforma Human Protein Atlas. Ver exemplo, aqui."
-  },
-  {
-    "objectID": "material/desafio01-barplot_expressao.html#instruções-para-obtenção-dos-dados",
-    "href": "material/desafio01-barplot_expressao.html#instruções-para-obtenção-dos-dados",
-    "title": "Desafio 01 – Gráfico de expressão gênica",
-    "section": "Instruções para Obtenção dos Dados",
-    "text": "Instruções para Obtenção dos Dados\n\nAcesse o portal a pagina Human Protein Atlas – Brain Atlas.\nClique em rna_brain_region_hpa.tsv.zip.\nExtrai o arquivo dentro da pasta data.\nCarregue o arquivo no R com:\n\n\nlibrary(readr)\n\n# Substitua o caminho conforme necessário\nbrain_data &lt;- read_tsv(here::here(\"data/rna_brain_region_hpa.tsv\"))\n\n\n\n\nGene\nGene name\nBrain region\nTPM\npTPM\nnTPM\n\n\n\n\nENSG00000000003\nTSPAN6\namygdala\n4.5\n6.1\n7.0\n\n\nENSG00000000003\nTSPAN6\nbasal ganglia\n6.8\n10.2\n7.6\n\n\nENSG00000000003\nTSPAN6\ncerebellum\n6.5\n9.2\n7.2\n\n\nENSG00000000003\nTSPAN6\ncerebral cortex\n4.4\n6.7\n5.6\n\n\nENSG00000000003\nTSPAN6\nchoroid plexus\n26.8\n34.9\n48.2\n\n\n…\n…\n…\n…\n…\n…"
-  },
-  {
-    "objectID": "material/desafio01-barplot_expressao.html#entregáveis",
-    "href": "material/desafio01-barplot_expressao.html#entregáveis",
-    "title": "Desafio 01 – Gráfico de expressão gênica",
-    "section": "Entregáveis",
-    "text": "Entregáveis\n\nScript R (expressao_gene_cerebro.R): Script funcional que realiza as seguintes etapas:\n\nRecebe um o identificador como entrada.\nObtém os dados de expressão gênica correspondentes às subáreas do cérebro humano.\nGera e salva um gráfico de barras representando os níveis de expressão.\n\nGráfico de Exemplo: Imagem do gráfico gerado para um gene de exemplo (por exemplo, EGFR), salva em formato PNG ou PDF."
-  },
-  {
-    "objectID": "material/desafio01-barplot_expressao.html#dicas",
-    "href": "material/desafio01-barplot_expressao.html#dicas",
-    "title": "Desafio 01 – Gráfico de expressão gênica",
-    "section": "Dicas",
-    "text": "Dicas\n\nCertifique-se de que os dados estão no formato adequado para o ggplot2.\nPara garantir a reprodutibilidade, inclua no script a instalação e carregamento dos pacotes necessários.(Bioconductor, Stack Overflow)"
+    "text": "Em construção\nConteúdo da aula 07."
   }
 ]
