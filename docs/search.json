@@ -529,7 +529,7 @@
     "href": "material/desafio01-barplot_expressao.html#requisitos-técnicos",
     "title": "Desafio 01 – Gráfico de expressão gênica",
     "section": "Requisitos Técnicos",
-    "text": "Requisitos Técnicos\n\nUtilizar os pacotes tidyverse, especialmente ggplot2, para manipulação e visualização dos dados.\nO script deve aceitar como entrada um Ensembl Gene ID (por exemplo, ENSG00000146648 para o gene EGFR).\nA saída deve ser um gráfico de barras onde:\n\nO eixo X representa as subáreas do cérebro (por exemplo, córtex cerebral, cerebelo, hipotálamo).\nO eixo Y representa os níveis de expressão em TPM (Transcripts Per Million).\n\nO gráfico deve ser estilizado de forma clara e informativa, semelhante aos gráficos apresentados na plataforma Human Protein Atlas."
+    "text": "Requisitos Técnicos\n\nUtilizar os pacotes tidyverse, especialmente ggplot2, para manipulação e visualização dos dados.\nO script deve aceitar como entrada um Ensembl Gene ID (por exemplo, ENSG00000146648 para o gene EGFR).\nA saída deve ser um gráfico de barras onde:\n\nO eixo X representa as subáreas do cérebro (por exemplo, córtex cerebral, cerebelo, hipotálamo).\nO eixo Y representa os níveis de expressão em TPM (Transcripts Per Million).\n\nO gráfico deve ser estilizado de forma clara e informativa, semelhante aos gráficos apresentados na plataforma Human Protein Atlas. Ver exemplo, aqui."
   },
   {
     "objectID": "material/desafio01-barplot_expressao.html#instruções-para-obtenção-dos-dados",

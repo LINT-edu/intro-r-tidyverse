@@ -19,7 +19,7 @@ Desenvolver um script em R que, dado um identificador de gene (Ensembl ID), gere
 -   A saída deve ser um gráfico de barras onde:
     -   O eixo X representa as subáreas do cérebro (por exemplo, córtex cerebral, cerebelo, hipotálamo).
     -   O eixo Y representa os níveis de expressão em TPM (Transcripts Per Million).
--   O gráfico deve ser estilizado de forma clara e informativa, semelhante aos gráficos apresentados na plataforma Human Protein Atlas.
+-   O gráfico deve ser estilizado de forma clara e informativa, semelhante aos gráficos apresentados na plataforma Human Protein Atlas. Ver exemplo, [aqui](https://www.proteinatlas.org/ENSG00000146648-EGFR/brain).
 
 ## Instruções para Obtenção dos Dados
 
