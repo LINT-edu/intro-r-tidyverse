@@ -35,6 +35,7 @@ Este material pode ser útil tanto para iniciantes quanto para usuários interme
 ## 1. Carregar os dados
 
 ```{python}
+#| eval: false
 import pandas as pd
 from sklearn.datasets import load_iris
 
@@ -43,6 +44,7 @@ iris = iris_data.frame
 ```
 
 ```{r}
+#| eval: false
 library(tidyverse)
 data(iris)
 ```
@@ -50,43 +52,51 @@ data(iris)
 ## 2. Visualizar as primeiras linhas
 
 ```{python}
+#| eval: false
 iris.head()
 ```
 
 ```{r}
+#| eval: false
 head(iris)
 ```
 
 ## 3. Filtrar linhas (ex: apenas "setosa")
 
 ```{python}
-iris_setosa = iris[iris['target'] == 'setosa']
+#| eval: false
+iris_setosa = iris[iris['target'] == 0]
 iris_setosa.head()
 ```
 
 ```{r}
+#| eval: false
 iris %>% filter(Species == "setosa")
 ```
 
 ## 4. Selecionar colunas
 
 ```{python}
+#| eval: false
 iris_selected = iris[['sepal length (cm)', 'target']]
 iris_selected.head()
 ```
 
 ```{r}
+#| eval: false
 iris %>% select(Sepal.Length, Species)
 ```
 
 ## 5. Criar nova coluna (Sepal.Area)
 
 ```{python}
+#| eval: false
 iris['Sepal.Area'] = iris['sepal length (cm)'] * iris['sepal width (cm)']
 iris[['Sepal.Area']].head()
 ```
 
 ```{r}
+#| eval: false
 iris <- iris %>% mutate(Sepal.Area = Sepal.Length * Sepal.Width)
 iris %>% select(Sepal.Area) %>% head()
 ```
@@ -94,33 +104,39 @@ iris %>% select(Sepal.Area) %>% head()
 ## 6. Agrupar e resumir (média do comprimento da sépala por espécie)
 
 ```{python}
+#| eval: false
 mean_sepal = iris.groupby('target')['sepal length (cm)'].mean()
 mean_sepal
 ```
 
 ```{r}
+#| eval: false
 iris %>% group_by(Species) %>% summarise(mean_sepal = mean(Sepal.Length))
 ```
 
 ## 7. Ordenar os dados
 
 ```{python}
+#| eval: false
 iris_sorted = iris.sort_values('sepal length (cm)', ascending=False)
 iris_sorted.head()
 ```
 
 ```{r}
+#| eval: false
 iris %>% arrange(desc(Sepal.Length)) %>% head()
 ```
 
 ## 8. Renomear colunas
 
 ```{python}
+#| eval: false
 iris_renamed = iris.rename(columns={'sepal length (cm)': 'Sepal_Length'})
 iris_renamed.head()
 ```
 
 ```{r}
+#| eval: false
 iris %>% rename(Sepal_Length = Sepal.Length) %>% head()
 ```
 
@@ -129,7 +145,7 @@ iris %>% rename(Sepal_Length = Sepal.Length) %>% head()
 ```{python}
 #| eval: false
 iris_filtered = (
-    iris[iris['target'] != 'setosa']
+    iris[iris['target'] != 0]
     .assign(Sepal.Area = lambda df: df['sepal length (cm)'] * df['sepal width (cm)'])
     .groupby('target')
     .agg(mean_area = ('Sepal.Area', 'mean'))
@@ -138,6 +154,8 @@ iris_filtered
 ```
 
 ```{r}
+#| eval: false
+
 iris %>%
   filter(Species != "setosa") %>%
   mutate(Sepal.Area = Sepal.Length * Sepal.Width) %>%
