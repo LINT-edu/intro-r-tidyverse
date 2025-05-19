@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Aula 02 – Importação de Dados com Tidyverse – Curso Introdução ao R e Tidyverse</title>
+<title>Desafio 02 – Gráfico de expressão em cancer – Curso Introdução ao R e Tidyverse</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,40 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -152,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Aula 05: Visualizar Dados</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../material/aula06-visualizar_avancado.html">
+    <a class="dropdown-item" href="../material/aula06-visualizar_avancado.qmd">
  <span class="dropdown-text">Aula 06: Visualizar Dados - Avançado</span></a>
   </li>  
     </ul>
@@ -188,16 +154,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#objetivos-da-aula" id="toc-objetivos-da-aula" class="nav-link active" data-scroll-target="#objetivos-da-aula">Objetivos da Aula</a></li>
-  <li><a href="#o-que-é-o-tidyverse" id="toc-o-que-é-o-tidyverse" class="nav-link" data-scroll-target="#o-que-é-o-tidyverse">O que é o Tidyverse?</a></li>
-  <li><a href="#estrutura-tidy-dados-arrumados" id="toc-estrutura-tidy-dados-arrumados" class="nav-link" data-scroll-target="#estrutura-tidy-dados-arrumados">Estrutura Tidy: Dados arrumados</a></li>
-  <li><a href="#começando-por-importar-dados" id="toc-começando-por-importar-dados" class="nav-link" data-scroll-target="#começando-por-importar-dados">Começando por importar dados</a></li>
-  <li><a href="#usando-o-pacote-here-para-caminhos-seguros" id="toc-usando-o-pacote-here-para-caminhos-seguros" class="nav-link" data-scroll-target="#usando-o-pacote-here-para-caminhos-seguros">Usando o pacote <code>here</code> para caminhos seguros</a></li>
-  <li><a href="#importando-arquivos-.csv-com-readrread_csv" id="toc-importando-arquivos-.csv-com-readrread_csv" class="nav-link" data-scroll-target="#importando-arquivos-.csv-com-readrread_csv">Importando arquivos <code>.csv</code> com <code>readr::read_csv()</code></a></li>
-  <li><a href="#importando-arquivos-.xlsx-com-readxlread_excel" id="toc-importando-arquivos-.xlsx-com-readxlread_excel" class="nav-link" data-scroll-target="#importando-arquivos-.xlsx-com-readxlread_excel">Importando arquivos <code>.xlsx</code> com <code>readxl::read_excel()</code></a></li>
-  <li><a href="#lidando-com-arquivos-.csv2-separador-e-decimal" id="toc-lidando-com-arquivos-.csv2-separador-e-decimal" class="nav-link" data-scroll-target="#lidando-com-arquivos-.csv2-separador-e-decimal">Lidando com arquivos <code>.csv2</code> (separador <code>;</code> e decimal <code>,</code>)</a></li>
-  <li><a href="#explorando-o-conteúdo-dos-dados-importados" id="toc-explorando-o-conteúdo-dos-dados-importados" class="nav-link" data-scroll-target="#explorando-o-conteúdo-dos-dados-importados">Explorando o conteúdo dos dados importados</a></li>
-  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios">Exercícios</a></li>
+  <li><a href="#objetivo" id="toc-objetivo" class="nav-link active" data-scroll-target="#objetivo">Objetivo</a></li>
+  <li><a href="#requisitos-técnicos" id="toc-requisitos-técnicos" class="nav-link" data-scroll-target="#requisitos-técnicos">Requisitos Técnicos</a></li>
+  <li><a href="#instruções-para-obtenção-dos-dados" id="toc-instruções-para-obtenção-dos-dados" class="nav-link" data-scroll-target="#instruções-para-obtenção-dos-dados">Instruções para Obtenção dos Dados</a></li>
+  <li><a href="#entregáveis" id="toc-entregáveis" class="nav-link" data-scroll-target="#entregáveis">Entregáveis</a></li>
+  <li><a href="#dicas" id="toc-dicas" class="nav-link" data-scroll-target="#dicas">Dicas</a></li>
   </ul>
 </nav>
     </div>
@@ -206,7 +167,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Aula 02 – Importação de Dados com Tidyverse</h1>
+<h1 class="title">Desafio 02 – Gráfico de expressão em cancer</h1>
 </div>
 
 
@@ -223,124 +184,58 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="objetivos-da-aula" class="level2">
-<h2 class="anchored" data-anchor-id="objetivos-da-aula">Objetivos da Aula</h2>
+<section id="objetivo" class="level2">
+<h2 class="anchored" data-anchor-id="objetivo">Objetivo</h2>
+<p>Criar um script em R que gere um gráfico do tipo boxplot, representando a distribuição dos níveis de expressão de um gene específico entre diferentes tipos de câncer, com base nos dados fornecidos pelo Human Protein Atlas.</p>
+</section>
+<section id="requisitos-técnicos" class="level2">
+<h2 class="anchored" data-anchor-id="requisitos-técnicos">Requisitos Técnicos</h2>
+<p>Utilizar os pacotes tidyverse, especialmente ggplot2, para manipulação e visualização dos dados.</p>
 <ul>
-<li>Compreender a estrutura e filosofia do tidyverse.</li>
-<li>Reconhecer as principais ferramentas de importação de dados (<code>readr</code>, <code>readxl</code>, <code>here</code>).</li>
-<li>Utilizar funções como <code>read_csv()</code>, <code>read_excel()</code> e <code>here()</code> com segurança.</li>
-<li>Interpretar mensagens de importação e controlar encoding, separadores e tipos de colunas.</li>
+<li>Utilizar os pacotes <code>tidyverse</code>, especialmente <code>ggplot2</code>, para manipulação e visualização dos dados.</li>
+<li>O script deve aceitar como entrada um <strong>Ensembl Gene ID</strong> (exemplo: <code>ENSG00000146648</code> para <strong>EGFR</strong>).</li>
+<li>A saída deve ser um <strong>boxplot</strong>, onde:
+<ul>
+<li>O eixo X representa os tipos de câncer.</li>
+<li>O eixo Y representa os valores de expressão (em TPM).</li>
+<li>Cada ponto individual pode ser visualizado com <code>geom_jitter()</code> para enriquecer a visualização (opcional).</li>
+</ul></li>
+<li>O gráfico deve conter título, rótulos de eixos e tema limpo (<code>theme_minimal()</code> ou similar).</li>
+<li>O script deve incluir legenda e cores diferenciadas por tipo de câncer (opcional, com <code>fill</code>).</li>
 </ul>
 </section>
-<section id="o-que-é-o-tidyverse" class="level2">
-<h2 class="anchored" data-anchor-id="o-que-é-o-tidyverse">O que é o Tidyverse?</h2>
-<p>O <strong>tidyverse</strong> é uma coleção de pacotes desenvolvidos para facilitar o trabalho com dados no R. Ele oferece uma abordagem integrada e coerente para:</p>
+<section id="instruções-para-obtenção-dos-dados" class="level2">
+<h2 class="anchored" data-anchor-id="instruções-para-obtenção-dos-dados">Instruções para Obtenção dos Dados</h2>
+<ol type="1">
+<li>Baixe o arquivo de expressão por amostra de câncer diretamente do link: <a href="https://www.proteinatlas.org/download/tsv/rna_cancer_sample.tsv.gz">rna_cancer_sample.tsv.gz</a></li>
+<li>Descompacte o arquivo (caso necessário) e leia-o no R:</li>
+</ol>
+</section>
+<section id="entregáveis" class="level2">
+<h2 class="anchored" data-anchor-id="entregáveis">Entregáveis</h2>
 <ul>
-<li>Importar (<code>readr</code>, <code>readxl</code>, <code>here</code>);</li>
-<li>Organizar e transformar (<code>dplyr</code>, <code>tidyr</code>);</li>
-<li>Visualizar (<code>ggplot2</code>);</li>
-<li>Modelar e comunicar resultados (<code>broom</code>, <code>rmarkdown</code>, etc.).</li>
+<li><strong>Script R (<code>boxplot_expressao_cancer.R</code>)</strong> que realiza:
+<ul>
+<li>Leitura dos dados.</li>
+<li>Filtragem por Ensembl Gene ID fornecido.</li>
+<li>Geração de boxplot com os níveis de expressão em TPM por tipo de câncer.</li>
+</ul></li>
+<li><strong>Gráfico de Exemplo</strong> (ex: <code>EGFR_boxplot.png</code>) exportado.</li>
+<li><strong>README.md</strong> com instruções de uso, incluindo:
+<ul>
+<li>Instalação dos pacotes.</li>
+<li>Como fornecer o gene de interesse.</li>
+<li>Descrição dos outputs gerados.</li>
+</ul></li>
 </ul>
-<p>A proposta central do tidyverse é tornar o fluxo de trabalho mais fluido e legível — criando um “dialeto” amigável da linguagem R para análise de dados.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
-<section id="estrutura-tidy-dados-arrumados" class="level2">
-<h2 class="anchored" data-anchor-id="estrutura-tidy-dados-arrumados">Estrutura Tidy: Dados arrumados</h2>
-<p>Antes de importar <code>dados</code>, é importante compreender a estrutura ideal de organização dos dados: os chamados <strong>dados arrumados</strong>. Essa estrutura é a base para a compatibilidade com a maioria das ferramentas do tidyverse.</p>
-<p>O conceito de <strong>dados arrumados (tidy dados)</strong> é definido por três regras principais:</p>
-<ol type="1">
-<li>Cada variável em uma coluna;</li>
-<li>Cada observação em uma linha;</li>
-<li>Cada célula contém apenas um valor.</li>
-</ol>
-<p>Esses princípios facilitam a análise, visualização e transformação dos dados ao longo do projeto.</p>
-</section>
-<section id="começando-por-importar-dados" class="level2">
-<h2 class="anchored" data-anchor-id="começando-por-importar-dados">Começando por importar dados</h2>
-<p>Com a estrutura tidy em mente, iniciamos agora a prática de <strong>importação de dados</strong> no R. Nesta aula, abordaremos como importar arquivos <code>.csv</code> e <code>.xlsx</code> de forma organizada e reprodutível.</p>
-</section>
-<section id="usando-o-pacote-here-para-caminhos-seguros" class="level2">
-<h2 class="anchored" data-anchor-id="usando-o-pacote-here-para-caminhos-seguros">Usando o pacote <code>here</code> para caminhos seguros</h2>
-<p>Antes de realizar a importação de arquivos, é essencial definir os caminhos corretamente. O pacote <code>here</code> nos ajuda a construir caminhos relativos ao projeto, evitando problemas comuns com <code>setwd()</code> e garantindo portabilidade entre sistemas.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"here"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"example.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="importando-arquivos-.csv-com-readrread_csv" class="level2">
-<h2 class="anchored" data-anchor-id="importando-arquivos-.csv-com-readrread_csv">Importando arquivos <code>.csv</code> com <code>readr::read_csv()</code></h2>
-<p>A função <code>read_csv()</code> do pacote <code>readr</code> é uma das formas mais eficientes e seguras de importar dados delimitados por vírgulas. Ela reconhece automaticamente os tipos de colunas, permite ajustes de encoding e é altamente compatível com fluxos tidyverse.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"example.csv"</span>),</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">locale =</span> readr<span class="sc">::</span><span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"UTF-8"</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>📌 <code>read_csv()</code> identifica automaticamente os tipos de coluna, mas você pode forçar ou revisar com <code>col_types</code>.</p>
-</div>
-</div>
-</section>
-<section id="importando-arquivos-.xlsx-com-readxlread_excel" class="level2">
-<h2 class="anchored" data-anchor-id="importando-arquivos-.xlsx-com-readxlread_excel">Importando arquivos <code>.xlsx</code> com <code>readxl::read_excel()</code></h2>
-<p>Planilhas do Excel também são comumente usadas para armazenamento de dados. O pacote <code>readxl</code>, parte do ecossistema tidyverse, permite importar arquivos <code>.xlsx</code> com facilidade.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"readxl"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Installing package into '/home/oandrefonseca/R/x86_64-pc-linux-gnu-library/4.4'
-(as 'lib' is unspecified)</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"example.xlsx"</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="lidando-com-arquivos-.csv2-separador-e-decimal" class="level2">
-<h2 class="anchored" data-anchor-id="lidando-com-arquivos-.csv2-separador-e-decimal">Lidando com arquivos <code>.csv2</code> (separador <code>;</code> e decimal <code>,</code>)</h2>
-<p>Arquivos <code>.csv2</code> são comuns em contextos brasileiros e europeus, utilizando <code>;</code> como separador e <code>,</code> como separador decimal. O <code>readr</code> oferece a função <code>read_csv2()</code> para lidar com esse padrão.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv2</span>(</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"example_brazil.csv"</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="explorando-o-conteúdo-dos-dados-importados" class="level2">
-<h2 class="anchored" data-anchor-id="explorando-o-conteúdo-dos-dados-importados">Explorando o conteúdo dos dados importados</h2>
-<p>Após a importação, é fundamental examinar a estrutura dos dados. As funções <code>glimpse()</code> e <code>spec()</code> permitem inspecionar rapidamente as colunas e os tipos inferidos pelo R. A função <code>View()</code> também pode ser usada para abrir uma visualização interativa da tabela no RStudio, semelhante a uma planilha.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">glimpse</span>(data)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">spec</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Use <code>glimpse()</code> para uma visão geral rápida e <code>spec()</code> para ver a inferência de tipos feita automaticamente.</p>
-</section>
-<section id="exercícios" class="level2">
-<h2 class="anchored" data-anchor-id="exercícios">Exercícios</h2>
-<ol type="1">
-<li>Importe um arquivo <code>.csv</code> de sua escolha com <code>readr::read_csv()</code> usando <code>here()</code>.</li>
-<li>Importe uma planilha <code>.xlsx</code> usando <code>readxl::read_excel()</code>.</li>
-<li>Verifique os tipos de cada coluna com <code>spec()</code> e <code>glimpse()</code>.</li>
-<li>Teste a função <code>read_csv2()</code> com um arquivo brasileiro e explique a diferença.</li>
-</ol>
+<section id="dicas" class="level2">
+<h2 class="anchored" data-anchor-id="dicas">Dicas</h2>
+<ul>
+<li>geom_boxplot(): https://ggplot2.tidyverse.org/reference/geom_boxplot.html</li>
+<li>theme_minimal() e outros temas: https://ggplot2.tidyverse.org/reference/ggtheme.html</li>
+<li>geom_jitter() para sobreposição de pontos: https://ggplot2.tidyverse.org/reference/geom_jitter.html</li>
+</ul>
 
 
 </section>

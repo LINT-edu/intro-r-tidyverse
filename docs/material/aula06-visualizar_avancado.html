@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Aula 02 – Importação de Dados com Tidyverse – Curso Introdução ao R e Tidyverse</title>
+<title>Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap – Curso Introdução ao R e Tidyverse</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -189,14 +189,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#objetivos-da-aula" id="toc-objetivos-da-aula" class="nav-link active" data-scroll-target="#objetivos-da-aula">Objetivos da Aula</a></li>
-  <li><a href="#o-que-é-o-tidyverse" id="toc-o-que-é-o-tidyverse" class="nav-link" data-scroll-target="#o-que-é-o-tidyverse">O que é o Tidyverse?</a></li>
-  <li><a href="#estrutura-tidy-dados-arrumados" id="toc-estrutura-tidy-dados-arrumados" class="nav-link" data-scroll-target="#estrutura-tidy-dados-arrumados">Estrutura Tidy: Dados arrumados</a></li>
-  <li><a href="#começando-por-importar-dados" id="toc-começando-por-importar-dados" class="nav-link" data-scroll-target="#começando-por-importar-dados">Começando por importar dados</a></li>
-  <li><a href="#usando-o-pacote-here-para-caminhos-seguros" id="toc-usando-o-pacote-here-para-caminhos-seguros" class="nav-link" data-scroll-target="#usando-o-pacote-here-para-caminhos-seguros">Usando o pacote <code>here</code> para caminhos seguros</a></li>
-  <li><a href="#importando-arquivos-.csv-com-readrread_csv" id="toc-importando-arquivos-.csv-com-readrread_csv" class="nav-link" data-scroll-target="#importando-arquivos-.csv-com-readrread_csv">Importando arquivos <code>.csv</code> com <code>readr::read_csv()</code></a></li>
-  <li><a href="#importando-arquivos-.xlsx-com-readxlread_excel" id="toc-importando-arquivos-.xlsx-com-readxlread_excel" class="nav-link" data-scroll-target="#importando-arquivos-.xlsx-com-readxlread_excel">Importando arquivos <code>.xlsx</code> com <code>readxl::read_excel()</code></a></li>
-  <li><a href="#lidando-com-arquivos-.csv2-separador-e-decimal" id="toc-lidando-com-arquivos-.csv2-separador-e-decimal" class="nav-link" data-scroll-target="#lidando-com-arquivos-.csv2-separador-e-decimal">Lidando com arquivos <code>.csv2</code> (separador <code>;</code> e decimal <code>,</code>)</a></li>
-  <li><a href="#explorando-o-conteúdo-dos-dados-importados" id="toc-explorando-o-conteúdo-dos-dados-importados" class="nav-link" data-scroll-target="#explorando-o-conteúdo-dos-dados-importados">Explorando o conteúdo dos dados importados</a></li>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link" data-scroll-target="#introdução">Introdução</a></li>
+  <li><a href="#carregando-os-pacotes-necessários" id="toc-carregando-os-pacotes-necessários" class="nav-link" data-scroll-target="#carregando-os-pacotes-necessários">Carregando os pacotes necessários</a></li>
+  <li><a href="#criando-boxplots-com-ggpubr" id="toc-criando-boxplots-com-ggpubr" class="nav-link" data-scroll-target="#criando-boxplots-com-ggpubr">Criando boxplots com <code>ggpubr</code></a></li>
+  <li><a href="#comparações-par-a-par-com-stat_compare_means" id="toc-comparações-par-a-par-com-stat_compare_means" class="nav-link" data-scroll-target="#comparações-par-a-par-com-stat_compare_means">Comparações par a par com <code>stat_compare_means()</code></a></li>
+  <li><a href="#criando-um-heatmap-com-pheatmap" id="toc-criando-um-heatmap-com-pheatmap" class="nav-link" data-scroll-target="#criando-um-heatmap-com-pheatmap">Criando um heatmap com <code>pheatmap</code></a></li>
+  <li><a href="#adicionando-anotação-de-grupos" id="toc-adicionando-anotação-de-grupos" class="nav-link" data-scroll-target="#adicionando-anotação-de-grupos">Adicionando anotação de grupos</a></li>
+  <li><a href="#personalizando-o-heatmap" id="toc-personalizando-o-heatmap" class="nav-link" data-scroll-target="#personalizando-o-heatmap">Personalizando o heatmap</a></li>
   <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios">Exercícios</a></li>
   </ul>
 </nav>
@@ -206,7 +205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Aula 02 – Importação de Dados com Tidyverse</h1>
+<h1 class="title">Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap</h1>
 </div>
 
 
@@ -226,120 +225,101 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="objetivos-da-aula" class="level2">
 <h2 class="anchored" data-anchor-id="objetivos-da-aula">Objetivos da Aula</h2>
 <ul>
-<li>Compreender a estrutura e filosofia do tidyverse.</li>
-<li>Reconhecer as principais ferramentas de importação de dados (<code>readr</code>, <code>readxl</code>, <code>here</code>).</li>
-<li>Utilizar funções como <code>read_csv()</code>, <code>read_excel()</code> e <code>here()</code> com segurança.</li>
-<li>Interpretar mensagens de importação e controlar encoding, separadores e tipos de colunas.</li>
+<li>Utilizar o pacote <code>ggpubr</code> para criar gráficos estatísticos com testes automáticos.</li>
+<li>Anotar comparações em boxplots e visualizações com significância.</li>
+<li>Criar heatmaps personalizados com o pacote <code>pheatmap</code>.</li>
+<li>Adicionar anotações, escalas e agrupamentos hierárquicos nos mapas de calor.</li>
 </ul>
 </section>
-<section id="o-que-é-o-tidyverse" class="level2">
-<h2 class="anchored" data-anchor-id="o-que-é-o-tidyverse">O que é o Tidyverse?</h2>
-<p>O <strong>tidyverse</strong> é uma coleção de pacotes desenvolvidos para facilitar o trabalho com dados no R. Ele oferece uma abordagem integrada e coerente para:</p>
+<section id="introdução" class="level2">
+<h2 class="anchored" data-anchor-id="introdução">Introdução</h2>
+<p>Nesta aula, vamos explorar duas ferramentas poderosas para visualização de dados estatísticos:</p>
 <ul>
-<li>Importar (<code>readr</code>, <code>readxl</code>, <code>here</code>);</li>
-<li>Organizar e transformar (<code>dplyr</code>, <code>tidyr</code>);</li>
-<li>Visualizar (<code>ggplot2</code>);</li>
-<li>Modelar e comunicar resultados (<code>broom</code>, <code>rmarkdown</code>, etc.).</li>
+<li><code>ggpubr</code>: extensão do <code>ggplot2</code> voltada para gráficos estatísticos prontos para publicação.</li>
+<li><code>pheatmap</code>: criação de heatmaps com suporte a agrupamentos, escalas e anotações laterais.</li>
 </ul>
-<p>A proposta central do tidyverse é tornar o fluxo de trabalho mais fluido e legível — criando um “dialeto” amigável da linguagem R para análise de dados.</p>
+<p>Esses pacotes são amplamente utilizados em análises exploratórias, estudos de expressão gênica e relatórios científicos.</p>
+</section>
+<section id="carregando-os-pacotes-necessários" class="level2">
+<h2 class="anchored" data-anchor-id="carregando-os-pacotes-necessários">Carregando os pacotes necessários</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ggpubr"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"pheatmap"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pheatmap)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="estrutura-tidy-dados-arrumados" class="level2">
-<h2 class="anchored" data-anchor-id="estrutura-tidy-dados-arrumados">Estrutura Tidy: Dados arrumados</h2>
-<p>Antes de importar <code>dados</code>, é importante compreender a estrutura ideal de organização dos dados: os chamados <strong>dados arrumados</strong>. Essa estrutura é a base para a compatibilidade com a maioria das ferramentas do tidyverse.</p>
-<p>O conceito de <strong>dados arrumados (tidy dados)</strong> é definido por três regras principais:</p>
-<ol type="1">
-<li>Cada variável em uma coluna;</li>
-<li>Cada observação em uma linha;</li>
-<li>Cada célula contém apenas um valor.</li>
-</ol>
-<p>Esses princípios facilitam a análise, visualização e transformação dos dados ao longo do projeto.</p>
-</section>
-<section id="começando-por-importar-dados" class="level2">
-<h2 class="anchored" data-anchor-id="começando-por-importar-dados">Começando por importar dados</h2>
-<p>Com a estrutura tidy em mente, iniciamos agora a prática de <strong>importação de dados</strong> no R. Nesta aula, abordaremos como importar arquivos <code>.csv</code> e <code>.xlsx</code> de forma organizada e reprodutível.</p>
-</section>
-<section id="usando-o-pacote-here-para-caminhos-seguros" class="level2">
-<h2 class="anchored" data-anchor-id="usando-o-pacote-here-para-caminhos-seguros">Usando o pacote <code>here</code> para caminhos seguros</h2>
-<p>Antes de realizar a importação de arquivos, é essencial definir os caminhos corretamente. O pacote <code>here</code> nos ajuda a construir caminhos relativos ao projeto, evitando problemas comuns com <code>setwd()</code> e garantindo portabilidade entre sistemas.</p>
+<section id="criando-boxplots-com-ggpubr" class="level2">
+<h2 class="anchored" data-anchor-id="criando-boxplots-com-ggpubr">Criando boxplots com <code>ggpubr</code></h2>
+<p>O <code>ggpubr</code> simplifica a criação de boxplots com testes estatísticos embutidos.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"here"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>mtcars<span class="sc">$</span>cyl <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(mtcars<span class="sc">$</span>cyl)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"example.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggboxplot</span>(mtcars, <span class="at">x =</span> <span class="st">"cyl"</span>, <span class="at">y =</span> <span class="st">"mpg"</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">"cyl"</span>, <span class="at">palette =</span> <span class="st">"jco"</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">add =</span> <span class="st">"jitter"</span>) <span class="sc">+</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_compare_means</span>(<span class="at">method =</span> <span class="st">"anova"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="importando-arquivos-.csv-com-readrread_csv" class="level2">
-<h2 class="anchored" data-anchor-id="importando-arquivos-.csv-com-readrread_csv">Importando arquivos <code>.csv</code> com <code>readr::read_csv()</code></h2>
-<p>A função <code>read_csv()</code> do pacote <code>readr</code> é uma das formas mais eficientes e seguras de importar dados delimitados por vírgulas. Ela reconhece automaticamente os tipos de colunas, permite ajustes de encoding e é altamente compatível com fluxos tidyverse.</p>
+<section id="comparações-par-a-par-com-stat_compare_means" class="level2">
+<h2 class="anchored" data-anchor-id="comparações-par-a-par-com-stat_compare_means">Comparações par a par com <code>stat_compare_means()</code></h2>
+<p>Você pode adicionar comparações específicas entre grupos com pares definidos manualmente:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"example.csv"</span>),</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">locale =</span> readr<span class="sc">::</span><span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"UTF-8"</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>📌 <code>read_csv()</code> identifica automaticamente os tipos de coluna, mas você pode forçar ou revisar com <code>col_types</code>.</p>
-</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>my_comparisons <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">"4"</span>, <span class="st">"6"</span>), <span class="fu">c</span>(<span class="st">"4"</span>, <span class="st">"8"</span>), <span class="fu">c</span>(<span class="st">"6"</span>, <span class="st">"8"</span>))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggboxplot</span>(mtcars, <span class="at">x =</span> <span class="st">"cyl"</span>, <span class="at">y =</span> <span class="st">"mpg"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">"cyl"</span>, <span class="at">palette =</span> <span class="st">"jco"</span>) <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_compare_means</span>(<span class="at">comparisons =</span> my_comparisons) <span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_compare_means</span>(<span class="at">label.y =</span> <span class="dv">35</span>)  <span class="co"># p-valor geral (ANOVA)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="importando-arquivos-.xlsx-com-readxlread_excel" class="level2">
-<h2 class="anchored" data-anchor-id="importando-arquivos-.xlsx-com-readxlread_excel">Importando arquivos <code>.xlsx</code> com <code>readxl::read_excel()</code></h2>
-<p>Planilhas do Excel também são comumente usadas para armazenamento de dados. O pacote <code>readxl</code>, parte do ecossistema tidyverse, permite importar arquivos <code>.xlsx</code> com facilidade.</p>
+<section id="criando-um-heatmap-com-pheatmap" class="level2">
+<h2 class="anchored" data-anchor-id="criando-um-heatmap-com-pheatmap">Criando um heatmap com <code>pheatmap</code></h2>
+<p>Vamos gerar um heatmap a partir de uma matriz de valores numéricos (como expressão gênica simulada).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"readxl"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Installing package into '/home/oandrefonseca/R/x86_64-pc-linux-gnu-library/4.4'
-(as 'lib' is unspecified)</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"example.xlsx"</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">100</span>), <span class="at">nrow =</span> <span class="dv">10</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(mat) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"Gene"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(mat) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"Sample"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">pheatmap</span>(mat, <span class="at">scale =</span> <span class="st">"row"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="lidando-com-arquivos-.csv2-separador-e-decimal" class="level2">
-<h2 class="anchored" data-anchor-id="lidando-com-arquivos-.csv2-separador-e-decimal">Lidando com arquivos <code>.csv2</code> (separador <code>;</code> e decimal <code>,</code>)</h2>
-<p>Arquivos <code>.csv2</code> são comuns em contextos brasileiros e europeus, utilizando <code>;</code> como separador e <code>,</code> como separador decimal. O <code>readr</code> oferece a função <code>read_csv2()</code> para lidar com esse padrão.</p>
+<section id="adicionando-anotação-de-grupos" class="level2">
+<h2 class="anchored" data-anchor-id="adicionando-anotação-de-grupos">Adicionando anotação de grupos</h2>
+<p>Podemos incluir informações como grupos de amostras ou tipos de condição experimental.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv2</span>(</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"example_brazil.csv"</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>annotation_col <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Condition =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Control"</span>, <span class="st">"Treatment"</span>), <span class="at">each =</span> <span class="dv">5</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(annotation_col) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(mat)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">pheatmap</span>(mat, <span class="at">scale =</span> <span class="st">"row"</span>, <span class="at">annotation_col =</span> annotation_col)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="explorando-o-conteúdo-dos-dados-importados" class="level2">
-<h2 class="anchored" data-anchor-id="explorando-o-conteúdo-dos-dados-importados">Explorando o conteúdo dos dados importados</h2>
-<p>Após a importação, é fundamental examinar a estrutura dos dados. As funções <code>glimpse()</code> e <code>spec()</code> permitem inspecionar rapidamente as colunas e os tipos inferidos pelo R. A função <code>View()</code> também pode ser usada para abrir uma visualização interativa da tabela no RStudio, semelhante a uma planilha.</p>
+<section id="personalizando-o-heatmap" class="level2">
+<h2 class="anchored" data-anchor-id="personalizando-o-heatmap">Personalizando o heatmap</h2>
+<p>O <code>pheatmap</code> permite personalizar cores, títulos, clustering e outros aspectos visuais.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">glimpse</span>(data)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">spec</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pheatmap</span>(mat,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">scale =</span> <span class="st">"row"</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">annotation_col =</span> annotation_col,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">color =</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"white"</span>, <span class="st">"red"</span>))(<span class="dv">50</span>),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">clustering_distance_rows =</span> <span class="st">"euclidean"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">clustering_method =</span> <span class="st">"complete"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Use <code>glimpse()</code> para uma visão geral rápida e <code>spec()</code> para ver a inferência de tipos feita automaticamente.</p>
 </section>
 <section id="exercícios" class="level2">
 <h2 class="anchored" data-anchor-id="exercícios">Exercícios</h2>
 <ol type="1">
-<li>Importe um arquivo <code>.csv</code> de sua escolha com <code>readr::read_csv()</code> usando <code>here()</code>.</li>
-<li>Importe uma planilha <code>.xlsx</code> usando <code>readxl::read_excel()</code>.</li>
-<li>Verifique os tipos de cada coluna com <code>spec()</code> e <code>glimpse()</code>.</li>
-<li>Teste a função <code>read_csv2()</code> com um arquivo brasileiro e explique a diferença.</li>
+<li>Reproduza um boxplot com <code>ggboxplot()</code> comparando <code>mpg</code> entre grupos de <code>cyl</code>.</li>
+<li>Adicione comparações manuais entre pares com <code>stat_compare_means()</code>.</li>
+<li>Simule uma matriz de expressão e crie um <code>pheatmap</code> com escala por linha.</li>
+<li>Adicione uma anotação de grupo de amostras.</li>
+<li>Experimente diferentes métodos de clusterização e paletas de cores.</li>
 </ol>
 
 

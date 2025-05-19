@@ -523,5 +523,187 @@
     "title": "Aula 07",
     "section": "",
     "text": "Em construção\nConteúdo da aula 07."
+  },
+  {
+    "objectID": "material/aula06-visualizar-avancado.html",
+    "href": "material/aula06-visualizar-avancado.html",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "",
+    "text": "Utilizar o pacote ggpubr para criar gráficos estatísticos com testes automáticos.\nAnotar comparações em boxplots e visualizações com significância.\nCriar heatmaps personalizados com o pacote pheatmap.\nAdicionar anotações, escalas e agrupamentos hierárquicos nos mapas de calor."
+  },
+  {
+    "objectID": "material/aula06-visualizar-avancado.html#objetivos-da-aula",
+    "href": "material/aula06-visualizar-avancado.html#objetivos-da-aula",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "",
+    "text": "Utilizar o pacote ggpubr para criar gráficos estatísticos com testes automáticos.\nAnotar comparações em boxplots e visualizações com significância.\nCriar heatmaps personalizados com o pacote pheatmap.\nAdicionar anotações, escalas e agrupamentos hierárquicos nos mapas de calor."
+  },
+  {
+    "objectID": "material/aula06-visualizar-avancado.html#introdução",
+    "href": "material/aula06-visualizar-avancado.html#introdução",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "Introdução",
+    "text": "Introdução\nNesta aula, vamos explorar duas ferramentas poderosas para visualização de dados estatísticos:\n\nggpubr: extensão do ggplot2 voltada para gráficos estatísticos prontos para publicação.\npheatmap: criação de heatmaps com suporte a agrupamentos, escalas e anotações laterais.\n\nEsses pacotes são amplamente utilizados em análises exploratórias, estudos de expressão gênica e relatórios científicos."
+  },
+  {
+    "objectID": "material/aula06-visualizar-avancado.html#carregando-os-pacotes-necessários",
+    "href": "material/aula06-visualizar-avancado.html#carregando-os-pacotes-necessários",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "Carregando os pacotes necessários",
+    "text": "Carregando os pacotes necessários\n\ninstall.packages(\"ggpubr\")\ninstall.packages(\"pheatmap\")\n\nlibrary(ggpubr)\nlibrary(pheatmap)\nlibrary(tidyverse)"
+  },
+  {
+    "objectID": "material/aula06-visualizar-avancado.html#criando-boxplots-com-ggpubr",
+    "href": "material/aula06-visualizar-avancado.html#criando-boxplots-com-ggpubr",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "Criando boxplots com ggpubr",
+    "text": "Criando boxplots com ggpubr\nO ggpubr simplifica a criação de boxplots com testes estatísticos embutidos.\n\ndata(mtcars)\nmtcars$cyl &lt;- as.factor(mtcars$cyl)\n\nggboxplot(mtcars, x = \"cyl\", y = \"mpg\",\n          color = \"cyl\", palette = \"jco\",\n          add = \"jitter\") +\n  stat_compare_means(method = \"anova\")"
+  },
+  {
+    "objectID": "material/aula06-visualizar-avancado.html#comparações-par-a-par-com-stat_compare_means",
+    "href": "material/aula06-visualizar-avancado.html#comparações-par-a-par-com-stat_compare_means",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "Comparações par a par com stat_compare_means()",
+    "text": "Comparações par a par com stat_compare_means()\nVocê pode adicionar comparações específicas entre grupos com pares definidos manualmente:\n\nmy_comparisons &lt;- list(c(\"4\", \"6\"), c(\"4\", \"8\"), c(\"6\", \"8\"))\n\nggboxplot(mtcars, x = \"cyl\", y = \"mpg\",\n          color = \"cyl\", palette = \"jco\") +\n  stat_compare_means(comparisons = my_comparisons) +\n  stat_compare_means(label.y = 35)  # p-valor geral (ANOVA)"
+  },
+  {
+    "objectID": "material/aula06-visualizar-avancado.html#criando-um-heatmap-com-pheatmap",
+    "href": "material/aula06-visualizar-avancado.html#criando-um-heatmap-com-pheatmap",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "Criando um heatmap com pheatmap",
+    "text": "Criando um heatmap com pheatmap\nVamos gerar um heatmap a partir de uma matriz de valores numéricos (como expressão gênica simulada).\n\nset.seed(123)\nmat &lt;- matrix(rnorm(100), nrow = 10)\nrownames(mat) &lt;- paste0(\"Gene\", 1:10)\ncolnames(mat) &lt;- paste0(\"Sample\", 1:10)\n\npheatmap(mat, scale = \"row\")"
+  },
+  {
+    "objectID": "material/aula06-visualizar-avancado.html#adicionando-anotação-de-grupos",
+    "href": "material/aula06-visualizar-avancado.html#adicionando-anotação-de-grupos",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "Adicionando anotação de grupos",
+    "text": "Adicionando anotação de grupos\nPodemos incluir informações como grupos de amostras ou tipos de condição experimental.\n\nannotation_col &lt;- data.frame(\n  Condition = rep(c(\"Control\", \"Treatment\"), each = 5)\n)\nrownames(annotation_col) &lt;- colnames(mat)\n\npheatmap(mat, scale = \"row\", annotation_col = annotation_col)"
+  },
+  {
+    "objectID": "material/aula06-visualizar-avancado.html#personalizando-o-heatmap",
+    "href": "material/aula06-visualizar-avancado.html#personalizando-o-heatmap",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "Personalizando o heatmap",
+    "text": "Personalizando o heatmap\nO pheatmap permite personalizar cores, títulos, clustering e outros aspectos visuais.\n\npheatmap(mat,\n         scale = \"row\",\n         annotation_col = annotation_col,\n         color = colorRampPalette(c(\"blue\", \"white\", \"red\"))(50),\n         clustering_distance_rows = \"euclidean\",\n         clustering_method = \"complete\")"
+  },
+  {
+    "objectID": "material/aula06-visualizar-avancado.html#exercícios",
+    "href": "material/aula06-visualizar-avancado.html#exercícios",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "Exercícios",
+    "text": "Exercícios\n\nReproduza um boxplot com ggboxplot() comparando mpg entre grupos de cyl.\nAdicione comparações manuais entre pares com stat_compare_means().\nSimule uma matriz de expressão e crie um pheatmap com escala por linha.\nAdicione uma anotação de grupo de amostras.\nExperimente diferentes métodos de clusterização e paletas de cores."
+  },
+  {
+    "objectID": "material/desafio02-boxplot_expressao_cancer.html",
+    "href": "material/desafio02-boxplot_expressao_cancer.html",
+    "title": "Desafio 02 – Gráfico de expressão em cancer",
+    "section": "",
+    "text": "Criar um script em R que gere um gráfico do tipo boxplot, representando a distribuição dos níveis de expressão de um gene específico entre diferentes tipos de câncer, com base nos dados fornecidos pelo Human Protein Atlas."
+  },
+  {
+    "objectID": "material/desafio02-boxplot_expressao_cancer.html#objetivo",
+    "href": "material/desafio02-boxplot_expressao_cancer.html#objetivo",
+    "title": "Desafio 02 – Gráfico de expressão em cancer",
+    "section": "",
+    "text": "Criar um script em R que gere um gráfico do tipo boxplot, representando a distribuição dos níveis de expressão de um gene específico entre diferentes tipos de câncer, com base nos dados fornecidos pelo Human Protein Atlas."
+  },
+  {
+    "objectID": "material/desafio02-boxplot_expressao_cancer.html#requisitos-técnicos",
+    "href": "material/desafio02-boxplot_expressao_cancer.html#requisitos-técnicos",
+    "title": "Desafio 02 – Gráfico de expressão em cancer",
+    "section": "Requisitos Técnicos",
+    "text": "Requisitos Técnicos\nUtilizar os pacotes tidyverse, especialmente ggplot2, para manipulação e visualização dos dados.\n\nUtilizar os pacotes tidyverse, especialmente ggplot2, para manipulação e visualização dos dados.\nO script deve aceitar como entrada um Ensembl Gene ID (exemplo: ENSG00000146648 para EGFR).\nA saída deve ser um boxplot, onde:\n\nO eixo X representa os tipos de câncer.\nO eixo Y representa os valores de expressão (em TPM).\nCada ponto individual pode ser visualizado com geom_jitter() para enriquecer a visualização (opcional).\n\nO gráfico deve conter título, rótulos de eixos e tema limpo (theme_minimal() ou similar).\nO script deve incluir legenda e cores diferenciadas por tipo de câncer (opcional, com fill)."
+  },
+  {
+    "objectID": "material/desafio02-boxplot_expressao_cancer.html#instruções-para-obtenção-dos-dados",
+    "href": "material/desafio02-boxplot_expressao_cancer.html#instruções-para-obtenção-dos-dados",
+    "title": "Desafio 02 – Gráfico de expressão em cancer",
+    "section": "Instruções para Obtenção dos Dados",
+    "text": "Instruções para Obtenção dos Dados\n\nBaixe o arquivo de expressão por amostra de câncer diretamente do link: rna_cancer_sample.tsv.gz\nDescompacte o arquivo (caso necessário) e leia-o no R:"
+  },
+  {
+    "objectID": "material/desafio02-boxplot_expressao_cancer.html#entregáveis",
+    "href": "material/desafio02-boxplot_expressao_cancer.html#entregáveis",
+    "title": "Desafio 02 – Gráfico de expressão em cancer",
+    "section": "Entregáveis",
+    "text": "Entregáveis\n\nScript R (boxplot_expressao_cancer.R) que realiza:\n\nLeitura dos dados.\nFiltragem por Ensembl Gene ID fornecido.\nGeração de boxplot com os níveis de expressão em TPM por tipo de câncer.\n\nGráfico de Exemplo (ex: EGFR_boxplot.png) exportado.\nREADME.md com instruções de uso, incluindo:\n\nInstalação dos pacotes.\nComo fornecer o gene de interesse.\nDescrição dos outputs gerados."
+  },
+  {
+    "objectID": "material/desafio02-boxplot_expressao_cancer.html#dicas",
+    "href": "material/desafio02-boxplot_expressao_cancer.html#dicas",
+    "title": "Desafio 02 – Gráfico de expressão em cancer",
+    "section": "Dicas",
+    "text": "Dicas\n\ngeom_boxplot(): https://ggplot2.tidyverse.org/reference/geom_boxplot.html\ntheme_minimal() e outros temas: https://ggplot2.tidyverse.org/reference/ggtheme.html\ngeom_jitter() para sobreposição de pontos: https://ggplot2.tidyverse.org/reference/geom_jitter.html"
+  },
+  {
+    "objectID": "material/aula06-visualizar_avancado.html",
+    "href": "material/aula06-visualizar_avancado.html",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "",
+    "text": "Utilizar o pacote ggpubr para criar gráficos estatísticos com testes automáticos.\nAnotar comparações em boxplots e visualizações com significância.\nCriar heatmaps personalizados com o pacote pheatmap.\nAdicionar anotações, escalas e agrupamentos hierárquicos nos mapas de calor."
+  },
+  {
+    "objectID": "material/aula06-visualizar_avancado.html#objetivos-da-aula",
+    "href": "material/aula06-visualizar_avancado.html#objetivos-da-aula",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "",
+    "text": "Utilizar o pacote ggpubr para criar gráficos estatísticos com testes automáticos.\nAnotar comparações em boxplots e visualizações com significância.\nCriar heatmaps personalizados com o pacote pheatmap.\nAdicionar anotações, escalas e agrupamentos hierárquicos nos mapas de calor."
+  },
+  {
+    "objectID": "material/aula06-visualizar_avancado.html#introdução",
+    "href": "material/aula06-visualizar_avancado.html#introdução",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "Introdução",
+    "text": "Introdução\nNesta aula, vamos explorar duas ferramentas poderosas para visualização de dados estatísticos:\n\nggpubr: extensão do ggplot2 voltada para gráficos estatísticos prontos para publicação.\npheatmap: criação de heatmaps com suporte a agrupamentos, escalas e anotações laterais.\n\nEsses pacotes são amplamente utilizados em análises exploratórias, estudos de expressão gênica e relatórios científicos."
+  },
+  {
+    "objectID": "material/aula06-visualizar_avancado.html#carregando-os-pacotes-necessários",
+    "href": "material/aula06-visualizar_avancado.html#carregando-os-pacotes-necessários",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "Carregando os pacotes necessários",
+    "text": "Carregando os pacotes necessários\n\ninstall.packages(\"ggpubr\")\ninstall.packages(\"pheatmap\")\n\nlibrary(ggpubr)\nlibrary(pheatmap)\nlibrary(tidyverse)"
+  },
+  {
+    "objectID": "material/aula06-visualizar_avancado.html#criando-boxplots-com-ggpubr",
+    "href": "material/aula06-visualizar_avancado.html#criando-boxplots-com-ggpubr",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "Criando boxplots com ggpubr",
+    "text": "Criando boxplots com ggpubr\nO ggpubr simplifica a criação de boxplots com testes estatísticos embutidos.\n\ndata(mtcars)\nmtcars$cyl &lt;- as.factor(mtcars$cyl)\n\nggboxplot(mtcars, x = \"cyl\", y = \"mpg\",\n          color = \"cyl\", palette = \"jco\",\n          add = \"jitter\") +\n  stat_compare_means(method = \"anova\")"
+  },
+  {
+    "objectID": "material/aula06-visualizar_avancado.html#comparações-par-a-par-com-stat_compare_means",
+    "href": "material/aula06-visualizar_avancado.html#comparações-par-a-par-com-stat_compare_means",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "Comparações par a par com stat_compare_means()",
+    "text": "Comparações par a par com stat_compare_means()\nVocê pode adicionar comparações específicas entre grupos com pares definidos manualmente:\n\nmy_comparisons &lt;- list(c(\"4\", \"6\"), c(\"4\", \"8\"), c(\"6\", \"8\"))\n\nggboxplot(mtcars, x = \"cyl\", y = \"mpg\",\n          color = \"cyl\", palette = \"jco\") +\n  stat_compare_means(comparisons = my_comparisons) +\n  stat_compare_means(label.y = 35)  # p-valor geral (ANOVA)"
+  },
+  {
+    "objectID": "material/aula06-visualizar_avancado.html#criando-um-heatmap-com-pheatmap",
+    "href": "material/aula06-visualizar_avancado.html#criando-um-heatmap-com-pheatmap",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "Criando um heatmap com pheatmap",
+    "text": "Criando um heatmap com pheatmap\nVamos gerar um heatmap a partir de uma matriz de valores numéricos (como expressão gênica simulada).\n\nset.seed(123)\nmat &lt;- matrix(rnorm(100), nrow = 10)\nrownames(mat) &lt;- paste0(\"Gene\", 1:10)\ncolnames(mat) &lt;- paste0(\"Sample\", 1:10)\n\npheatmap(mat, scale = \"row\")"
+  },
+  {
+    "objectID": "material/aula06-visualizar_avancado.html#adicionando-anotação-de-grupos",
+    "href": "material/aula06-visualizar_avancado.html#adicionando-anotação-de-grupos",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "Adicionando anotação de grupos",
+    "text": "Adicionando anotação de grupos\nPodemos incluir informações como grupos de amostras ou tipos de condição experimental.\n\nannotation_col &lt;- data.frame(\n  Condition = rep(c(\"Control\", \"Treatment\"), each = 5)\n)\nrownames(annotation_col) &lt;- colnames(mat)\n\npheatmap(mat, scale = \"row\", annotation_col = annotation_col)"
+  },
+  {
+    "objectID": "material/aula06-visualizar_avancado.html#personalizando-o-heatmap",
+    "href": "material/aula06-visualizar_avancado.html#personalizando-o-heatmap",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "Personalizando o heatmap",
+    "text": "Personalizando o heatmap\nO pheatmap permite personalizar cores, títulos, clustering e outros aspectos visuais.\n\npheatmap(mat,\n         scale = \"row\",\n         annotation_col = annotation_col,\n         color = colorRampPalette(c(\"blue\", \"white\", \"red\"))(50),\n         clustering_distance_rows = \"euclidean\",\n         clustering_method = \"complete\")"
+  },
+  {
+    "objectID": "material/aula06-visualizar_avancado.html#exercícios",
+    "href": "material/aula06-visualizar_avancado.html#exercícios",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "Exercícios",
+    "text": "Exercícios\n\nReproduza um boxplot com ggboxplot() comparando mpg entre grupos de cyl.\nAdicione comparações manuais entre pares com stat_compare_means().\nSimule uma matriz de expressão e crie um pheatmap com escala por linha.\nAdicione uma anotação de grupo de amostras.\nExperimente diferentes métodos de clusterização e paletas de cores."
   }
 ]

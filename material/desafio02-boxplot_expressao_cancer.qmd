@@ -1,0 +1,49 @@
+---
+title: "Desafio 02 – Gráfico de expressão em cancer"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+execute: 
+  cache: true
+---
+
+## Objetivo
+
+Criar um script em R que gere um gráfico do tipo boxplot, representando a distribuição dos níveis de expressão de um gene específico entre diferentes tipos de câncer, com base nos dados fornecidos pelo Human Protein Atlas.
+
+## Requisitos Técnicos
+
+Utilizar os pacotes tidyverse, especialmente ggplot2, para manipulação e visualização dos dados.
+
+-   Utilizar os pacotes `tidyverse`, especialmente `ggplot2`, para manipulação e visualização dos dados.
+-   O script deve aceitar como entrada um **Ensembl Gene ID** (exemplo: `ENSG00000146648` para **EGFR**).
+-   A saída deve ser um **boxplot**, onde:
+    -   O eixo X representa os tipos de câncer.
+    -   O eixo Y representa os valores de expressão (em TPM).
+    -   Cada ponto individual pode ser visualizado com `geom_jitter()` para enriquecer a visualização (opcional).
+-   O gráfico deve conter título, rótulos de eixos e tema limpo (`theme_minimal()` ou similar).
+-   O script deve incluir legenda e cores diferenciadas por tipo de câncer (opcional, com `fill`).
+
+## Instruções para Obtenção dos Dados
+
+1.  Baixe o arquivo de expressão por amostra de câncer diretamente do link: [rna_cancer_sample.tsv.gz](https://www.proteinatlas.org/download/tsv/rna_cancer_sample.tsv.gz)
+2.  Descompacte o arquivo (caso necessário) e leia-o no R:
+
+## Entregáveis
+
+-   **Script R (`boxplot_expressao_cancer.R`)** que realiza:
+    -   Leitura dos dados.
+    -   Filtragem por Ensembl Gene ID fornecido.
+    -   Geração de boxplot com os níveis de expressão em TPM por tipo de câncer.
+-   **Gráfico de Exemplo** (ex: `EGFR_boxplot.png`) exportado.
+-   **README.md** com instruções de uso, incluindo:
+    -   Instalação dos pacotes.
+    -   Como fornecer o gene de interesse.
+    -   Descrição dos outputs gerados.
+
+## Dicas
+
+-   geom_boxplot(): https://ggplot2.tidyverse.org/reference/geom_boxplot.html
+-   theme_minimal() e outros temas: https://ggplot2.tidyverse.org/reference/ggtheme.html
+-   geom_jitter() para sobreposição de pontos: https://ggplot2.tidyverse.org/reference/geom_jitter.html

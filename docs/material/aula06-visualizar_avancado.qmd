@@ -1,0 +1,116 @@
+---
+title: "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+execute:
+  cache: true
+---
+
+## Objetivos da Aula
+
+- Utilizar o pacote `ggpubr` para criar gráficos estatísticos com testes automáticos.
+- Anotar comparações em boxplots e visualizações com significância.
+- Criar heatmaps personalizados com o pacote `pheatmap`.
+- Adicionar anotações, escalas e agrupamentos hierárquicos nos mapas de calor.
+
+## Introdução
+
+Nesta aula, vamos explorar duas ferramentas poderosas para visualização de dados estatísticos:
+
+- `ggpubr`: extensão do `ggplot2` voltada para gráficos estatísticos prontos para publicação.
+- `pheatmap`: criação de heatmaps com suporte a agrupamentos, escalas e anotações laterais.
+
+Esses pacotes são amplamente utilizados em análises exploratórias, estudos de expressão gênica e relatórios científicos.
+
+## Carregando os pacotes necessários
+
+```{r}
+#| eval: false
+install.packages("ggpubr")
+install.packages("pheatmap")
+
+library(ggpubr)
+library(pheatmap)
+library(tidyverse)
+```
+
+## Criando boxplots com `ggpubr`
+
+O `ggpubr` simplifica a criação de boxplots com testes estatísticos embutidos.
+
+```{r}
+#| eval: false
+data(mtcars)
+mtcars$cyl <- as.factor(mtcars$cyl)
+
+ggboxplot(mtcars, x = "cyl", y = "mpg",
+          color = "cyl", palette = "jco",
+          add = "jitter") +
+  stat_compare_means(method = "anova")
+```
+
+## Comparações par a par com `stat_compare_means()`
+
+Você pode adicionar comparações específicas entre grupos com pares definidos manualmente:
+
+```{r}
+#| eval: false
+my_comparisons <- list(c("4", "6"), c("4", "8"), c("6", "8"))
+
+ggboxplot(mtcars, x = "cyl", y = "mpg",
+          color = "cyl", palette = "jco") +
+  stat_compare_means(comparisons = my_comparisons) +
+  stat_compare_means(label.y = 35)  # p-valor geral (ANOVA)
+```
+
+## Criando um heatmap com `pheatmap`
+
+Vamos gerar um heatmap a partir de uma matriz de valores numéricos (como expressão gênica simulada).
+
+```{r}
+#| eval: false
+set.seed(123)
+mat <- matrix(rnorm(100), nrow = 10)
+rownames(mat) <- paste0("Gene", 1:10)
+colnames(mat) <- paste0("Sample", 1:10)
+
+pheatmap(mat, scale = "row")
+```
+
+## Adicionando anotação de grupos
+
+Podemos incluir informações como grupos de amostras ou tipos de condição experimental.
+
+```{r}
+#| eval: false
+annotation_col <- data.frame(
+  Condition = rep(c("Control", "Treatment"), each = 5)
+)
+rownames(annotation_col) <- colnames(mat)
+
+pheatmap(mat, scale = "row", annotation_col = annotation_col)
+```
+
+## Personalizando o heatmap
+
+O `pheatmap` permite personalizar cores, títulos, clustering e outros aspectos visuais.
+
+```{r}
+#| eval: false
+pheatmap(mat,
+         scale = "row",
+         annotation_col = annotation_col,
+         color = colorRampPalette(c("blue", "white", "red"))(50),
+         clustering_distance_rows = "euclidean",
+         clustering_method = "complete")
+```
+
+## Exercícios
+
+1. Reproduza um boxplot com `ggboxplot()` comparando `mpg` entre grupos de `cyl`.
+2. Adicione comparações manuais entre pares com `stat_compare_means()`.
+3. Simule uma matriz de expressão e crie um `pheatmap` com escala por linha.
+4. Adicione uma anotação de grupo de amostras.
+5. Experimente diferentes métodos de clusterização e paletas de cores.
