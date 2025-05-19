@@ -231,6 +231,195 @@
     "text": "Exercícios\nVetores e estatísticas básicas\n1. Crie um vetor numérico com 10 valores aleatórios e calcule a média, mediana e desvio padrão.\nTipos e coerção\n2. Crie um vetor misto e verifique o tipo resultante. Interprete a coerção.\nData Frames\n3. Monte um data.frame com colunas nome, idade, sexo, altura e aprovado. 4. Use str() e sapply() para inspecionar seu data.frame.\n\n\nFóruns úteis:\n\ndiscourse\nStackoverflow\nR-Ladies"
   },
   {
+    "objectID": "material/desafio01-barplot_expressao.html",
+    "href": "material/desafio01-barplot_expressao.html",
+    "title": "Desafio 01 – Gráfico de expressão gênica",
+    "section": "",
+    "text": "Desenvolver um script em R que, dado um identificador de gene (Ensembl ID), gere automaticamente um gráfico de barras representando os níveis de expressão (em TPM) desse gene em diferentes subáreas do cérebro humano, utilizando dados da plataforma Human Protein Atlas."
+  },
+  {
+    "objectID": "material/desafio01-barplot_expressao.html#objetivo",
+    "href": "material/desafio01-barplot_expressao.html#objetivo",
+    "title": "Desafio 01 – Gráfico de expressão gênica",
+    "section": "",
+    "text": "Desenvolver um script em R que, dado um identificador de gene (Ensembl ID), gere automaticamente um gráfico de barras representando os níveis de expressão (em TPM) desse gene em diferentes subáreas do cérebro humano, utilizando dados da plataforma Human Protein Atlas."
+  },
+  {
+    "objectID": "material/desafio01-barplot_expressao.html#requisitos-técnicos",
+    "href": "material/desafio01-barplot_expressao.html#requisitos-técnicos",
+    "title": "Desafio 01 – Gráfico de expressão gênica",
+    "section": "Requisitos Técnicos",
+    "text": "Requisitos Técnicos\n\nUtilizar os pacotes tidyverse, especialmente ggplot2, para manipulação e visualização dos dados.\nO script deve aceitar como entrada um Ensembl Gene ID (por exemplo, ENSG00000146648 para o gene EGFR).\nA saída deve ser um gráfico de barras onde:\n\nO eixo X representa as subáreas do cérebro (por exemplo, córtex cerebral, cerebelo, hipotálamo).\nO eixo Y representa os níveis de expressão em TPM (Transcripts Per Million).\n\nO gráfico deve ser estilizado de forma clara e informativa, semelhante aos gráficos apresentados na plataforma Human Protein Atlas. Ver exemplo, aqui."
+  },
+  {
+    "objectID": "material/desafio01-barplot_expressao.html#instruções-para-obtenção-dos-dados",
+    "href": "material/desafio01-barplot_expressao.html#instruções-para-obtenção-dos-dados",
+    "title": "Desafio 01 – Gráfico de expressão gênica",
+    "section": "Instruções para Obtenção dos Dados",
+    "text": "Instruções para Obtenção dos Dados\n\nAcesse o portal a pagina Human Protein Atlas – Brain Atlas.\nClique em rna_brain_region_hpa.tsv.zip.\nExtrai o arquivo dentro da pasta data.\nCarregue o arquivo no R com:\n\n\nlibrary(readr)\n\n# Substitua o caminho conforme necessário\nbrain_data &lt;- read_tsv(here::here(\"data/rna_brain_region_hpa.tsv\"))\n\n\n\n\nGene\nGene name\nBrain region\nTPM\npTPM\nnTPM\n\n\n\n\nENSG00000000003\nTSPAN6\namygdala\n4.5\n6.1\n7.0\n\n\nENSG00000000003\nTSPAN6\nbasal ganglia\n6.8\n10.2\n7.6\n\n\nENSG00000000003\nTSPAN6\ncerebellum\n6.5\n9.2\n7.2\n\n\nENSG00000000003\nTSPAN6\ncerebral cortex\n4.4\n6.7\n5.6\n\n\nENSG00000000003\nTSPAN6\nchoroid plexus\n26.8\n34.9\n48.2\n\n\n…\n…\n…\n…\n…\n…"
+  },
+  {
+    "objectID": "material/desafio01-barplot_expressao.html#entregáveis",
+    "href": "material/desafio01-barplot_expressao.html#entregáveis",
+    "title": "Desafio 01 – Gráfico de expressão gênica",
+    "section": "Entregáveis",
+    "text": "Entregáveis\n\nScript R (expressao_gene_cerebro.R): Script funcional que realiza as seguintes etapas:\n\nRecebe um o identificador como entrada.\nObtém os dados de expressão gênica correspondentes às subáreas do cérebro humano.\nGera e salva um gráfico de barras representando os níveis de expressão.\n\nGráfico de Exemplo: Imagem do gráfico gerado para um gene de exemplo (por exemplo, EGFR), salva em formato PNG ou PDF."
+  },
+  {
+    "objectID": "material/desafio01-barplot_expressao.html#dicas",
+    "href": "material/desafio01-barplot_expressao.html#dicas",
+    "title": "Desafio 01 – Gráfico de expressão gênica",
+    "section": "Dicas",
+    "text": "Dicas\n\nCertifique-se de que os dados estão no formato adequado para o ggplot2.\nPara garantir a reprodutibilidade, inclua no script a instalação e carregamento dos pacotes necessários.(Bioconductor, Stack Overflow)"
+  },
+  {
+    "objectID": "material/aula06-visualizar_avancado.html",
+    "href": "material/aula06-visualizar_avancado.html",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "",
+    "text": "Utilizar o pacote ggpubr para criar gráficos estatísticos com testes automáticos.\nAnotar comparações em boxplots e visualizações com significância.\nCriar heatmaps personalizados com o pacote pheatmap.\nAdicionar anotações, escalas e agrupamentos hierárquicos nos mapas de calor."
+  },
+  {
+    "objectID": "material/aula06-visualizar_avancado.html#objetivos-da-aula",
+    "href": "material/aula06-visualizar_avancado.html#objetivos-da-aula",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "",
+    "text": "Utilizar o pacote ggpubr para criar gráficos estatísticos com testes automáticos.\nAnotar comparações em boxplots e visualizações com significância.\nCriar heatmaps personalizados com o pacote pheatmap.\nAdicionar anotações, escalas e agrupamentos hierárquicos nos mapas de calor."
+  },
+  {
+    "objectID": "material/aula06-visualizar_avancado.html#introdução",
+    "href": "material/aula06-visualizar_avancado.html#introdução",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "Introdução",
+    "text": "Introdução\nNesta aula, vamos explorar duas ferramentas poderosas para visualização de dados estatísticos:\n\nggpubr: extensão do ggplot2 voltada para gráficos estatísticos prontos para publicação.\npheatmap: criação de heatmaps com suporte a agrupamentos, escalas e anotações laterais.\n\nEsses pacotes são amplamente utilizados em análises exploratórias, estudos de expressão gênica e relatórios científicos."
+  },
+  {
+    "objectID": "material/aula06-visualizar_avancado.html#carregando-os-pacotes-necessários",
+    "href": "material/aula06-visualizar_avancado.html#carregando-os-pacotes-necessários",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "Carregando os pacotes necessários",
+    "text": "Carregando os pacotes necessários\n\ninstall.packages(\"ggpubr\")\ninstall.packages(\"pheatmap\")\n\nlibrary(ggpubr)\nlibrary(pheatmap)\nlibrary(tidyverse)"
+  },
+  {
+    "objectID": "material/aula06-visualizar_avancado.html#criando-boxplots-com-ggpubr",
+    "href": "material/aula06-visualizar_avancado.html#criando-boxplots-com-ggpubr",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "Criando boxplots com ggpubr",
+    "text": "Criando boxplots com ggpubr\nO ggpubr simplifica a criação de boxplots com testes estatísticos embutidos.\n\ndata(mtcars)\nmtcars$cyl &lt;- as.factor(mtcars$cyl)\n\nggboxplot(mtcars, x = \"cyl\", y = \"mpg\",\n          color = \"cyl\", palette = \"jco\",\n          add = \"jitter\") +\n  stat_compare_means(method = \"anova\")"
+  },
+  {
+    "objectID": "material/aula06-visualizar_avancado.html#comparações-par-a-par-com-stat_compare_means",
+    "href": "material/aula06-visualizar_avancado.html#comparações-par-a-par-com-stat_compare_means",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "Comparações par a par com stat_compare_means()",
+    "text": "Comparações par a par com stat_compare_means()\nVocê pode adicionar comparações específicas entre grupos com pares definidos manualmente:\n\nmy_comparisons &lt;- list(c(\"4\", \"6\"), c(\"4\", \"8\"), c(\"6\", \"8\"))\n\nggboxplot(mtcars, x = \"cyl\", y = \"mpg\",\n          color = \"cyl\", palette = \"jco\") +\n  stat_compare_means(comparisons = my_comparisons) +\n  stat_compare_means(label.y = 35)  # p-valor geral (ANOVA)"
+  },
+  {
+    "objectID": "material/aula06-visualizar_avancado.html#criando-um-heatmap-com-pheatmap",
+    "href": "material/aula06-visualizar_avancado.html#criando-um-heatmap-com-pheatmap",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "Criando um heatmap com pheatmap",
+    "text": "Criando um heatmap com pheatmap\nVamos gerar um heatmap a partir de uma matriz de valores numéricos (como expressão gênica simulada).\n\nset.seed(123)\nmat &lt;- matrix(rnorm(100), nrow = 10)\nrownames(mat) &lt;- paste0(\"Gene\", 1:10)\ncolnames(mat) &lt;- paste0(\"Sample\", 1:10)\n\npheatmap(mat, scale = \"row\")"
+  },
+  {
+    "objectID": "material/aula06-visualizar_avancado.html#adicionando-anotação-de-grupos",
+    "href": "material/aula06-visualizar_avancado.html#adicionando-anotação-de-grupos",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "Adicionando anotação de grupos",
+    "text": "Adicionando anotação de grupos\nPodemos incluir informações como grupos de amostras ou tipos de condição experimental.\n\nannotation_col &lt;- data.frame(\n  Condition = rep(c(\"Control\", \"Treatment\"), each = 5)\n)\nrownames(annotation_col) &lt;- colnames(mat)\n\npheatmap(mat, scale = \"row\", annotation_col = annotation_col)"
+  },
+  {
+    "objectID": "material/aula06-visualizar_avancado.html#personalizando-o-heatmap",
+    "href": "material/aula06-visualizar_avancado.html#personalizando-o-heatmap",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "Personalizando o heatmap",
+    "text": "Personalizando o heatmap\nO pheatmap permite personalizar cores, títulos, clustering e outros aspectos visuais.\n\npheatmap(mat,\n         scale = \"row\",\n         annotation_col = annotation_col,\n         color = colorRampPalette(c(\"blue\", \"white\", \"red\"))(50),\n         clustering_distance_rows = \"euclidean\",\n         clustering_method = \"complete\")"
+  },
+  {
+    "objectID": "material/aula06-visualizar_avancado.html#exercícios",
+    "href": "material/aula06-visualizar_avancado.html#exercícios",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "Exercícios",
+    "text": "Exercícios\n\nReproduza um boxplot com ggboxplot() comparando mpg entre grupos de cyl.\nAdicione comparações manuais entre pares com stat_compare_means().\nSimule uma matriz de expressão e crie um pheatmap com escala por linha.\nAdicione uma anotação de grupo de amostras.\nExperimente diferentes métodos de clusterização e paletas de cores."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Bem-vindo ao curso",
+    "section": "",
+    "text": "Este é um curso introdutório ao R com foco em ciência de dados usando o pacote tidyverse.\nAo longo das aulas, você aprenderá:\n\nA base da linguagem R\nComo importar, arrumar, transformar, visualizar e modelar dados\nComo gerar relatórios reprodutíveis\n\nUse o menu acima para navegar entre os módulos.\n\n\nAntes de começar…\nEste documento tem como objetivo oferecer uma comparação prática entre duas das bibliotecas mais populares para manipulação de dados: pandas em Python e tidyverse em R. Utilizando o dataset clássico Iris, são apresentadas operações fundamentais de ciência de dados em ambas as linguagens, organizadas de forma paralela.\nA proposta não é apenas mostrar como realizar tarefas específicas, mas também facilitar a transferência de conhecimento entre linguagens. Muitas vezes, cientistas de dados e pesquisadores se deparam com a necessidade de migrar seus fluxos de trabalho entre R e Python (ou vice-versa), seja por demanda de projetos colaborativos, requisitos institucionais ou preferência da equipe técnica.\nAo intercalar cada operação com sua respectiva implementação em R e Python, o leitor pode compreender como os conceitos se traduzem entre os ecossistemas. Essa estrutura favorece o aprendizado comparado e reforça a capacidade de raciocínio lógico ao destacar diferenças e semelhanças de sintaxe e paradigma entre as duas abordagens.\nEste material pode ser útil tanto para iniciantes quanto para usuários intermediários que desejam reforçar sua fluência em múltiplas linguagens de análise de dados.\n\n\n\n\nimport pandas as pd\nfrom sklearn.datasets import load_iris\n\niris_data = load_iris(as_frame=True)\niris = iris_data.frame\n\n\nlibrary(tidyverse)\ndata(iris)\n\n\n\n\n\niris.head()\n\n\nhead(iris)\n\n\n\n\n\niris_setosa = iris[iris['target'] == 0]\niris_setosa.head()\n\n\niris %&gt;% filter(Species == \"setosa\")\n\n\n\n\n\niris_selected = iris[['sepal length (cm)', 'target']]\niris_selected.head()\n\n\niris %&gt;% select(Sepal.Length, Species)\n\n\n\n\n\niris['Sepal.Area'] = iris['sepal length (cm)'] * iris['sepal width (cm)']\niris[['Sepal.Area']].head()\n\n\niris &lt;- iris %&gt;% mutate(Sepal.Area = Sepal.Length * Sepal.Width)\niris %&gt;% select(Sepal.Area) %&gt;% head()\n\n\n\n\n\nmean_sepal = iris.groupby('target')['sepal length (cm)'].mean()\nmean_sepal\n\n\niris %&gt;% group_by(Species) %&gt;% summarise(mean_sepal = mean(Sepal.Length))\n\n\n\n\n\niris_sorted = iris.sort_values('sepal length (cm)', ascending=False)\niris_sorted.head()\n\n\niris %&gt;% arrange(desc(Sepal.Length)) %&gt;% head()\n\n\n\n\n\niris_renamed = iris.rename(columns={'sepal length (cm)': 'Sepal_Length'})\niris_renamed.head()\n\n\niris %&gt;% rename(Sepal_Length = Sepal.Length) %&gt;% head()\n\n\n\n\n\niris_filtered = (\n    iris[iris['target'] != 0]\n    .assign(Sepal.Area = lambda df: df['sepal length (cm)'] * df['sepal width (cm)'])\n    .groupby('target')\n    .agg(mean_area = ('Sepal.Area', 'mean'))\n)\niris_filtered\n\n\niris %&gt;%\n  filter(Species != \"setosa\") %&gt;%\n  mutate(Sepal.Area = Sepal.Length * Sepal.Width) %&gt;%\n  group_by(Species) %&gt;%\n  summarise(mean_area = mean(Sepal.Area))"
+  },
+  {
+    "objectID": "index.html#comparando-linguagens",
+    "href": "index.html#comparando-linguagens",
+    "title": "Bem-vindo ao curso",
+    "section": "",
+    "text": "Antes de começar…\nEste documento tem como objetivo oferecer uma comparação prática entre duas das bibliotecas mais populares para manipulação de dados: pandas em Python e tidyverse em R. Utilizando o dataset clássico Iris, são apresentadas operações fundamentais de ciência de dados em ambas as linguagens, organizadas de forma paralela.\nA proposta não é apenas mostrar como realizar tarefas específicas, mas também facilitar a transferência de conhecimento entre linguagens. Muitas vezes, cientistas de dados e pesquisadores se deparam com a necessidade de migrar seus fluxos de trabalho entre R e Python (ou vice-versa), seja por demanda de projetos colaborativos, requisitos institucionais ou preferência da equipe técnica.\nAo intercalar cada operação com sua respectiva implementação em R e Python, o leitor pode compreender como os conceitos se traduzem entre os ecossistemas. Essa estrutura favorece o aprendizado comparado e reforça a capacidade de raciocínio lógico ao destacar diferenças e semelhanças de sintaxe e paradigma entre as duas abordagens.\nEste material pode ser útil tanto para iniciantes quanto para usuários intermediários que desejam reforçar sua fluência em múltiplas linguagens de análise de dados."
+  },
+  {
+    "objectID": "index.html#carregar-os-dados",
+    "href": "index.html#carregar-os-dados",
+    "title": "Bem-vindo ao curso",
+    "section": "",
+    "text": "import pandas as pd\nfrom sklearn.datasets import load_iris\n\niris_data = load_iris(as_frame=True)\niris = iris_data.frame\n\n\nlibrary(tidyverse)\ndata(iris)"
+  },
+  {
+    "objectID": "index.html#visualizar-as-primeiras-linhas",
+    "href": "index.html#visualizar-as-primeiras-linhas",
+    "title": "Bem-vindo ao curso",
+    "section": "",
+    "text": "iris.head()\n\n\nhead(iris)"
+  },
+  {
+    "objectID": "index.html#filtrar-linhas-ex-apenas-setosa",
+    "href": "index.html#filtrar-linhas-ex-apenas-setosa",
+    "title": "Bem-vindo ao curso",
+    "section": "",
+    "text": "iris_setosa = iris[iris['target'] == 0]\niris_setosa.head()\n\n\niris %&gt;% filter(Species == \"setosa\")"
+  },
+  {
+    "objectID": "index.html#selecionar-colunas",
+    "href": "index.html#selecionar-colunas",
+    "title": "Bem-vindo ao curso",
+    "section": "",
+    "text": "iris_selected = iris[['sepal length (cm)', 'target']]\niris_selected.head()\n\n\niris %&gt;% select(Sepal.Length, Species)"
+  },
+  {
+    "objectID": "index.html#criar-nova-coluna-sepal.area",
+    "href": "index.html#criar-nova-coluna-sepal.area",
+    "title": "Bem-vindo ao curso",
+    "section": "",
+    "text": "iris['Sepal.Area'] = iris['sepal length (cm)'] * iris['sepal width (cm)']\niris[['Sepal.Area']].head()\n\n\niris &lt;- iris %&gt;% mutate(Sepal.Area = Sepal.Length * Sepal.Width)\niris %&gt;% select(Sepal.Area) %&gt;% head()"
+  },
+  {
+    "objectID": "index.html#agrupar-e-resumir-média-do-comprimento-da-sépala-por-espécie",
+    "href": "index.html#agrupar-e-resumir-média-do-comprimento-da-sépala-por-espécie",
+    "title": "Bem-vindo ao curso",
+    "section": "",
+    "text": "mean_sepal = iris.groupby('target')['sepal length (cm)'].mean()\nmean_sepal\n\n\niris %&gt;% group_by(Species) %&gt;% summarise(mean_sepal = mean(Sepal.Length))"
+  },
+  {
+    "objectID": "index.html#ordenar-os-dados",
+    "href": "index.html#ordenar-os-dados",
+    "title": "Bem-vindo ao curso",
+    "section": "",
+    "text": "iris_sorted = iris.sort_values('sepal length (cm)', ascending=False)\niris_sorted.head()\n\n\niris %&gt;% arrange(desc(Sepal.Length)) %&gt;% head()"
+  },
+  {
+    "objectID": "index.html#renomear-colunas",
+    "href": "index.html#renomear-colunas",
+    "title": "Bem-vindo ao curso",
+    "section": "",
+    "text": "iris_renamed = iris.rename(columns={'sepal length (cm)': 'Sepal_Length'})\niris_renamed.head()\n\n\niris %&gt;% rename(Sepal_Length = Sepal.Length) %&gt;% head()"
+  },
+  {
+    "objectID": "index.html#pipeline-completo-filtrar-criar-coluna-e-resumir",
+    "href": "index.html#pipeline-completo-filtrar-criar-coluna-e-resumir",
+    "title": "Bem-vindo ao curso",
+    "section": "",
+    "text": "iris_filtered = (\n    iris[iris['target'] != 0]\n    .assign(Sepal.Area = lambda df: df['sepal length (cm)'] * df['sepal width (cm)'])\n    .groupby('target')\n    .agg(mean_area = ('Sepal.Area', 'mean'))\n)\niris_filtered\n\n\niris %&gt;%\n  filter(Species != \"setosa\") %&gt;%\n  mutate(Sepal.Area = Sepal.Length * Sepal.Width) %&gt;%\n  group_by(Species) %&gt;%\n  summarise(mean_area = mean(Sepal.Area))"
+  },
+  {
     "objectID": "material/aula02-importar.html",
     "href": "material/aula02-importar.html",
     "title": "Aula 02 – Importação de Dados com Tidyverse",
@@ -308,130 +497,46 @@
     "text": "Exercícios\n\nImporte um arquivo .csv de sua escolha com readr::read_csv() usando here().\nImporte uma planilha .xlsx usando readxl::read_excel().\nVerifique os tipos de cada coluna com spec() e glimpse().\nTeste a função read_csv2() com um arquivo brasileiro e explique a diferença."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Bem-vindo ao curso",
+    "objectID": "material/desafio02-boxplot_expressao_cancer.html",
+    "href": "material/desafio02-boxplot_expressao_cancer.html",
+    "title": "Desafio 02 – Gráfico de expressão em cancer",
     "section": "",
-    "text": "Este é um curso introdutório ao R com foco em ciência de dados usando o pacote tidyverse.\nAo longo das aulas, você aprenderá:\n\nA base da linguagem R\nComo importar, arrumar, transformar, visualizar e modelar dados\nComo gerar relatórios reprodutíveis\n\nUse o menu acima para navegar entre os módulos.\n\n\nAntes de começar…\nEste documento tem como objetivo oferecer uma comparação prática entre duas das bibliotecas mais populares para manipulação de dados: pandas em Python e tidyverse em R. Utilizando o dataset clássico Iris, são apresentadas operações fundamentais de ciência de dados em ambas as linguagens, organizadas de forma paralela.\nA proposta não é apenas mostrar como realizar tarefas específicas, mas também facilitar a transferência de conhecimento entre linguagens. Muitas vezes, cientistas de dados e pesquisadores se deparam com a necessidade de migrar seus fluxos de trabalho entre R e Python (ou vice-versa), seja por demanda de projetos colaborativos, requisitos institucionais ou preferência da equipe técnica.\nAo intercalar cada operação com sua respectiva implementação em R e Python, o leitor pode compreender como os conceitos se traduzem entre os ecossistemas. Essa estrutura favorece o aprendizado comparado e reforça a capacidade de raciocínio lógico ao destacar diferenças e semelhanças de sintaxe e paradigma entre as duas abordagens.\nEste material pode ser útil tanto para iniciantes quanto para usuários intermediários que desejam reforçar sua fluência em múltiplas linguagens de análise de dados.\n\n\n\n\nimport pandas as pd\nfrom sklearn.datasets import load_iris\n\niris_data = load_iris(as_frame=True)\niris = iris_data.frame\n\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.0.4     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\ndata(iris)\n\n\n\n\n\niris.head()\n\n   sepal length (cm)  sepal width (cm)  ...  petal width (cm)  target\n0                5.1               3.5  ...               0.2       0\n1                4.9               3.0  ...               0.2       0\n2                4.7               3.2  ...               0.2       0\n3                4.6               3.1  ...               0.2       0\n4                5.0               3.6  ...               0.2       0\n\n[5 rows x 5 columns]\n\n\n\nhead(iris)\n\n  Sepal.Length Sepal.Width Petal.Length Petal.Width Species\n1          5.1         3.5          1.4         0.2  setosa\n2          4.9         3.0          1.4         0.2  setosa\n3          4.7         3.2          1.3         0.2  setosa\n4          4.6         3.1          1.5         0.2  setosa\n5          5.0         3.6          1.4         0.2  setosa\n6          5.4         3.9          1.7         0.4  setosa\n\n\n\n\n\n\niris_setosa = iris[iris['target'] == 'setosa']\niris_setosa.head()\n\nEmpty DataFrame\nColumns: [sepal length (cm), sepal width (cm), petal length (cm), petal width (cm), target]\nIndex: []\n\n\n\niris %&gt;% filter(Species == \"setosa\")\n\n   Sepal.Length Sepal.Width Petal.Length Petal.Width Species\n1           5.1         3.5          1.4         0.2  setosa\n2           4.9         3.0          1.4         0.2  setosa\n3           4.7         3.2          1.3         0.2  setosa\n4           4.6         3.1          1.5         0.2  setosa\n5           5.0         3.6          1.4         0.2  setosa\n6           5.4         3.9          1.7         0.4  setosa\n7           4.6         3.4          1.4         0.3  setosa\n8           5.0         3.4          1.5         0.2  setosa\n9           4.4         2.9          1.4         0.2  setosa\n10          4.9         3.1          1.5         0.1  setosa\n11          5.4         3.7          1.5         0.2  setosa\n12          4.8         3.4          1.6         0.2  setosa\n13          4.8         3.0          1.4         0.1  setosa\n14          4.3         3.0          1.1         0.1  setosa\n15          5.8         4.0          1.2         0.2  setosa\n16          5.7         4.4          1.5         0.4  setosa\n17          5.4         3.9          1.3         0.4  setosa\n18          5.1         3.5          1.4         0.3  setosa\n19          5.7         3.8          1.7         0.3  setosa\n20          5.1         3.8          1.5         0.3  setosa\n21          5.4         3.4          1.7         0.2  setosa\n22          5.1         3.7          1.5         0.4  setosa\n23          4.6         3.6          1.0         0.2  setosa\n24          5.1         3.3          1.7         0.5  setosa\n25          4.8         3.4          1.9         0.2  setosa\n26          5.0         3.0          1.6         0.2  setosa\n27          5.0         3.4          1.6         0.4  setosa\n28          5.2         3.5          1.5         0.2  setosa\n29          5.2         3.4          1.4         0.2  setosa\n30          4.7         3.2          1.6         0.2  setosa\n31          4.8         3.1          1.6         0.2  setosa\n32          5.4         3.4          1.5         0.4  setosa\n33          5.2         4.1          1.5         0.1  setosa\n34          5.5         4.2          1.4         0.2  setosa\n35          4.9         3.1          1.5         0.2  setosa\n36          5.0         3.2          1.2         0.2  setosa\n37          5.5         3.5          1.3         0.2  setosa\n38          4.9         3.6          1.4         0.1  setosa\n39          4.4         3.0          1.3         0.2  setosa\n40          5.1         3.4          1.5         0.2  setosa\n41          5.0         3.5          1.3         0.3  setosa\n42          4.5         2.3          1.3         0.3  setosa\n43          4.4         3.2          1.3         0.2  setosa\n44          5.0         3.5          1.6         0.6  setosa\n45          5.1         3.8          1.9         0.4  setosa\n46          4.8         3.0          1.4         0.3  setosa\n47          5.1         3.8          1.6         0.2  setosa\n48          4.6         3.2          1.4         0.2  setosa\n49          5.3         3.7          1.5         0.2  setosa\n50          5.0         3.3          1.4         0.2  setosa\n\n\n\n\n\n\niris_selected = iris[['sepal length (cm)', 'target']]\niris_selected.head()\n\n   sepal length (cm)  target\n0                5.1       0\n1                4.9       0\n2                4.7       0\n3                4.6       0\n4                5.0       0\n\n\n\niris %&gt;% select(Sepal.Length, Species)\n\n    Sepal.Length    Species\n1            5.1     setosa\n2            4.9     setosa\n3            4.7     setosa\n4            4.6     setosa\n5            5.0     setosa\n6            5.4     setosa\n7            4.6     setosa\n8            5.0     setosa\n9            4.4     setosa\n10           4.9     setosa\n11           5.4     setosa\n12           4.8     setosa\n13           4.8     setosa\n14           4.3     setosa\n15           5.8     setosa\n16           5.7     setosa\n17           5.4     setosa\n18           5.1     setosa\n19           5.7     setosa\n20           5.1     setosa\n21           5.4     setosa\n22           5.1     setosa\n23           4.6     setosa\n24           5.1     setosa\n25           4.8     setosa\n26           5.0     setosa\n27           5.0     setosa\n28           5.2     setosa\n29           5.2     setosa\n30           4.7     setosa\n31           4.8     setosa\n32           5.4     setosa\n33           5.2     setosa\n34           5.5     setosa\n35           4.9     setosa\n36           5.0     setosa\n37           5.5     setosa\n38           4.9     setosa\n39           4.4     setosa\n40           5.1     setosa\n41           5.0     setosa\n42           4.5     setosa\n43           4.4     setosa\n44           5.0     setosa\n45           5.1     setosa\n46           4.8     setosa\n47           5.1     setosa\n48           4.6     setosa\n49           5.3     setosa\n50           5.0     setosa\n51           7.0 versicolor\n52           6.4 versicolor\n53           6.9 versicolor\n54           5.5 versicolor\n55           6.5 versicolor\n56           5.7 versicolor\n57           6.3 versicolor\n58           4.9 versicolor\n59           6.6 versicolor\n60           5.2 versicolor\n61           5.0 versicolor\n62           5.9 versicolor\n63           6.0 versicolor\n64           6.1 versicolor\n65           5.6 versicolor\n66           6.7 versicolor\n67           5.6 versicolor\n68           5.8 versicolor\n69           6.2 versicolor\n70           5.6 versicolor\n71           5.9 versicolor\n72           6.1 versicolor\n73           6.3 versicolor\n74           6.1 versicolor\n75           6.4 versicolor\n76           6.6 versicolor\n77           6.8 versicolor\n78           6.7 versicolor\n79           6.0 versicolor\n80           5.7 versicolor\n81           5.5 versicolor\n82           5.5 versicolor\n83           5.8 versicolor\n84           6.0 versicolor\n85           5.4 versicolor\n86           6.0 versicolor\n87           6.7 versicolor\n88           6.3 versicolor\n89           5.6 versicolor\n90           5.5 versicolor\n91           5.5 versicolor\n92           6.1 versicolor\n93           5.8 versicolor\n94           5.0 versicolor\n95           5.6 versicolor\n96           5.7 versicolor\n97           5.7 versicolor\n98           6.2 versicolor\n99           5.1 versicolor\n100          5.7 versicolor\n101          6.3  virginica\n102          5.8  virginica\n103          7.1  virginica\n104          6.3  virginica\n105          6.5  virginica\n106          7.6  virginica\n107          4.9  virginica\n108          7.3  virginica\n109          6.7  virginica\n110          7.2  virginica\n111          6.5  virginica\n112          6.4  virginica\n113          6.8  virginica\n114          5.7  virginica\n115          5.8  virginica\n116          6.4  virginica\n117          6.5  virginica\n118          7.7  virginica\n119          7.7  virginica\n120          6.0  virginica\n121          6.9  virginica\n122          5.6  virginica\n123          7.7  virginica\n124          6.3  virginica\n125          6.7  virginica\n126          7.2  virginica\n127          6.2  virginica\n128          6.1  virginica\n129          6.4  virginica\n130          7.2  virginica\n131          7.4  virginica\n132          7.9  virginica\n133          6.4  virginica\n134          6.3  virginica\n135          6.1  virginica\n136          7.7  virginica\n137          6.3  virginica\n138          6.4  virginica\n139          6.0  virginica\n140          6.9  virginica\n141          6.7  virginica\n142          6.9  virginica\n143          5.8  virginica\n144          6.8  virginica\n145          6.7  virginica\n146          6.7  virginica\n147          6.3  virginica\n148          6.5  virginica\n149          6.2  virginica\n150          5.9  virginica\n\n\n\n\n\n\niris['Sepal.Area'] = iris['sepal length (cm)'] * iris['sepal width (cm)']\niris[['Sepal.Area']].head()\n\n   Sepal.Area\n0       17.85\n1       14.70\n2       15.04\n3       14.26\n4       18.00\n\n\n\niris &lt;- iris %&gt;% mutate(Sepal.Area = Sepal.Length * Sepal.Width)\niris %&gt;% select(Sepal.Area) %&gt;% head()\n\n  Sepal.Area\n1      17.85\n2      14.70\n3      15.04\n4      14.26\n5      18.00\n6      21.06\n\n\n\n\n\n\nmean_sepal = iris.groupby('target')['sepal length (cm)'].mean()\nmean_sepal\n\ntarget\n0    5.006\n1    5.936\n2    6.588\nName: sepal length (cm), dtype: float64\n\n\n\niris %&gt;% group_by(Species) %&gt;% summarise(mean_sepal = mean(Sepal.Length))\n\n# A tibble: 3 × 2\n  Species    mean_sepal\n  &lt;fct&gt;           &lt;dbl&gt;\n1 setosa           5.01\n2 versicolor       5.94\n3 virginica        6.59\n\n\n\n\n\n\niris_sorted = iris.sort_values('sepal length (cm)', ascending=False)\niris_sorted.head()\n\n     sepal length (cm)  sepal width (cm)  ...  target  Sepal.Area\n131                7.9               3.8  ...       2       30.02\n135                7.7               3.0  ...       2       23.10\n122                7.7               2.8  ...       2       21.56\n117                7.7               3.8  ...       2       29.26\n118                7.7               2.6  ...       2       20.02\n\n[5 rows x 6 columns]\n\n\n\niris %&gt;% arrange(desc(Sepal.Length)) %&gt;% head()\n\n  Sepal.Length Sepal.Width Petal.Length Petal.Width   Species Sepal.Area\n1          7.9         3.8          6.4         2.0 virginica      30.02\n2          7.7         3.8          6.7         2.2 virginica      29.26\n3          7.7         2.6          6.9         2.3 virginica      20.02\n4          7.7         2.8          6.7         2.0 virginica      21.56\n5          7.7         3.0          6.1         2.3 virginica      23.10\n6          7.6         3.0          6.6         2.1 virginica      22.80\n\n\n\n\n\n\niris_renamed = iris.rename(columns={'sepal length (cm)': 'Sepal_Length'})\niris_renamed.head()\n\n   Sepal_Length  sepal width (cm)  ...  target  Sepal.Area\n0           5.1               3.5  ...       0       17.85\n1           4.9               3.0  ...       0       14.70\n2           4.7               3.2  ...       0       15.04\n3           4.6               3.1  ...       0       14.26\n4           5.0               3.6  ...       0       18.00\n\n[5 rows x 6 columns]\n\n\n\niris %&gt;% rename(Sepal_Length = Sepal.Length) %&gt;% head()\n\n  Sepal_Length Sepal.Width Petal.Length Petal.Width Species Sepal.Area\n1          5.1         3.5          1.4         0.2  setosa      17.85\n2          4.9         3.0          1.4         0.2  setosa      14.70\n3          4.7         3.2          1.3         0.2  setosa      15.04\n4          4.6         3.1          1.5         0.2  setosa      14.26\n5          5.0         3.6          1.4         0.2  setosa      18.00\n6          5.4         3.9          1.7         0.4  setosa      21.06\n\n\n\n\n\n\niris_filtered = (\n    iris[iris['target'] != 'setosa']\n    .assign(Sepal.Area = lambda df: df['sepal length (cm)'] * df['sepal width (cm)'])\n    .groupby('target')\n    .agg(mean_area = ('Sepal.Area', 'mean'))\n)\niris_filtered\n\n\niris %&gt;%\n  filter(Species != \"setosa\") %&gt;%\n  mutate(Sepal.Area = Sepal.Length * Sepal.Width) %&gt;%\n  group_by(Species) %&gt;%\n  summarise(mean_area = mean(Sepal.Area))\n\n# A tibble: 2 × 2\n  Species    mean_area\n  &lt;fct&gt;          &lt;dbl&gt;\n1 versicolor      16.5\n2 virginica       19.7"
+    "text": "Criar um script em R que gere um gráfico do tipo boxplot, representando a distribuição dos níveis de expressão de um gene específico entre diferentes tipos de câncer, com base nos dados fornecidos pelo Human Protein Atlas."
   },
   {
-    "objectID": "index.html#comparando-linguagens",
-    "href": "index.html#comparando-linguagens",
-    "title": "Bem-vindo ao curso",
+    "objectID": "material/desafio02-boxplot_expressao_cancer.html#objetivo",
+    "href": "material/desafio02-boxplot_expressao_cancer.html#objetivo",
+    "title": "Desafio 02 – Gráfico de expressão em cancer",
     "section": "",
-    "text": "Antes de começar…\nEste documento tem como objetivo oferecer uma comparação prática entre duas das bibliotecas mais populares para manipulação de dados: pandas em Python e tidyverse em R. Utilizando o dataset clássico Iris, são apresentadas operações fundamentais de ciência de dados em ambas as linguagens, organizadas de forma paralela.\nA proposta não é apenas mostrar como realizar tarefas específicas, mas também facilitar a transferência de conhecimento entre linguagens. Muitas vezes, cientistas de dados e pesquisadores se deparam com a necessidade de migrar seus fluxos de trabalho entre R e Python (ou vice-versa), seja por demanda de projetos colaborativos, requisitos institucionais ou preferência da equipe técnica.\nAo intercalar cada operação com sua respectiva implementação em R e Python, o leitor pode compreender como os conceitos se traduzem entre os ecossistemas. Essa estrutura favorece o aprendizado comparado e reforça a capacidade de raciocínio lógico ao destacar diferenças e semelhanças de sintaxe e paradigma entre as duas abordagens.\nEste material pode ser útil tanto para iniciantes quanto para usuários intermediários que desejam reforçar sua fluência em múltiplas linguagens de análise de dados."
+    "text": "Criar um script em R que gere um gráfico do tipo boxplot, representando a distribuição dos níveis de expressão de um gene específico entre diferentes tipos de câncer, com base nos dados fornecidos pelo Human Protein Atlas."
   },
   {
-    "objectID": "index.html#carregar-os-dados",
-    "href": "index.html#carregar-os-dados",
-    "title": "Bem-vindo ao curso",
-    "section": "",
-    "text": "import pandas as pd\nfrom sklearn.datasets import load_iris\n\niris_data = load_iris(as_frame=True)\niris = iris_data.frame\n\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.0.4     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\ndata(iris)"
-  },
-  {
-    "objectID": "index.html#visualizar-as-primeiras-linhas",
-    "href": "index.html#visualizar-as-primeiras-linhas",
-    "title": "Bem-vindo ao curso",
-    "section": "",
-    "text": "iris.head()\n\n   sepal length (cm)  sepal width (cm)  ...  petal width (cm)  target\n0                5.1               3.5  ...               0.2       0\n1                4.9               3.0  ...               0.2       0\n2                4.7               3.2  ...               0.2       0\n3                4.6               3.1  ...               0.2       0\n4                5.0               3.6  ...               0.2       0\n\n[5 rows x 5 columns]\n\n\n\nhead(iris)\n\n  Sepal.Length Sepal.Width Petal.Length Petal.Width Species\n1          5.1         3.5          1.4         0.2  setosa\n2          4.9         3.0          1.4         0.2  setosa\n3          4.7         3.2          1.3         0.2  setosa\n4          4.6         3.1          1.5         0.2  setosa\n5          5.0         3.6          1.4         0.2  setosa\n6          5.4         3.9          1.7         0.4  setosa"
-  },
-  {
-    "objectID": "index.html#filtrar-linhas-ex-apenas-setosa",
-    "href": "index.html#filtrar-linhas-ex-apenas-setosa",
-    "title": "Bem-vindo ao curso",
-    "section": "",
-    "text": "iris_setosa = iris[iris['target'] == 'setosa']\niris_setosa.head()\n\nEmpty DataFrame\nColumns: [sepal length (cm), sepal width (cm), petal length (cm), petal width (cm), target]\nIndex: []\n\n\n\niris %&gt;% filter(Species == \"setosa\")\n\n   Sepal.Length Sepal.Width Petal.Length Petal.Width Species\n1           5.1         3.5          1.4         0.2  setosa\n2           4.9         3.0          1.4         0.2  setosa\n3           4.7         3.2          1.3         0.2  setosa\n4           4.6         3.1          1.5         0.2  setosa\n5           5.0         3.6          1.4         0.2  setosa\n6           5.4         3.9          1.7         0.4  setosa\n7           4.6         3.4          1.4         0.3  setosa\n8           5.0         3.4          1.5         0.2  setosa\n9           4.4         2.9          1.4         0.2  setosa\n10          4.9         3.1          1.5         0.1  setosa\n11          5.4         3.7          1.5         0.2  setosa\n12          4.8         3.4          1.6         0.2  setosa\n13          4.8         3.0          1.4         0.1  setosa\n14          4.3         3.0          1.1         0.1  setosa\n15          5.8         4.0          1.2         0.2  setosa\n16          5.7         4.4          1.5         0.4  setosa\n17          5.4         3.9          1.3         0.4  setosa\n18          5.1         3.5          1.4         0.3  setosa\n19          5.7         3.8          1.7         0.3  setosa\n20          5.1         3.8          1.5         0.3  setosa\n21          5.4         3.4          1.7         0.2  setosa\n22          5.1         3.7          1.5         0.4  setosa\n23          4.6         3.6          1.0         0.2  setosa\n24          5.1         3.3          1.7         0.5  setosa\n25          4.8         3.4          1.9         0.2  setosa\n26          5.0         3.0          1.6         0.2  setosa\n27          5.0         3.4          1.6         0.4  setosa\n28          5.2         3.5          1.5         0.2  setosa\n29          5.2         3.4          1.4         0.2  setosa\n30          4.7         3.2          1.6         0.2  setosa\n31          4.8         3.1          1.6         0.2  setosa\n32          5.4         3.4          1.5         0.4  setosa\n33          5.2         4.1          1.5         0.1  setosa\n34          5.5         4.2          1.4         0.2  setosa\n35          4.9         3.1          1.5         0.2  setosa\n36          5.0         3.2          1.2         0.2  setosa\n37          5.5         3.5          1.3         0.2  setosa\n38          4.9         3.6          1.4         0.1  setosa\n39          4.4         3.0          1.3         0.2  setosa\n40          5.1         3.4          1.5         0.2  setosa\n41          5.0         3.5          1.3         0.3  setosa\n42          4.5         2.3          1.3         0.3  setosa\n43          4.4         3.2          1.3         0.2  setosa\n44          5.0         3.5          1.6         0.6  setosa\n45          5.1         3.8          1.9         0.4  setosa\n46          4.8         3.0          1.4         0.3  setosa\n47          5.1         3.8          1.6         0.2  setosa\n48          4.6         3.2          1.4         0.2  setosa\n49          5.3         3.7          1.5         0.2  setosa\n50          5.0         3.3          1.4         0.2  setosa"
-  },
-  {
-    "objectID": "index.html#selecionar-colunas",
-    "href": "index.html#selecionar-colunas",
-    "title": "Bem-vindo ao curso",
-    "section": "",
-    "text": "iris_selected = iris[['sepal length (cm)', 'target']]\niris_selected.head()\n\n   sepal length (cm)  target\n0                5.1       0\n1                4.9       0\n2                4.7       0\n3                4.6       0\n4                5.0       0\n\n\n\niris %&gt;% select(Sepal.Length, Species)\n\n    Sepal.Length    Species\n1            5.1     setosa\n2            4.9     setosa\n3            4.7     setosa\n4            4.6     setosa\n5            5.0     setosa\n6            5.4     setosa\n7            4.6     setosa\n8            5.0     setosa\n9            4.4     setosa\n10           4.9     setosa\n11           5.4     setosa\n12           4.8     setosa\n13           4.8     setosa\n14           4.3     setosa\n15           5.8     setosa\n16           5.7     setosa\n17           5.4     setosa\n18           5.1     setosa\n19           5.7     setosa\n20           5.1     setosa\n21           5.4     setosa\n22           5.1     setosa\n23           4.6     setosa\n24           5.1     setosa\n25           4.8     setosa\n26           5.0     setosa\n27           5.0     setosa\n28           5.2     setosa\n29           5.2     setosa\n30           4.7     setosa\n31           4.8     setosa\n32           5.4     setosa\n33           5.2     setosa\n34           5.5     setosa\n35           4.9     setosa\n36           5.0     setosa\n37           5.5     setosa\n38           4.9     setosa\n39           4.4     setosa\n40           5.1     setosa\n41           5.0     setosa\n42           4.5     setosa\n43           4.4     setosa\n44           5.0     setosa\n45           5.1     setosa\n46           4.8     setosa\n47           5.1     setosa\n48           4.6     setosa\n49           5.3     setosa\n50           5.0     setosa\n51           7.0 versicolor\n52           6.4 versicolor\n53           6.9 versicolor\n54           5.5 versicolor\n55           6.5 versicolor\n56           5.7 versicolor\n57           6.3 versicolor\n58           4.9 versicolor\n59           6.6 versicolor\n60           5.2 versicolor\n61           5.0 versicolor\n62           5.9 versicolor\n63           6.0 versicolor\n64           6.1 versicolor\n65           5.6 versicolor\n66           6.7 versicolor\n67           5.6 versicolor\n68           5.8 versicolor\n69           6.2 versicolor\n70           5.6 versicolor\n71           5.9 versicolor\n72           6.1 versicolor\n73           6.3 versicolor\n74           6.1 versicolor\n75           6.4 versicolor\n76           6.6 versicolor\n77           6.8 versicolor\n78           6.7 versicolor\n79           6.0 versicolor\n80           5.7 versicolor\n81           5.5 versicolor\n82           5.5 versicolor\n83           5.8 versicolor\n84           6.0 versicolor\n85           5.4 versicolor\n86           6.0 versicolor\n87           6.7 versicolor\n88           6.3 versicolor\n89           5.6 versicolor\n90           5.5 versicolor\n91           5.5 versicolor\n92           6.1 versicolor\n93           5.8 versicolor\n94           5.0 versicolor\n95           5.6 versicolor\n96           5.7 versicolor\n97           5.7 versicolor\n98           6.2 versicolor\n99           5.1 versicolor\n100          5.7 versicolor\n101          6.3  virginica\n102          5.8  virginica\n103          7.1  virginica\n104          6.3  virginica\n105          6.5  virginica\n106          7.6  virginica\n107          4.9  virginica\n108          7.3  virginica\n109          6.7  virginica\n110          7.2  virginica\n111          6.5  virginica\n112          6.4  virginica\n113          6.8  virginica\n114          5.7  virginica\n115          5.8  virginica\n116          6.4  virginica\n117          6.5  virginica\n118          7.7  virginica\n119          7.7  virginica\n120          6.0  virginica\n121          6.9  virginica\n122          5.6  virginica\n123          7.7  virginica\n124          6.3  virginica\n125          6.7  virginica\n126          7.2  virginica\n127          6.2  virginica\n128          6.1  virginica\n129          6.4  virginica\n130          7.2  virginica\n131          7.4  virginica\n132          7.9  virginica\n133          6.4  virginica\n134          6.3  virginica\n135          6.1  virginica\n136          7.7  virginica\n137          6.3  virginica\n138          6.4  virginica\n139          6.0  virginica\n140          6.9  virginica\n141          6.7  virginica\n142          6.9  virginica\n143          5.8  virginica\n144          6.8  virginica\n145          6.7  virginica\n146          6.7  virginica\n147          6.3  virginica\n148          6.5  virginica\n149          6.2  virginica\n150          5.9  virginica"
-  },
-  {
-    "objectID": "index.html#criar-nova-coluna-sepal.area",
-    "href": "index.html#criar-nova-coluna-sepal.area",
-    "title": "Bem-vindo ao curso",
-    "section": "",
-    "text": "iris['Sepal.Area'] = iris['sepal length (cm)'] * iris['sepal width (cm)']\niris[['Sepal.Area']].head()\n\n   Sepal.Area\n0       17.85\n1       14.70\n2       15.04\n3       14.26\n4       18.00\n\n\n\niris &lt;- iris %&gt;% mutate(Sepal.Area = Sepal.Length * Sepal.Width)\niris %&gt;% select(Sepal.Area) %&gt;% head()\n\n  Sepal.Area\n1      17.85\n2      14.70\n3      15.04\n4      14.26\n5      18.00\n6      21.06"
-  },
-  {
-    "objectID": "index.html#agrupar-e-resumir-média-do-comprimento-da-sépala-por-espécie",
-    "href": "index.html#agrupar-e-resumir-média-do-comprimento-da-sépala-por-espécie",
-    "title": "Bem-vindo ao curso",
-    "section": "",
-    "text": "mean_sepal = iris.groupby('target')['sepal length (cm)'].mean()\nmean_sepal\n\ntarget\n0    5.006\n1    5.936\n2    6.588\nName: sepal length (cm), dtype: float64\n\n\n\niris %&gt;% group_by(Species) %&gt;% summarise(mean_sepal = mean(Sepal.Length))\n\n# A tibble: 3 × 2\n  Species    mean_sepal\n  &lt;fct&gt;           &lt;dbl&gt;\n1 setosa           5.01\n2 versicolor       5.94\n3 virginica        6.59"
-  },
-  {
-    "objectID": "index.html#ordenar-os-dados",
-    "href": "index.html#ordenar-os-dados",
-    "title": "Bem-vindo ao curso",
-    "section": "",
-    "text": "iris_sorted = iris.sort_values('sepal length (cm)', ascending=False)\niris_sorted.head()\n\n     sepal length (cm)  sepal width (cm)  ...  target  Sepal.Area\n131                7.9               3.8  ...       2       30.02\n135                7.7               3.0  ...       2       23.10\n122                7.7               2.8  ...       2       21.56\n117                7.7               3.8  ...       2       29.26\n118                7.7               2.6  ...       2       20.02\n\n[5 rows x 6 columns]\n\n\n\niris %&gt;% arrange(desc(Sepal.Length)) %&gt;% head()\n\n  Sepal.Length Sepal.Width Petal.Length Petal.Width   Species Sepal.Area\n1          7.9         3.8          6.4         2.0 virginica      30.02\n2          7.7         3.8          6.7         2.2 virginica      29.26\n3          7.7         2.6          6.9         2.3 virginica      20.02\n4          7.7         2.8          6.7         2.0 virginica      21.56\n5          7.7         3.0          6.1         2.3 virginica      23.10\n6          7.6         3.0          6.6         2.1 virginica      22.80"
-  },
-  {
-    "objectID": "index.html#renomear-colunas",
-    "href": "index.html#renomear-colunas",
-    "title": "Bem-vindo ao curso",
-    "section": "",
-    "text": "iris_renamed = iris.rename(columns={'sepal length (cm)': 'Sepal_Length'})\niris_renamed.head()\n\n   Sepal_Length  sepal width (cm)  ...  target  Sepal.Area\n0           5.1               3.5  ...       0       17.85\n1           4.9               3.0  ...       0       14.70\n2           4.7               3.2  ...       0       15.04\n3           4.6               3.1  ...       0       14.26\n4           5.0               3.6  ...       0       18.00\n\n[5 rows x 6 columns]\n\n\n\niris %&gt;% rename(Sepal_Length = Sepal.Length) %&gt;% head()\n\n  Sepal_Length Sepal.Width Petal.Length Petal.Width Species Sepal.Area\n1          5.1         3.5          1.4         0.2  setosa      17.85\n2          4.9         3.0          1.4         0.2  setosa      14.70\n3          4.7         3.2          1.3         0.2  setosa      15.04\n4          4.6         3.1          1.5         0.2  setosa      14.26\n5          5.0         3.6          1.4         0.2  setosa      18.00\n6          5.4         3.9          1.7         0.4  setosa      21.06"
-  },
-  {
-    "objectID": "index.html#pipeline-completo-filtrar-criar-coluna-e-resumir",
-    "href": "index.html#pipeline-completo-filtrar-criar-coluna-e-resumir",
-    "title": "Bem-vindo ao curso",
-    "section": "",
-    "text": "iris_filtered = (\n    iris[iris['target'] != 'setosa']\n    .assign(Sepal.Area = lambda df: df['sepal length (cm)'] * df['sepal width (cm)'])\n    .groupby('target')\n    .agg(mean_area = ('Sepal.Area', 'mean'))\n)\niris_filtered\n\n\niris %&gt;%\n  filter(Species != \"setosa\") %&gt;%\n  mutate(Sepal.Area = Sepal.Length * Sepal.Width) %&gt;%\n  group_by(Species) %&gt;%\n  summarise(mean_area = mean(Sepal.Area))\n\n# A tibble: 2 × 2\n  Species    mean_area\n  &lt;fct&gt;          &lt;dbl&gt;\n1 versicolor      16.5\n2 virginica       19.7"
-  },
-  {
-    "objectID": "material/aula06-modelar.html",
-    "href": "material/aula06-modelar.html",
-    "title": "Aula 06",
-    "section": "",
-    "text": "Em construção\nConteúdo da aula 06."
-  },
-  {
-    "objectID": "material/desafio01-barplot_expressao.html",
-    "href": "material/desafio01-barplot_expressao.html",
-    "title": "Desafio 01 – Gráfico de expressão gênica",
-    "section": "",
-    "text": "Desenvolver um script em R que, dado um identificador de gene (Ensembl ID), gere automaticamente um gráfico de barras representando os níveis de expressão (em TPM) desse gene em diferentes subáreas do cérebro humano, utilizando dados da plataforma Human Protein Atlas."
-  },
-  {
-    "objectID": "material/desafio01-barplot_expressao.html#objetivo",
-    "href": "material/desafio01-barplot_expressao.html#objetivo",
-    "title": "Desafio 01 – Gráfico de expressão gênica",
-    "section": "",
-    "text": "Desenvolver um script em R que, dado um identificador de gene (Ensembl ID), gere automaticamente um gráfico de barras representando os níveis de expressão (em TPM) desse gene em diferentes subáreas do cérebro humano, utilizando dados da plataforma Human Protein Atlas."
-  },
-  {
-    "objectID": "material/desafio01-barplot_expressao.html#requisitos-técnicos",
-    "href": "material/desafio01-barplot_expressao.html#requisitos-técnicos",
-    "title": "Desafio 01 – Gráfico de expressão gênica",
+    "objectID": "material/desafio02-boxplot_expressao_cancer.html#requisitos-técnicos",
+    "href": "material/desafio02-boxplot_expressao_cancer.html#requisitos-técnicos",
+    "title": "Desafio 02 – Gráfico de expressão em cancer",
     "section": "Requisitos Técnicos",
-    "text": "Requisitos Técnicos\n\nUtilizar os pacotes tidyverse, especialmente ggplot2, para manipulação e visualização dos dados.\nO script deve aceitar como entrada um Ensembl Gene ID (por exemplo, ENSG00000146648 para o gene EGFR).\nA saída deve ser um gráfico de barras onde:\n\nO eixo X representa as subáreas do cérebro (por exemplo, córtex cerebral, cerebelo, hipotálamo).\nO eixo Y representa os níveis de expressão em TPM (Transcripts Per Million).\n\nO gráfico deve ser estilizado de forma clara e informativa, semelhante aos gráficos apresentados na plataforma Human Protein Atlas. Ver exemplo, aqui."
+    "text": "Requisitos Técnicos\nUtilizar os pacotes tidyverse, especialmente ggplot2, para manipulação e visualização dos dados.\n\nUtilizar os pacotes tidyverse, especialmente ggplot2, para manipulação e visualização dos dados.\nO script deve aceitar como entrada um Ensembl Gene ID (exemplo: ENSG00000146648 para EGFR).\nA saída deve ser um boxplot, onde:\n\nO eixo X representa os tipos de câncer.\nO eixo Y representa os valores de expressão (em TPM).\nCada ponto individual pode ser visualizado com geom_jitter() para enriquecer a visualização (opcional).\n\nO gráfico deve conter título, rótulos de eixos e tema limpo (theme_minimal() ou similar).\nO script deve incluir legenda e cores diferenciadas por tipo de câncer (opcional, com fill)."
   },
   {
-    "objectID": "material/desafio01-barplot_expressao.html#instruções-para-obtenção-dos-dados",
-    "href": "material/desafio01-barplot_expressao.html#instruções-para-obtenção-dos-dados",
-    "title": "Desafio 01 – Gráfico de expressão gênica",
+    "objectID": "material/desafio02-boxplot_expressao_cancer.html#instruções-para-obtenção-dos-dados",
+    "href": "material/desafio02-boxplot_expressao_cancer.html#instruções-para-obtenção-dos-dados",
+    "title": "Desafio 02 – Gráfico de expressão em cancer",
     "section": "Instruções para Obtenção dos Dados",
-    "text": "Instruções para Obtenção dos Dados\n\nAcesse o portal a pagina Human Protein Atlas – Brain Atlas.\nClique em rna_brain_region_hpa.tsv.zip.\nExtrai o arquivo dentro da pasta data.\nCarregue o arquivo no R com:\n\n\nlibrary(readr)\n\n# Substitua o caminho conforme necessário\nbrain_data &lt;- read_tsv(here::here(\"data/rna_brain_region_hpa.tsv\"))\n\n\n\n\nGene\nGene name\nBrain region\nTPM\npTPM\nnTPM\n\n\n\n\nENSG00000000003\nTSPAN6\namygdala\n4.5\n6.1\n7.0\n\n\nENSG00000000003\nTSPAN6\nbasal ganglia\n6.8\n10.2\n7.6\n\n\nENSG00000000003\nTSPAN6\ncerebellum\n6.5\n9.2\n7.2\n\n\nENSG00000000003\nTSPAN6\ncerebral cortex\n4.4\n6.7\n5.6\n\n\nENSG00000000003\nTSPAN6\nchoroid plexus\n26.8\n34.9\n48.2\n\n\n…\n…\n…\n…\n…\n…"
+    "text": "Instruções para Obtenção dos Dados\n\nBaixe o arquivo de expressão por amostra de câncer diretamente do link: rna_cancer_sample.tsv.gz\nDescompacte o arquivo (caso necessário) e leia-o no R:"
   },
   {
-    "objectID": "material/desafio01-barplot_expressao.html#entregáveis",
-    "href": "material/desafio01-barplot_expressao.html#entregáveis",
-    "title": "Desafio 01 – Gráfico de expressão gênica",
+    "objectID": "material/desafio02-boxplot_expressao_cancer.html#entregáveis",
+    "href": "material/desafio02-boxplot_expressao_cancer.html#entregáveis",
+    "title": "Desafio 02 – Gráfico de expressão em cancer",
     "section": "Entregáveis",
-    "text": "Entregáveis\n\nScript R (expressao_gene_cerebro.R): Script funcional que realiza as seguintes etapas:\n\nRecebe um o identificador como entrada.\nObtém os dados de expressão gênica correspondentes às subáreas do cérebro humano.\nGera e salva um gráfico de barras representando os níveis de expressão.\n\nGráfico de Exemplo: Imagem do gráfico gerado para um gene de exemplo (por exemplo, EGFR), salva em formato PNG ou PDF."
+    "text": "Entregáveis\n\nScript R (boxplot_expressao_cancer.R) que realiza:\n\nLeitura dos dados.\nFiltragem por Ensembl Gene ID fornecido.\nGeração de boxplot com os níveis de expressão em TPM por tipo de câncer.\n\nGráfico de Exemplo (ex: EGFR_boxplot.png) exportado.\nREADME.md com instruções de uso, incluindo:\n\nInstalação dos pacotes.\nComo fornecer o gene de interesse.\nDescrição dos outputs gerados."
   },
   {
-    "objectID": "material/desafio01-barplot_expressao.html#dicas",
-    "href": "material/desafio01-barplot_expressao.html#dicas",
-    "title": "Desafio 01 – Gráfico de expressão gênica",
+    "objectID": "material/desafio02-boxplot_expressao_cancer.html#dicas",
+    "href": "material/desafio02-boxplot_expressao_cancer.html#dicas",
+    "title": "Desafio 02 – Gráfico de expressão em cancer",
     "section": "Dicas",
-    "text": "Dicas\n\nCertifique-se de que os dados estão no formato adequado para o ggplot2.\nPara garantir a reprodutibilidade, inclua no script a instalação e carregamento dos pacotes necessários.(Bioconductor, Stack Overflow)"
+    "text": "Dicas\n\ngeom_boxplot(): https://ggplot2.tidyverse.org/reference/geom_boxplot.html\ntheme_minimal() e outros temas: https://ggplot2.tidyverse.org/reference/ggtheme.html\ngeom_jitter() para sobreposição de pontos: https://ggplot2.tidyverse.org/reference/geom_jitter.html"
   },
   {
     "objectID": "material/aula04-transformar.html",
@@ -523,187 +628,5 @@
     "title": "Aula 07",
     "section": "",
     "text": "Em construção\nConteúdo da aula 07."
-  },
-  {
-    "objectID": "material/aula06-visualizar-avancado.html",
-    "href": "material/aula06-visualizar-avancado.html",
-    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
-    "section": "",
-    "text": "Utilizar o pacote ggpubr para criar gráficos estatísticos com testes automáticos.\nAnotar comparações em boxplots e visualizações com significância.\nCriar heatmaps personalizados com o pacote pheatmap.\nAdicionar anotações, escalas e agrupamentos hierárquicos nos mapas de calor."
-  },
-  {
-    "objectID": "material/aula06-visualizar-avancado.html#objetivos-da-aula",
-    "href": "material/aula06-visualizar-avancado.html#objetivos-da-aula",
-    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
-    "section": "",
-    "text": "Utilizar o pacote ggpubr para criar gráficos estatísticos com testes automáticos.\nAnotar comparações em boxplots e visualizações com significância.\nCriar heatmaps personalizados com o pacote pheatmap.\nAdicionar anotações, escalas e agrupamentos hierárquicos nos mapas de calor."
-  },
-  {
-    "objectID": "material/aula06-visualizar-avancado.html#introdução",
-    "href": "material/aula06-visualizar-avancado.html#introdução",
-    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
-    "section": "Introdução",
-    "text": "Introdução\nNesta aula, vamos explorar duas ferramentas poderosas para visualização de dados estatísticos:\n\nggpubr: extensão do ggplot2 voltada para gráficos estatísticos prontos para publicação.\npheatmap: criação de heatmaps com suporte a agrupamentos, escalas e anotações laterais.\n\nEsses pacotes são amplamente utilizados em análises exploratórias, estudos de expressão gênica e relatórios científicos."
-  },
-  {
-    "objectID": "material/aula06-visualizar-avancado.html#carregando-os-pacotes-necessários",
-    "href": "material/aula06-visualizar-avancado.html#carregando-os-pacotes-necessários",
-    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
-    "section": "Carregando os pacotes necessários",
-    "text": "Carregando os pacotes necessários\n\ninstall.packages(\"ggpubr\")\ninstall.packages(\"pheatmap\")\n\nlibrary(ggpubr)\nlibrary(pheatmap)\nlibrary(tidyverse)"
-  },
-  {
-    "objectID": "material/aula06-visualizar-avancado.html#criando-boxplots-com-ggpubr",
-    "href": "material/aula06-visualizar-avancado.html#criando-boxplots-com-ggpubr",
-    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
-    "section": "Criando boxplots com ggpubr",
-    "text": "Criando boxplots com ggpubr\nO ggpubr simplifica a criação de boxplots com testes estatísticos embutidos.\n\ndata(mtcars)\nmtcars$cyl &lt;- as.factor(mtcars$cyl)\n\nggboxplot(mtcars, x = \"cyl\", y = \"mpg\",\n          color = \"cyl\", palette = \"jco\",\n          add = \"jitter\") +\n  stat_compare_means(method = \"anova\")"
-  },
-  {
-    "objectID": "material/aula06-visualizar-avancado.html#comparações-par-a-par-com-stat_compare_means",
-    "href": "material/aula06-visualizar-avancado.html#comparações-par-a-par-com-stat_compare_means",
-    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
-    "section": "Comparações par a par com stat_compare_means()",
-    "text": "Comparações par a par com stat_compare_means()\nVocê pode adicionar comparações específicas entre grupos com pares definidos manualmente:\n\nmy_comparisons &lt;- list(c(\"4\", \"6\"), c(\"4\", \"8\"), c(\"6\", \"8\"))\n\nggboxplot(mtcars, x = \"cyl\", y = \"mpg\",\n          color = \"cyl\", palette = \"jco\") +\n  stat_compare_means(comparisons = my_comparisons) +\n  stat_compare_means(label.y = 35)  # p-valor geral (ANOVA)"
-  },
-  {
-    "objectID": "material/aula06-visualizar-avancado.html#criando-um-heatmap-com-pheatmap",
-    "href": "material/aula06-visualizar-avancado.html#criando-um-heatmap-com-pheatmap",
-    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
-    "section": "Criando um heatmap com pheatmap",
-    "text": "Criando um heatmap com pheatmap\nVamos gerar um heatmap a partir de uma matriz de valores numéricos (como expressão gênica simulada).\n\nset.seed(123)\nmat &lt;- matrix(rnorm(100), nrow = 10)\nrownames(mat) &lt;- paste0(\"Gene\", 1:10)\ncolnames(mat) &lt;- paste0(\"Sample\", 1:10)\n\npheatmap(mat, scale = \"row\")"
-  },
-  {
-    "objectID": "material/aula06-visualizar-avancado.html#adicionando-anotação-de-grupos",
-    "href": "material/aula06-visualizar-avancado.html#adicionando-anotação-de-grupos",
-    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
-    "section": "Adicionando anotação de grupos",
-    "text": "Adicionando anotação de grupos\nPodemos incluir informações como grupos de amostras ou tipos de condição experimental.\n\nannotation_col &lt;- data.frame(\n  Condition = rep(c(\"Control\", \"Treatment\"), each = 5)\n)\nrownames(annotation_col) &lt;- colnames(mat)\n\npheatmap(mat, scale = \"row\", annotation_col = annotation_col)"
-  },
-  {
-    "objectID": "material/aula06-visualizar-avancado.html#personalizando-o-heatmap",
-    "href": "material/aula06-visualizar-avancado.html#personalizando-o-heatmap",
-    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
-    "section": "Personalizando o heatmap",
-    "text": "Personalizando o heatmap\nO pheatmap permite personalizar cores, títulos, clustering e outros aspectos visuais.\n\npheatmap(mat,\n         scale = \"row\",\n         annotation_col = annotation_col,\n         color = colorRampPalette(c(\"blue\", \"white\", \"red\"))(50),\n         clustering_distance_rows = \"euclidean\",\n         clustering_method = \"complete\")"
-  },
-  {
-    "objectID": "material/aula06-visualizar-avancado.html#exercícios",
-    "href": "material/aula06-visualizar-avancado.html#exercícios",
-    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
-    "section": "Exercícios",
-    "text": "Exercícios\n\nReproduza um boxplot com ggboxplot() comparando mpg entre grupos de cyl.\nAdicione comparações manuais entre pares com stat_compare_means().\nSimule uma matriz de expressão e crie um pheatmap com escala por linha.\nAdicione uma anotação de grupo de amostras.\nExperimente diferentes métodos de clusterização e paletas de cores."
-  },
-  {
-    "objectID": "material/desafio02-boxplot_expressao_cancer.html",
-    "href": "material/desafio02-boxplot_expressao_cancer.html",
-    "title": "Desafio 02 – Gráfico de expressão em cancer",
-    "section": "",
-    "text": "Criar um script em R que gere um gráfico do tipo boxplot, representando a distribuição dos níveis de expressão de um gene específico entre diferentes tipos de câncer, com base nos dados fornecidos pelo Human Protein Atlas."
-  },
-  {
-    "objectID": "material/desafio02-boxplot_expressao_cancer.html#objetivo",
-    "href": "material/desafio02-boxplot_expressao_cancer.html#objetivo",
-    "title": "Desafio 02 – Gráfico de expressão em cancer",
-    "section": "",
-    "text": "Criar um script em R que gere um gráfico do tipo boxplot, representando a distribuição dos níveis de expressão de um gene específico entre diferentes tipos de câncer, com base nos dados fornecidos pelo Human Protein Atlas."
-  },
-  {
-    "objectID": "material/desafio02-boxplot_expressao_cancer.html#requisitos-técnicos",
-    "href": "material/desafio02-boxplot_expressao_cancer.html#requisitos-técnicos",
-    "title": "Desafio 02 – Gráfico de expressão em cancer",
-    "section": "Requisitos Técnicos",
-    "text": "Requisitos Técnicos\nUtilizar os pacotes tidyverse, especialmente ggplot2, para manipulação e visualização dos dados.\n\nUtilizar os pacotes tidyverse, especialmente ggplot2, para manipulação e visualização dos dados.\nO script deve aceitar como entrada um Ensembl Gene ID (exemplo: ENSG00000146648 para EGFR).\nA saída deve ser um boxplot, onde:\n\nO eixo X representa os tipos de câncer.\nO eixo Y representa os valores de expressão (em TPM).\nCada ponto individual pode ser visualizado com geom_jitter() para enriquecer a visualização (opcional).\n\nO gráfico deve conter título, rótulos de eixos e tema limpo (theme_minimal() ou similar).\nO script deve incluir legenda e cores diferenciadas por tipo de câncer (opcional, com fill)."
-  },
-  {
-    "objectID": "material/desafio02-boxplot_expressao_cancer.html#instruções-para-obtenção-dos-dados",
-    "href": "material/desafio02-boxplot_expressao_cancer.html#instruções-para-obtenção-dos-dados",
-    "title": "Desafio 02 – Gráfico de expressão em cancer",
-    "section": "Instruções para Obtenção dos Dados",
-    "text": "Instruções para Obtenção dos Dados\n\nBaixe o arquivo de expressão por amostra de câncer diretamente do link: rna_cancer_sample.tsv.gz\nDescompacte o arquivo (caso necessário) e leia-o no R:"
-  },
-  {
-    "objectID": "material/desafio02-boxplot_expressao_cancer.html#entregáveis",
-    "href": "material/desafio02-boxplot_expressao_cancer.html#entregáveis",
-    "title": "Desafio 02 – Gráfico de expressão em cancer",
-    "section": "Entregáveis",
-    "text": "Entregáveis\n\nScript R (boxplot_expressao_cancer.R) que realiza:\n\nLeitura dos dados.\nFiltragem por Ensembl Gene ID fornecido.\nGeração de boxplot com os níveis de expressão em TPM por tipo de câncer.\n\nGráfico de Exemplo (ex: EGFR_boxplot.png) exportado.\nREADME.md com instruções de uso, incluindo:\n\nInstalação dos pacotes.\nComo fornecer o gene de interesse.\nDescrição dos outputs gerados."
-  },
-  {
-    "objectID": "material/desafio02-boxplot_expressao_cancer.html#dicas",
-    "href": "material/desafio02-boxplot_expressao_cancer.html#dicas",
-    "title": "Desafio 02 – Gráfico de expressão em cancer",
-    "section": "Dicas",
-    "text": "Dicas\n\ngeom_boxplot(): https://ggplot2.tidyverse.org/reference/geom_boxplot.html\ntheme_minimal() e outros temas: https://ggplot2.tidyverse.org/reference/ggtheme.html\ngeom_jitter() para sobreposição de pontos: https://ggplot2.tidyverse.org/reference/geom_jitter.html"
-  },
-  {
-    "objectID": "material/aula06-visualizar_avancado.html",
-    "href": "material/aula06-visualizar_avancado.html",
-    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
-    "section": "",
-    "text": "Utilizar o pacote ggpubr para criar gráficos estatísticos com testes automáticos.\nAnotar comparações em boxplots e visualizações com significância.\nCriar heatmaps personalizados com o pacote pheatmap.\nAdicionar anotações, escalas e agrupamentos hierárquicos nos mapas de calor."
-  },
-  {
-    "objectID": "material/aula06-visualizar_avancado.html#objetivos-da-aula",
-    "href": "material/aula06-visualizar_avancado.html#objetivos-da-aula",
-    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
-    "section": "",
-    "text": "Utilizar o pacote ggpubr para criar gráficos estatísticos com testes automáticos.\nAnotar comparações em boxplots e visualizações com significância.\nCriar heatmaps personalizados com o pacote pheatmap.\nAdicionar anotações, escalas e agrupamentos hierárquicos nos mapas de calor."
-  },
-  {
-    "objectID": "material/aula06-visualizar_avancado.html#introdução",
-    "href": "material/aula06-visualizar_avancado.html#introdução",
-    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
-    "section": "Introdução",
-    "text": "Introdução\nNesta aula, vamos explorar duas ferramentas poderosas para visualização de dados estatísticos:\n\nggpubr: extensão do ggplot2 voltada para gráficos estatísticos prontos para publicação.\npheatmap: criação de heatmaps com suporte a agrupamentos, escalas e anotações laterais.\n\nEsses pacotes são amplamente utilizados em análises exploratórias, estudos de expressão gênica e relatórios científicos."
-  },
-  {
-    "objectID": "material/aula06-visualizar_avancado.html#carregando-os-pacotes-necessários",
-    "href": "material/aula06-visualizar_avancado.html#carregando-os-pacotes-necessários",
-    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
-    "section": "Carregando os pacotes necessários",
-    "text": "Carregando os pacotes necessários\n\ninstall.packages(\"ggpubr\")\ninstall.packages(\"pheatmap\")\n\nlibrary(ggpubr)\nlibrary(pheatmap)\nlibrary(tidyverse)"
-  },
-  {
-    "objectID": "material/aula06-visualizar_avancado.html#criando-boxplots-com-ggpubr",
-    "href": "material/aula06-visualizar_avancado.html#criando-boxplots-com-ggpubr",
-    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
-    "section": "Criando boxplots com ggpubr",
-    "text": "Criando boxplots com ggpubr\nO ggpubr simplifica a criação de boxplots com testes estatísticos embutidos.\n\ndata(mtcars)\nmtcars$cyl &lt;- as.factor(mtcars$cyl)\n\nggboxplot(mtcars, x = \"cyl\", y = \"mpg\",\n          color = \"cyl\", palette = \"jco\",\n          add = \"jitter\") +\n  stat_compare_means(method = \"anova\")"
-  },
-  {
-    "objectID": "material/aula06-visualizar_avancado.html#comparações-par-a-par-com-stat_compare_means",
-    "href": "material/aula06-visualizar_avancado.html#comparações-par-a-par-com-stat_compare_means",
-    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
-    "section": "Comparações par a par com stat_compare_means()",
-    "text": "Comparações par a par com stat_compare_means()\nVocê pode adicionar comparações específicas entre grupos com pares definidos manualmente:\n\nmy_comparisons &lt;- list(c(\"4\", \"6\"), c(\"4\", \"8\"), c(\"6\", \"8\"))\n\nggboxplot(mtcars, x = \"cyl\", y = \"mpg\",\n          color = \"cyl\", palette = \"jco\") +\n  stat_compare_means(comparisons = my_comparisons) +\n  stat_compare_means(label.y = 35)  # p-valor geral (ANOVA)"
-  },
-  {
-    "objectID": "material/aula06-visualizar_avancado.html#criando-um-heatmap-com-pheatmap",
-    "href": "material/aula06-visualizar_avancado.html#criando-um-heatmap-com-pheatmap",
-    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
-    "section": "Criando um heatmap com pheatmap",
-    "text": "Criando um heatmap com pheatmap\nVamos gerar um heatmap a partir de uma matriz de valores numéricos (como expressão gênica simulada).\n\nset.seed(123)\nmat &lt;- matrix(rnorm(100), nrow = 10)\nrownames(mat) &lt;- paste0(\"Gene\", 1:10)\ncolnames(mat) &lt;- paste0(\"Sample\", 1:10)\n\npheatmap(mat, scale = \"row\")"
-  },
-  {
-    "objectID": "material/aula06-visualizar_avancado.html#adicionando-anotação-de-grupos",
-    "href": "material/aula06-visualizar_avancado.html#adicionando-anotação-de-grupos",
-    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
-    "section": "Adicionando anotação de grupos",
-    "text": "Adicionando anotação de grupos\nPodemos incluir informações como grupos de amostras ou tipos de condição experimental.\n\nannotation_col &lt;- data.frame(\n  Condition = rep(c(\"Control\", \"Treatment\"), each = 5)\n)\nrownames(annotation_col) &lt;- colnames(mat)\n\npheatmap(mat, scale = \"row\", annotation_col = annotation_col)"
-  },
-  {
-    "objectID": "material/aula06-visualizar_avancado.html#personalizando-o-heatmap",
-    "href": "material/aula06-visualizar_avancado.html#personalizando-o-heatmap",
-    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
-    "section": "Personalizando o heatmap",
-    "text": "Personalizando o heatmap\nO pheatmap permite personalizar cores, títulos, clustering e outros aspectos visuais.\n\npheatmap(mat,\n         scale = \"row\",\n         annotation_col = annotation_col,\n         color = colorRampPalette(c(\"blue\", \"white\", \"red\"))(50),\n         clustering_distance_rows = \"euclidean\",\n         clustering_method = \"complete\")"
-  },
-  {
-    "objectID": "material/aula06-visualizar_avancado.html#exercícios",
-    "href": "material/aula06-visualizar_avancado.html#exercícios",
-    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
-    "section": "Exercícios",
-    "text": "Exercícios\n\nReproduza um boxplot com ggboxplot() comparando mpg entre grupos de cyl.\nAdicione comparações manuais entre pares com stat_compare_means().\nSimule uma matriz de expressão e crie um pheatmap com escala por linha.\nAdicione uma anotação de grupo de amostras.\nExperimente diferentes métodos de clusterização e paletas de cores."
   }
 ]
