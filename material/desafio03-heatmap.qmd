@@ -1,0 +1,71 @@
+---
+title: "Desafio 03 – Heatmap de expressão de oncogenes"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+execute: 
+  cache: true
+---
+
+## Objetivo
+
+Construir um **heatmap** com o pacote `pheatmap` em R, representando os níveis de expressão gênica de **oncogenes clássicos** em diferentes amostras de câncer, com anotação por tipo tumoral.
+
+O foco do desafio é destacar diferenças de expressão entre os tipos de câncer, com atenção à **legibilidade e clareza** da visualização.
+
+## Requisitos Técnicos
+
+* Utilizar os pacotes `tidyverse` para manipulação de dados e `pheatmap` para visualização.
+* O heatmap deve mostrar:
+  * Linhas: genes de interesse (oncogenes clássicos).
+  * Colunas: amostras de câncer.
+  * Valores: níveis de expressão gênica (TPM).
+* Adicionar uma anotação categórica (`annotation_col`) com o tipo de câncer para cada amostra.
+* Aplicar escala de cor apropriada (`colorRampPalette`) e realizar o agrupamento hierárquico.
+* Considerar boas práticas de legibilidade:
+  * Reduzir o número de genes e amostras, se necessário.
+  * Ajustar o tamanho da fonte com os argumentos `fontsize_row` e `fontsize_col`.
+  * Avaliar se deve ou não mostrar os nomes de colunas com `show_colnames`.
+
+## Dados
+
+1. Baixe os dados diretamente da plataforma Human Protein Atlas, [rna_cancer_sample.tsv.gz](https://www.proteinatlas.org/download/tsv/rna_cancer_sample.tsv.gz)
+2. Leitura dos dados no R:
+3. Estrutura esperada dos dados:
+
+| Gene            | Gene name | Sample       | Cancer        | TPM  |
+| --------------- | --------- | ------------ | ------------- | ---- |
+| ENSG00000146648 | EGFR      | TCGA-EG-XXXX | Glioma        | 20.1 |
+| ENSG00000141510 | TP53      | TCGA-BR-YYYY | Breast cancer | 5.6  |
+
+## Lista Sugerida de Oncogenes
+
+Utilize ao menos alguns dos seguintes genes:
+
+* EGFR
+* TP53
+* MYC
+* KRAS
+* BRAF
+* PIK3CA
+* CDKN2A
+* MDM2
+* RB1
+* ERBB2
+
+## Documentação
+
+* `pheatmap`: [https://cran.r-project.org/web/packages/pheatmap/pheatmap.pdf](https://cran.r-project.org/web/packages/pheatmap/pheatmap.pdf)
+
+## Entregáveis
+
+1. **Script R (`heatmap_oncogenes.R`)** que:
+   * Lê e filtra os dados.
+   * Gera uma matriz de expressão (genes x amostras).
+   * Cria o heatmap com anotação por tipo de câncer.
+2. **Imagem do Heatmap** exportada (`heatmap_oncogenes.png`).
+3. **README.md** com:
+   * Instruções de instalação dos pacotes.
+   * Orientações sobre como rodar o script.
+   * Explicações sobre a escolha dos genes e como interpretar o heatmap.

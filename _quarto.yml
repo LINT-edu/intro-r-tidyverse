@@ -28,6 +28,8 @@ website:
             href: material/desafio01-barplot_expressao.qmd
           - text: "Desafio 02: Boxplot do expressão em cancer"
             href: material/desafio02-boxplot_expressao_cancer.qmd
+          - text: "Desafio 03: Heatmap de expressão de oncogenes"
+            href: material/desafio03-heatmap.qmd
 
 format:
   html:

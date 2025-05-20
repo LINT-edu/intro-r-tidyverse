@@ -231,193 +231,46 @@
     "text": "Exercícios\nVetores e estatísticas básicas\n1. Crie um vetor numérico com 10 valores aleatórios e calcule a média, mediana e desvio padrão.\nTipos e coerção\n2. Crie um vetor misto e verifique o tipo resultante. Interprete a coerção.\nData Frames\n3. Monte um data.frame com colunas nome, idade, sexo, altura e aprovado. 4. Use str() e sapply() para inspecionar seu data.frame.\n\n\nFóruns úteis:\n\ndiscourse\nStackoverflow\nR-Ladies"
   },
   {
-    "objectID": "material/desafio01-barplot_expressao.html",
-    "href": "material/desafio01-barplot_expressao.html",
-    "title": "Desafio 01 – Gráfico de expressão gênica",
+    "objectID": "material/desafio02-boxplot_expressao_cancer.html",
+    "href": "material/desafio02-boxplot_expressao_cancer.html",
+    "title": "Desafio 02 – Gráfico de expressão em cancer",
     "section": "",
-    "text": "Desenvolver um script em R que, dado um identificador de gene (Ensembl ID), gere automaticamente um gráfico de barras representando os níveis de expressão (em TPM) desse gene em diferentes subáreas do cérebro humano, utilizando dados da plataforma Human Protein Atlas."
+    "text": "Criar um script em R que gere um gráfico do tipo boxplot, representando a distribuição dos níveis de expressão de um gene específico entre diferentes tipos de câncer, com base nos dados fornecidos pelo Human Protein Atlas."
   },
   {
-    "objectID": "material/desafio01-barplot_expressao.html#objetivo",
-    "href": "material/desafio01-barplot_expressao.html#objetivo",
-    "title": "Desafio 01 – Gráfico de expressão gênica",
+    "objectID": "material/desafio02-boxplot_expressao_cancer.html#objetivo",
+    "href": "material/desafio02-boxplot_expressao_cancer.html#objetivo",
+    "title": "Desafio 02 – Gráfico de expressão em cancer",
     "section": "",
-    "text": "Desenvolver um script em R que, dado um identificador de gene (Ensembl ID), gere automaticamente um gráfico de barras representando os níveis de expressão (em TPM) desse gene em diferentes subáreas do cérebro humano, utilizando dados da plataforma Human Protein Atlas."
+    "text": "Criar um script em R que gere um gráfico do tipo boxplot, representando a distribuição dos níveis de expressão de um gene específico entre diferentes tipos de câncer, com base nos dados fornecidos pelo Human Protein Atlas."
   },
   {
-    "objectID": "material/desafio01-barplot_expressao.html#requisitos-técnicos",
-    "href": "material/desafio01-barplot_expressao.html#requisitos-técnicos",
-    "title": "Desafio 01 – Gráfico de expressão gênica",
+    "objectID": "material/desafio02-boxplot_expressao_cancer.html#requisitos-técnicos",
+    "href": "material/desafio02-boxplot_expressao_cancer.html#requisitos-técnicos",
+    "title": "Desafio 02 – Gráfico de expressão em cancer",
     "section": "Requisitos Técnicos",
-    "text": "Requisitos Técnicos\n\nUtilizar os pacotes tidyverse, especialmente ggplot2, para manipulação e visualização dos dados.\nO script deve aceitar como entrada um Ensembl Gene ID (por exemplo, ENSG00000146648 para o gene EGFR).\nA saída deve ser um gráfico de barras onde:\n\nO eixo X representa as subáreas do cérebro (por exemplo, córtex cerebral, cerebelo, hipotálamo).\nO eixo Y representa os níveis de expressão em TPM (Transcripts Per Million).\n\nO gráfico deve ser estilizado de forma clara e informativa, semelhante aos gráficos apresentados na plataforma Human Protein Atlas. Ver exemplo, aqui."
+    "text": "Requisitos Técnicos\nUtilizar os pacotes tidyverse, especialmente ggplot2, para manipulação e visualização dos dados.\n\nUtilizar os pacotes tidyverse, especialmente ggplot2, para manipulação e visualização dos dados.\nO script deve aceitar como entrada um Ensembl Gene ID (exemplo: ENSG00000146648 para EGFR).\nA saída deve ser um boxplot, onde:\n\nO eixo X representa os tipos de câncer.\nO eixo Y representa os valores de expressão (em TPM).\nCada ponto individual pode ser visualizado com geom_jitter() para enriquecer a visualização (opcional).\n\nO gráfico deve conter título, rótulos de eixos e tema limpo (theme_minimal() ou similar).\nO script deve incluir legenda e cores diferenciadas por tipo de câncer (opcional, com fill)."
   },
   {
-    "objectID": "material/desafio01-barplot_expressao.html#instruções-para-obtenção-dos-dados",
-    "href": "material/desafio01-barplot_expressao.html#instruções-para-obtenção-dos-dados",
-    "title": "Desafio 01 – Gráfico de expressão gênica",
+    "objectID": "material/desafio02-boxplot_expressao_cancer.html#instruções-para-obtenção-dos-dados",
+    "href": "material/desafio02-boxplot_expressao_cancer.html#instruções-para-obtenção-dos-dados",
+    "title": "Desafio 02 – Gráfico de expressão em cancer",
     "section": "Instruções para Obtenção dos Dados",
-    "text": "Instruções para Obtenção dos Dados\n\nAcesse o portal a pagina Human Protein Atlas – Brain Atlas.\nClique em rna_brain_region_hpa.tsv.zip.\nExtrai o arquivo dentro da pasta data.\nCarregue o arquivo no R com:\n\n\nlibrary(readr)\n\n# Substitua o caminho conforme necessário\nbrain_data &lt;- read_tsv(here::here(\"data/rna_brain_region_hpa.tsv\"))\n\n\n\n\nGene\nGene name\nBrain region\nTPM\npTPM\nnTPM\n\n\n\n\nENSG00000000003\nTSPAN6\namygdala\n4.5\n6.1\n7.0\n\n\nENSG00000000003\nTSPAN6\nbasal ganglia\n6.8\n10.2\n7.6\n\n\nENSG00000000003\nTSPAN6\ncerebellum\n6.5\n9.2\n7.2\n\n\nENSG00000000003\nTSPAN6\ncerebral cortex\n4.4\n6.7\n5.6\n\n\nENSG00000000003\nTSPAN6\nchoroid plexus\n26.8\n34.9\n48.2\n\n\n…\n…\n…\n…\n…\n…"
+    "text": "Instruções para Obtenção dos Dados\n\nBaixe o arquivo de expressão por amostra de câncer diretamente do link: rna_cancer_sample.tsv.gz\nDescompacte o arquivo (caso necessário) e leia-o no R:"
   },
   {
-    "objectID": "material/desafio01-barplot_expressao.html#entregáveis",
-    "href": "material/desafio01-barplot_expressao.html#entregáveis",
-    "title": "Desafio 01 – Gráfico de expressão gênica",
+    "objectID": "material/desafio02-boxplot_expressao_cancer.html#entregáveis",
+    "href": "material/desafio02-boxplot_expressao_cancer.html#entregáveis",
+    "title": "Desafio 02 – Gráfico de expressão em cancer",
     "section": "Entregáveis",
-    "text": "Entregáveis\n\nScript R (expressao_gene_cerebro.R): Script funcional que realiza as seguintes etapas:\n\nRecebe um o identificador como entrada.\nObtém os dados de expressão gênica correspondentes às subáreas do cérebro humano.\nGera e salva um gráfico de barras representando os níveis de expressão.\n\nGráfico de Exemplo: Imagem do gráfico gerado para um gene de exemplo (por exemplo, EGFR), salva em formato PNG ou PDF."
+    "text": "Entregáveis\n\nScript R (boxplot_expressao_cancer.R) que realiza:\n\nLeitura dos dados.\nFiltragem por Ensembl Gene ID fornecido.\nGeração de boxplot com os níveis de expressão em TPM por tipo de câncer.\n\nGráfico de Exemplo (ex: EGFR_boxplot.png) exportado.\nREADME.md com instruções de uso, incluindo:\n\nInstalação dos pacotes.\nComo fornecer o gene de interesse.\nDescrição dos outputs gerados."
   },
   {
-    "objectID": "material/desafio01-barplot_expressao.html#dicas",
-    "href": "material/desafio01-barplot_expressao.html#dicas",
-    "title": "Desafio 01 – Gráfico de expressão gênica",
+    "objectID": "material/desafio02-boxplot_expressao_cancer.html#dicas",
+    "href": "material/desafio02-boxplot_expressao_cancer.html#dicas",
+    "title": "Desafio 02 – Gráfico de expressão em cancer",
     "section": "Dicas",
-    "text": "Dicas\n\nCertifique-se de que os dados estão no formato adequado para o ggplot2.\nPara garantir a reprodutibilidade, inclua no script a instalação e carregamento dos pacotes necessários.(Bioconductor, Stack Overflow)"
-  },
-  {
-    "objectID": "material/aula06-visualizar_avancado.html",
-    "href": "material/aula06-visualizar_avancado.html",
-    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
-    "section": "",
-    "text": "Utilizar o pacote ggpubr para criar gráficos estatísticos com testes automáticos.\nAnotar comparações em boxplots e visualizações com significância.\nCriar heatmaps personalizados com o pacote pheatmap.\nAdicionar anotações, escalas e agrupamentos hierárquicos nos mapas de calor."
-  },
-  {
-    "objectID": "material/aula06-visualizar_avancado.html#objetivos-da-aula",
-    "href": "material/aula06-visualizar_avancado.html#objetivos-da-aula",
-    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
-    "section": "",
-    "text": "Utilizar o pacote ggpubr para criar gráficos estatísticos com testes automáticos.\nAnotar comparações em boxplots e visualizações com significância.\nCriar heatmaps personalizados com o pacote pheatmap.\nAdicionar anotações, escalas e agrupamentos hierárquicos nos mapas de calor."
-  },
-  {
-    "objectID": "material/aula06-visualizar_avancado.html#introdução",
-    "href": "material/aula06-visualizar_avancado.html#introdução",
-    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
-    "section": "Introdução",
-    "text": "Introdução\nNesta aula, vamos explorar duas ferramentas poderosas para visualização de dados estatísticos:\n\nggpubr: extensão do ggplot2 voltada para gráficos estatísticos prontos para publicação.\npheatmap: criação de heatmaps com suporte a agrupamentos, escalas e anotações laterais.\n\nEsses pacotes são amplamente utilizados em análises exploratórias, estudos de expressão gênica e relatórios científicos."
-  },
-  {
-    "objectID": "material/aula06-visualizar_avancado.html#carregando-os-pacotes-necessários",
-    "href": "material/aula06-visualizar_avancado.html#carregando-os-pacotes-necessários",
-    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
-    "section": "Carregando os pacotes necessários",
-    "text": "Carregando os pacotes necessários\n\ninstall.packages(\"ggpubr\")\ninstall.packages(\"pheatmap\")\n\nlibrary(ggpubr)\nlibrary(pheatmap)\nlibrary(tidyverse)"
-  },
-  {
-    "objectID": "material/aula06-visualizar_avancado.html#criando-boxplots-com-ggpubr",
-    "href": "material/aula06-visualizar_avancado.html#criando-boxplots-com-ggpubr",
-    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
-    "section": "Criando boxplots com ggpubr",
-    "text": "Criando boxplots com ggpubr\nO ggpubr simplifica a criação de boxplots com testes estatísticos embutidos.\n\ndata(mtcars)\nmtcars$cyl &lt;- as.factor(mtcars$cyl)\n\nggboxplot(mtcars, x = \"cyl\", y = \"mpg\",\n          color = \"cyl\", palette = \"jco\",\n          add = \"jitter\") +\n  stat_compare_means(method = \"anova\")"
-  },
-  {
-    "objectID": "material/aula06-visualizar_avancado.html#comparações-par-a-par-com-stat_compare_means",
-    "href": "material/aula06-visualizar_avancado.html#comparações-par-a-par-com-stat_compare_means",
-    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
-    "section": "Comparações par a par com stat_compare_means()",
-    "text": "Comparações par a par com stat_compare_means()\nVocê pode adicionar comparações específicas entre grupos com pares definidos manualmente:\n\nmy_comparisons &lt;- list(c(\"4\", \"6\"), c(\"4\", \"8\"), c(\"6\", \"8\"))\n\nggboxplot(mtcars, x = \"cyl\", y = \"mpg\",\n          color = \"cyl\", palette = \"jco\") +\n  stat_compare_means(comparisons = my_comparisons) +\n  stat_compare_means(label.y = 35)  # p-valor geral (ANOVA)"
-  },
-  {
-    "objectID": "material/aula06-visualizar_avancado.html#criando-um-heatmap-com-pheatmap",
-    "href": "material/aula06-visualizar_avancado.html#criando-um-heatmap-com-pheatmap",
-    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
-    "section": "Criando um heatmap com pheatmap",
-    "text": "Criando um heatmap com pheatmap\nVamos gerar um heatmap a partir de uma matriz de valores numéricos (como expressão gênica simulada).\n\nset.seed(123)\nmat &lt;- matrix(rnorm(100), nrow = 10)\nrownames(mat) &lt;- paste0(\"Gene\", 1:10)\ncolnames(mat) &lt;- paste0(\"Sample\", 1:10)\n\npheatmap(mat, scale = \"row\")"
-  },
-  {
-    "objectID": "material/aula06-visualizar_avancado.html#adicionando-anotação-de-grupos",
-    "href": "material/aula06-visualizar_avancado.html#adicionando-anotação-de-grupos",
-    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
-    "section": "Adicionando anotação de grupos",
-    "text": "Adicionando anotação de grupos\nPodemos incluir informações como grupos de amostras ou tipos de condição experimental.\n\nannotation_col &lt;- data.frame(\n  Condition = rep(c(\"Control\", \"Treatment\"), each = 5)\n)\nrownames(annotation_col) &lt;- colnames(mat)\n\npheatmap(mat, scale = \"row\", annotation_col = annotation_col)"
-  },
-  {
-    "objectID": "material/aula06-visualizar_avancado.html#personalizando-o-heatmap",
-    "href": "material/aula06-visualizar_avancado.html#personalizando-o-heatmap",
-    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
-    "section": "Personalizando o heatmap",
-    "text": "Personalizando o heatmap\nO pheatmap permite personalizar cores, títulos, clustering e outros aspectos visuais.\n\npheatmap(mat,\n         scale = \"row\",\n         annotation_col = annotation_col,\n         color = colorRampPalette(c(\"blue\", \"white\", \"red\"))(50),\n         clustering_distance_rows = \"euclidean\",\n         clustering_method = \"complete\")"
-  },
-  {
-    "objectID": "material/aula06-visualizar_avancado.html#exercícios",
-    "href": "material/aula06-visualizar_avancado.html#exercícios",
-    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
-    "section": "Exercícios",
-    "text": "Exercícios\n\nReproduza um boxplot com ggboxplot() comparando mpg entre grupos de cyl.\nAdicione comparações manuais entre pares com stat_compare_means().\nSimule uma matriz de expressão e crie um pheatmap com escala por linha.\nAdicione uma anotação de grupo de amostras.\nExperimente diferentes métodos de clusterização e paletas de cores."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Bem-vindo ao curso",
-    "section": "",
-    "text": "Este é um curso introdutório ao R com foco em ciência de dados usando o pacote tidyverse.\nAo longo das aulas, você aprenderá:\n\nA base da linguagem R\nComo importar, arrumar, transformar, visualizar e modelar dados\nComo gerar relatórios reprodutíveis\n\nUse o menu acima para navegar entre os módulos.\n\n\nAntes de começar…\nEste documento tem como objetivo oferecer uma comparação prática entre duas das bibliotecas mais populares para manipulação de dados: pandas em Python e tidyverse em R. Utilizando o dataset clássico Iris, são apresentadas operações fundamentais de ciência de dados em ambas as linguagens, organizadas de forma paralela.\nA proposta não é apenas mostrar como realizar tarefas específicas, mas também facilitar a transferência de conhecimento entre linguagens. Muitas vezes, cientistas de dados e pesquisadores se deparam com a necessidade de migrar seus fluxos de trabalho entre R e Python (ou vice-versa), seja por demanda de projetos colaborativos, requisitos institucionais ou preferência da equipe técnica.\nAo intercalar cada operação com sua respectiva implementação em R e Python, o leitor pode compreender como os conceitos se traduzem entre os ecossistemas. Essa estrutura favorece o aprendizado comparado e reforça a capacidade de raciocínio lógico ao destacar diferenças e semelhanças de sintaxe e paradigma entre as duas abordagens.\nEste material pode ser útil tanto para iniciantes quanto para usuários intermediários que desejam reforçar sua fluência em múltiplas linguagens de análise de dados.\n\n\n\n\nimport pandas as pd\nfrom sklearn.datasets import load_iris\n\niris_data = load_iris(as_frame=True)\niris = iris_data.frame\n\n\nlibrary(tidyverse)\ndata(iris)\n\n\n\n\n\niris.head()\n\n\nhead(iris)\n\n\n\n\n\niris_setosa = iris[iris['target'] == 0]\niris_setosa.head()\n\n\niris %&gt;% filter(Species == \"setosa\")\n\n\n\n\n\niris_selected = iris[['sepal length (cm)', 'target']]\niris_selected.head()\n\n\niris %&gt;% select(Sepal.Length, Species)\n\n\n\n\n\niris['Sepal.Area'] = iris['sepal length (cm)'] * iris['sepal width (cm)']\niris[['Sepal.Area']].head()\n\n\niris &lt;- iris %&gt;% mutate(Sepal.Area = Sepal.Length * Sepal.Width)\niris %&gt;% select(Sepal.Area) %&gt;% head()\n\n\n\n\n\nmean_sepal = iris.groupby('target')['sepal length (cm)'].mean()\nmean_sepal\n\n\niris %&gt;% group_by(Species) %&gt;% summarise(mean_sepal = mean(Sepal.Length))\n\n\n\n\n\niris_sorted = iris.sort_values('sepal length (cm)', ascending=False)\niris_sorted.head()\n\n\niris %&gt;% arrange(desc(Sepal.Length)) %&gt;% head()\n\n\n\n\n\niris_renamed = iris.rename(columns={'sepal length (cm)': 'Sepal_Length'})\niris_renamed.head()\n\n\niris %&gt;% rename(Sepal_Length = Sepal.Length) %&gt;% head()\n\n\n\n\n\niris_filtered = (\n    iris[iris['target'] != 0]\n    .assign(Sepal.Area = lambda df: df['sepal length (cm)'] * df['sepal width (cm)'])\n    .groupby('target')\n    .agg(mean_area = ('Sepal.Area', 'mean'))\n)\niris_filtered\n\n\niris %&gt;%\n  filter(Species != \"setosa\") %&gt;%\n  mutate(Sepal.Area = Sepal.Length * Sepal.Width) %&gt;%\n  group_by(Species) %&gt;%\n  summarise(mean_area = mean(Sepal.Area))"
-  },
-  {
-    "objectID": "index.html#comparando-linguagens",
-    "href": "index.html#comparando-linguagens",
-    "title": "Bem-vindo ao curso",
-    "section": "",
-    "text": "Antes de começar…\nEste documento tem como objetivo oferecer uma comparação prática entre duas das bibliotecas mais populares para manipulação de dados: pandas em Python e tidyverse em R. Utilizando o dataset clássico Iris, são apresentadas operações fundamentais de ciência de dados em ambas as linguagens, organizadas de forma paralela.\nA proposta não é apenas mostrar como realizar tarefas específicas, mas também facilitar a transferência de conhecimento entre linguagens. Muitas vezes, cientistas de dados e pesquisadores se deparam com a necessidade de migrar seus fluxos de trabalho entre R e Python (ou vice-versa), seja por demanda de projetos colaborativos, requisitos institucionais ou preferência da equipe técnica.\nAo intercalar cada operação com sua respectiva implementação em R e Python, o leitor pode compreender como os conceitos se traduzem entre os ecossistemas. Essa estrutura favorece o aprendizado comparado e reforça a capacidade de raciocínio lógico ao destacar diferenças e semelhanças de sintaxe e paradigma entre as duas abordagens.\nEste material pode ser útil tanto para iniciantes quanto para usuários intermediários que desejam reforçar sua fluência em múltiplas linguagens de análise de dados."
-  },
-  {
-    "objectID": "index.html#carregar-os-dados",
-    "href": "index.html#carregar-os-dados",
-    "title": "Bem-vindo ao curso",
-    "section": "",
-    "text": "import pandas as pd\nfrom sklearn.datasets import load_iris\n\niris_data = load_iris(as_frame=True)\niris = iris_data.frame\n\n\nlibrary(tidyverse)\ndata(iris)"
-  },
-  {
-    "objectID": "index.html#visualizar-as-primeiras-linhas",
-    "href": "index.html#visualizar-as-primeiras-linhas",
-    "title": "Bem-vindo ao curso",
-    "section": "",
-    "text": "iris.head()\n\n\nhead(iris)"
-  },
-  {
-    "objectID": "index.html#filtrar-linhas-ex-apenas-setosa",
-    "href": "index.html#filtrar-linhas-ex-apenas-setosa",
-    "title": "Bem-vindo ao curso",
-    "section": "",
-    "text": "iris_setosa = iris[iris['target'] == 0]\niris_setosa.head()\n\n\niris %&gt;% filter(Species == \"setosa\")"
-  },
-  {
-    "objectID": "index.html#selecionar-colunas",
-    "href": "index.html#selecionar-colunas",
-    "title": "Bem-vindo ao curso",
-    "section": "",
-    "text": "iris_selected = iris[['sepal length (cm)', 'target']]\niris_selected.head()\n\n\niris %&gt;% select(Sepal.Length, Species)"
-  },
-  {
-    "objectID": "index.html#criar-nova-coluna-sepal.area",
-    "href": "index.html#criar-nova-coluna-sepal.area",
-    "title": "Bem-vindo ao curso",
-    "section": "",
-    "text": "iris['Sepal.Area'] = iris['sepal length (cm)'] * iris['sepal width (cm)']\niris[['Sepal.Area']].head()\n\n\niris &lt;- iris %&gt;% mutate(Sepal.Area = Sepal.Length * Sepal.Width)\niris %&gt;% select(Sepal.Area) %&gt;% head()"
-  },
-  {
-    "objectID": "index.html#agrupar-e-resumir-média-do-comprimento-da-sépala-por-espécie",
-    "href": "index.html#agrupar-e-resumir-média-do-comprimento-da-sépala-por-espécie",
-    "title": "Bem-vindo ao curso",
-    "section": "",
-    "text": "mean_sepal = iris.groupby('target')['sepal length (cm)'].mean()\nmean_sepal\n\n\niris %&gt;% group_by(Species) %&gt;% summarise(mean_sepal = mean(Sepal.Length))"
-  },
-  {
-    "objectID": "index.html#ordenar-os-dados",
-    "href": "index.html#ordenar-os-dados",
-    "title": "Bem-vindo ao curso",
-    "section": "",
-    "text": "iris_sorted = iris.sort_values('sepal length (cm)', ascending=False)\niris_sorted.head()\n\n\niris %&gt;% arrange(desc(Sepal.Length)) %&gt;% head()"
-  },
-  {
-    "objectID": "index.html#renomear-colunas",
-    "href": "index.html#renomear-colunas",
-    "title": "Bem-vindo ao curso",
-    "section": "",
-    "text": "iris_renamed = iris.rename(columns={'sepal length (cm)': 'Sepal_Length'})\niris_renamed.head()\n\n\niris %&gt;% rename(Sepal_Length = Sepal.Length) %&gt;% head()"
-  },
-  {
-    "objectID": "index.html#pipeline-completo-filtrar-criar-coluna-e-resumir",
-    "href": "index.html#pipeline-completo-filtrar-criar-coluna-e-resumir",
-    "title": "Bem-vindo ao curso",
-    "section": "",
-    "text": "iris_filtered = (\n    iris[iris['target'] != 0]\n    .assign(Sepal.Area = lambda df: df['sepal length (cm)'] * df['sepal width (cm)'])\n    .groupby('target')\n    .agg(mean_area = ('Sepal.Area', 'mean'))\n)\niris_filtered\n\n\niris %&gt;%\n  filter(Species != \"setosa\") %&gt;%\n  mutate(Sepal.Area = Sepal.Length * Sepal.Width) %&gt;%\n  group_by(Species) %&gt;%\n  summarise(mean_area = mean(Sepal.Area))"
+    "text": "Dicas\n\nProblemas para ler o arquivo?\n\n\n\n\n\n\n\nTip\n\n\n\n\n\nAbrir o arquivo descompactado de maneira eficiente é possível. Para isso, podemos ler o arquivo dividindo-o em lotes (chunks) com número fixo de linhas (n = 5000). Dessa maneira, o R apenas ira olhar para 5 mil linhas por vez, operar sobre elas, manter apenas as que atendem determinada condição, por exemplo, o identificador ser igual a ENSG00000146648.\n\nlibrary(tidyverse)\n\n# Callback para filtrar os chunks (EGFR == ENSG00000146648)\ncallback &lt;- function(x, pos) {\n  print(paste(\"Processando chunk\", pos))\n  x %&gt;% filter(Gene == \"c\")\n}\n\n# Leitura em chunks\nresult &lt;- read_tsv_chunked(\n  file = \"caminho/para/o/arquivo.tsv\",\n  callback = DataFrameCallback$new(callback),\n  chunk_size = 5000 # Reduzir em caso de pouca memoria\n)\n\n# Combina resultados dos chunks (caso múltiplos batam a condição)\nfinal_result &lt;- bind_rows(result)\n\n\n\n\n\ngeom_boxplot(): https://ggplot2.tidyverse.org/reference/geom_boxplot.html\ntheme_minimal() e outros temas: https://ggplot2.tidyverse.org/reference/ggtheme.html\ngeom_jitter() para sobreposição de pontos: https://ggplot2.tidyverse.org/reference/geom_jitter.html"
   },
   {
     "objectID": "material/aula02-importar.html",
@@ -497,46 +350,242 @@
     "text": "Exercícios\n\nImporte um arquivo .csv de sua escolha com readr::read_csv() usando here().\nImporte uma planilha .xlsx usando readxl::read_excel().\nVerifique os tipos de cada coluna com spec() e glimpse().\nTeste a função read_csv2() com um arquivo brasileiro e explique a diferença."
   },
   {
-    "objectID": "material/desafio02-boxplot_expressao_cancer.html",
-    "href": "material/desafio02-boxplot_expressao_cancer.html",
-    "title": "Desafio 02 – Gráfico de expressão em cancer",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Bem-vindo ao curso",
     "section": "",
-    "text": "Criar um script em R que gere um gráfico do tipo boxplot, representando a distribuição dos níveis de expressão de um gene específico entre diferentes tipos de câncer, com base nos dados fornecidos pelo Human Protein Atlas."
+    "text": "Este é um curso introdutório ao R com foco em ciência de dados usando o pacote tidyverse.\nAo longo das aulas, você aprenderá:\n\nA base da linguagem R\nComo importar, arrumar, transformar, visualizar e modelar dados\nComo gerar relatórios reprodutíveis\n\nUse o menu acima para navegar entre os módulos.\n\n\nAntes de começar…\nEste documento tem como objetivo oferecer uma comparação prática entre duas das bibliotecas mais populares para manipulação de dados: pandas em Python e tidyverse em R. Utilizando o dataset clássico Iris, são apresentadas operações fundamentais de ciência de dados em ambas as linguagens, organizadas de forma paralela.\nA proposta não é apenas mostrar como realizar tarefas específicas, mas também facilitar a transferência de conhecimento entre linguagens. Muitas vezes, cientistas de dados e pesquisadores se deparam com a necessidade de migrar seus fluxos de trabalho entre R e Python (ou vice-versa), seja por demanda de projetos colaborativos, requisitos institucionais ou preferência da equipe técnica.\nAo intercalar cada operação com sua respectiva implementação em R e Python, o leitor pode compreender como os conceitos se traduzem entre os ecossistemas. Essa estrutura favorece o aprendizado comparado e reforça a capacidade de raciocínio lógico ao destacar diferenças e semelhanças de sintaxe e paradigma entre as duas abordagens.\nEste material pode ser útil tanto para iniciantes quanto para usuários intermediários que desejam reforçar sua fluência em múltiplas linguagens de análise de dados.\n\n\n\n\nimport pandas as pd\nfrom sklearn.datasets import load_iris\n\niris_data = load_iris(as_frame=True)\niris = iris_data.frame\n\n\nlibrary(tidyverse)\ndata(iris)\n\n\n\n\n\niris.head()\n\n\nhead(iris)\n\n\n\n\n\niris_setosa = iris[iris['target'] == 0]\niris_setosa.head()\n\n\niris %&gt;% filter(Species == \"setosa\")\n\n\n\n\n\niris_selected = iris[['sepal length (cm)', 'target']]\niris_selected.head()\n\n\niris %&gt;% select(Sepal.Length, Species)\n\n\n\n\n\niris['Sepal.Area'] = iris['sepal length (cm)'] * iris['sepal width (cm)']\niris[['Sepal.Area']].head()\n\n\niris &lt;- iris %&gt;% mutate(Sepal.Area = Sepal.Length * Sepal.Width)\niris %&gt;% select(Sepal.Area) %&gt;% head()\n\n\n\n\n\nmean_sepal = iris.groupby('target')['sepal length (cm)'].mean()\nmean_sepal\n\n\niris %&gt;% group_by(Species) %&gt;% summarise(mean_sepal = mean(Sepal.Length))\n\n\n\n\n\niris_sorted = iris.sort_values('sepal length (cm)', ascending=False)\niris_sorted.head()\n\n\niris %&gt;% arrange(desc(Sepal.Length)) %&gt;% head()\n\n\n\n\n\niris_renamed = iris.rename(columns={'sepal length (cm)': 'Sepal_Length'})\niris_renamed.head()\n\n\niris %&gt;% rename(Sepal_Length = Sepal.Length) %&gt;% head()\n\n\n\n\n\niris_filtered = (\n    iris[iris['target'] != 0]\n    .assign(Sepal.Area = lambda df: df['sepal length (cm)'] * df['sepal width (cm)'])\n    .groupby('target')\n    .agg(mean_area = ('Sepal.Area', 'mean'))\n)\niris_filtered\n\n\niris %&gt;%\n  filter(Species != \"setosa\") %&gt;%\n  mutate(Sepal.Area = Sepal.Length * Sepal.Width) %&gt;%\n  group_by(Species) %&gt;%\n  summarise(mean_area = mean(Sepal.Area))"
   },
   {
-    "objectID": "material/desafio02-boxplot_expressao_cancer.html#objetivo",
-    "href": "material/desafio02-boxplot_expressao_cancer.html#objetivo",
-    "title": "Desafio 02 – Gráfico de expressão em cancer",
+    "objectID": "index.html#comparando-linguagens",
+    "href": "index.html#comparando-linguagens",
+    "title": "Bem-vindo ao curso",
     "section": "",
-    "text": "Criar um script em R que gere um gráfico do tipo boxplot, representando a distribuição dos níveis de expressão de um gene específico entre diferentes tipos de câncer, com base nos dados fornecidos pelo Human Protein Atlas."
+    "text": "Antes de começar…\nEste documento tem como objetivo oferecer uma comparação prática entre duas das bibliotecas mais populares para manipulação de dados: pandas em Python e tidyverse em R. Utilizando o dataset clássico Iris, são apresentadas operações fundamentais de ciência de dados em ambas as linguagens, organizadas de forma paralela.\nA proposta não é apenas mostrar como realizar tarefas específicas, mas também facilitar a transferência de conhecimento entre linguagens. Muitas vezes, cientistas de dados e pesquisadores se deparam com a necessidade de migrar seus fluxos de trabalho entre R e Python (ou vice-versa), seja por demanda de projetos colaborativos, requisitos institucionais ou preferência da equipe técnica.\nAo intercalar cada operação com sua respectiva implementação em R e Python, o leitor pode compreender como os conceitos se traduzem entre os ecossistemas. Essa estrutura favorece o aprendizado comparado e reforça a capacidade de raciocínio lógico ao destacar diferenças e semelhanças de sintaxe e paradigma entre as duas abordagens.\nEste material pode ser útil tanto para iniciantes quanto para usuários intermediários que desejam reforçar sua fluência em múltiplas linguagens de análise de dados."
   },
   {
-    "objectID": "material/desafio02-boxplot_expressao_cancer.html#requisitos-técnicos",
-    "href": "material/desafio02-boxplot_expressao_cancer.html#requisitos-técnicos",
-    "title": "Desafio 02 – Gráfico de expressão em cancer",
+    "objectID": "index.html#carregar-os-dados",
+    "href": "index.html#carregar-os-dados",
+    "title": "Bem-vindo ao curso",
+    "section": "",
+    "text": "import pandas as pd\nfrom sklearn.datasets import load_iris\n\niris_data = load_iris(as_frame=True)\niris = iris_data.frame\n\n\nlibrary(tidyverse)\ndata(iris)"
+  },
+  {
+    "objectID": "index.html#visualizar-as-primeiras-linhas",
+    "href": "index.html#visualizar-as-primeiras-linhas",
+    "title": "Bem-vindo ao curso",
+    "section": "",
+    "text": "iris.head()\n\n\nhead(iris)"
+  },
+  {
+    "objectID": "index.html#filtrar-linhas-ex-apenas-setosa",
+    "href": "index.html#filtrar-linhas-ex-apenas-setosa",
+    "title": "Bem-vindo ao curso",
+    "section": "",
+    "text": "iris_setosa = iris[iris['target'] == 0]\niris_setosa.head()\n\n\niris %&gt;% filter(Species == \"setosa\")"
+  },
+  {
+    "objectID": "index.html#selecionar-colunas",
+    "href": "index.html#selecionar-colunas",
+    "title": "Bem-vindo ao curso",
+    "section": "",
+    "text": "iris_selected = iris[['sepal length (cm)', 'target']]\niris_selected.head()\n\n\niris %&gt;% select(Sepal.Length, Species)"
+  },
+  {
+    "objectID": "index.html#criar-nova-coluna-sepal.area",
+    "href": "index.html#criar-nova-coluna-sepal.area",
+    "title": "Bem-vindo ao curso",
+    "section": "",
+    "text": "iris['Sepal.Area'] = iris['sepal length (cm)'] * iris['sepal width (cm)']\niris[['Sepal.Area']].head()\n\n\niris &lt;- iris %&gt;% mutate(Sepal.Area = Sepal.Length * Sepal.Width)\niris %&gt;% select(Sepal.Area) %&gt;% head()"
+  },
+  {
+    "objectID": "index.html#agrupar-e-resumir-média-do-comprimento-da-sépala-por-espécie",
+    "href": "index.html#agrupar-e-resumir-média-do-comprimento-da-sépala-por-espécie",
+    "title": "Bem-vindo ao curso",
+    "section": "",
+    "text": "mean_sepal = iris.groupby('target')['sepal length (cm)'].mean()\nmean_sepal\n\n\niris %&gt;% group_by(Species) %&gt;% summarise(mean_sepal = mean(Sepal.Length))"
+  },
+  {
+    "objectID": "index.html#ordenar-os-dados",
+    "href": "index.html#ordenar-os-dados",
+    "title": "Bem-vindo ao curso",
+    "section": "",
+    "text": "iris_sorted = iris.sort_values('sepal length (cm)', ascending=False)\niris_sorted.head()\n\n\niris %&gt;% arrange(desc(Sepal.Length)) %&gt;% head()"
+  },
+  {
+    "objectID": "index.html#renomear-colunas",
+    "href": "index.html#renomear-colunas",
+    "title": "Bem-vindo ao curso",
+    "section": "",
+    "text": "iris_renamed = iris.rename(columns={'sepal length (cm)': 'Sepal_Length'})\niris_renamed.head()\n\n\niris %&gt;% rename(Sepal_Length = Sepal.Length) %&gt;% head()"
+  },
+  {
+    "objectID": "index.html#pipeline-completo-filtrar-criar-coluna-e-resumir",
+    "href": "index.html#pipeline-completo-filtrar-criar-coluna-e-resumir",
+    "title": "Bem-vindo ao curso",
+    "section": "",
+    "text": "iris_filtered = (\n    iris[iris['target'] != 0]\n    .assign(Sepal.Area = lambda df: df['sepal length (cm)'] * df['sepal width (cm)'])\n    .groupby('target')\n    .agg(mean_area = ('Sepal.Area', 'mean'))\n)\niris_filtered\n\n\niris %&gt;%\n  filter(Species != \"setosa\") %&gt;%\n  mutate(Sepal.Area = Sepal.Length * Sepal.Width) %&gt;%\n  group_by(Species) %&gt;%\n  summarise(mean_area = mean(Sepal.Area))"
+  },
+  {
+    "objectID": "material/aula06-visualizar_avancado.html",
+    "href": "material/aula06-visualizar_avancado.html",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "",
+    "text": "Utilizar o pacote ggpubr para criar gráficos estatísticos com testes automáticos.\nAnotar comparações em boxplots e visualizações com significância.\nCriar heatmaps personalizados com o pacote pheatmap.\nAdicionar anotações, escalas e agrupamentos hierárquicos nos mapas de calor."
+  },
+  {
+    "objectID": "material/aula06-visualizar_avancado.html#objetivos-da-aula",
+    "href": "material/aula06-visualizar_avancado.html#objetivos-da-aula",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "",
+    "text": "Utilizar o pacote ggpubr para criar gráficos estatísticos com testes automáticos.\nAnotar comparações em boxplots e visualizações com significância.\nCriar heatmaps personalizados com o pacote pheatmap.\nAdicionar anotações, escalas e agrupamentos hierárquicos nos mapas de calor."
+  },
+  {
+    "objectID": "material/aula06-visualizar_avancado.html#introdução",
+    "href": "material/aula06-visualizar_avancado.html#introdução",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "Introdução",
+    "text": "Introdução\nNesta aula, vamos explorar duas ferramentas poderosas para visualização de dados estatísticos:\n\nggpubr: extensão do ggplot2 voltada para gráficos estatísticos prontos para publicação.\npheatmap: criação de heatmaps com suporte a agrupamentos, escalas e anotações laterais.\n\nEsses pacotes são amplamente utilizados em análises exploratórias, estudos de expressão gênica e relatórios científicos."
+  },
+  {
+    "objectID": "material/aula06-visualizar_avancado.html#carregando-os-pacotes-necessários",
+    "href": "material/aula06-visualizar_avancado.html#carregando-os-pacotes-necessários",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "Carregando os pacotes necessários",
+    "text": "Carregando os pacotes necessários\n\ninstall.packages(\"ggpubr\")\ninstall.packages(\"pheatmap\")\n\nlibrary(ggpubr)\nlibrary(pheatmap)\nlibrary(tidyverse)"
+  },
+  {
+    "objectID": "material/aula06-visualizar_avancado.html#criando-boxplots-com-ggpubr",
+    "href": "material/aula06-visualizar_avancado.html#criando-boxplots-com-ggpubr",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "Criando boxplots com ggpubr",
+    "text": "Criando boxplots com ggpubr\nO ggpubr simplifica a criação de boxplots com testes estatísticos embutidos.\n\ndata(mtcars)\nmtcars$cyl &lt;- as.factor(mtcars$cyl)\n\nggboxplot(mtcars, x = \"cyl\", y = \"mpg\",\n          color = \"cyl\", palette = \"jco\",\n          add = \"jitter\") +\n  stat_compare_means(method = \"anova\")"
+  },
+  {
+    "objectID": "material/aula06-visualizar_avancado.html#comparações-par-a-par-com-stat_compare_means",
+    "href": "material/aula06-visualizar_avancado.html#comparações-par-a-par-com-stat_compare_means",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "Comparações par a par com stat_compare_means()",
+    "text": "Comparações par a par com stat_compare_means()\nVocê pode adicionar comparações específicas entre grupos com pares definidos manualmente:\n\nmy_comparisons &lt;- list(c(\"4\", \"6\"), c(\"4\", \"8\"), c(\"6\", \"8\"))\n\nggboxplot(mtcars, x = \"cyl\", y = \"mpg\",\n          color = \"cyl\", palette = \"jco\") +\n  stat_compare_means(comparisons = my_comparisons) +\n  stat_compare_means(label.y = 35)  # p-valor geral (ANOVA)"
+  },
+  {
+    "objectID": "material/aula06-visualizar_avancado.html#criando-um-heatmap-com-pheatmap",
+    "href": "material/aula06-visualizar_avancado.html#criando-um-heatmap-com-pheatmap",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "Criando um heatmap com pheatmap",
+    "text": "Criando um heatmap com pheatmap\nVamos gerar um heatmap a partir de uma matriz de valores numéricos (como expressão gênica simulada).\n\nset.seed(123)\nmat &lt;- matrix(rnorm(100), nrow = 10)\nrownames(mat) &lt;- paste0(\"Gene\", 1:10)\ncolnames(mat) &lt;- paste0(\"Sample\", 1:10)\n\npheatmap(mat, scale = \"row\")"
+  },
+  {
+    "objectID": "material/aula06-visualizar_avancado.html#adicionando-anotação-de-grupos",
+    "href": "material/aula06-visualizar_avancado.html#adicionando-anotação-de-grupos",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "Adicionando anotação de grupos",
+    "text": "Adicionando anotação de grupos\nPodemos incluir informações como grupos de amostras ou tipos de condição experimental.\n\nannotation_col &lt;- data.frame(\n  Condition = rep(c(\"Control\", \"Treatment\"), each = 5)\n)\nrownames(annotation_col) &lt;- colnames(mat)\n\npheatmap(mat, scale = \"row\", annotation_col = annotation_col)"
+  },
+  {
+    "objectID": "material/aula06-visualizar_avancado.html#personalizando-o-heatmap",
+    "href": "material/aula06-visualizar_avancado.html#personalizando-o-heatmap",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "Personalizando o heatmap",
+    "text": "Personalizando o heatmap\nO pheatmap permite personalizar cores, títulos, clustering e outros aspectos visuais.\n\npheatmap(mat,\n         scale = \"row\",\n         annotation_col = annotation_col,\n         color = colorRampPalette(c(\"blue\", \"white\", \"red\"))(50),\n         clustering_distance_rows = \"euclidean\",\n         clustering_method = \"complete\")"
+  },
+  {
+    "objectID": "material/aula06-visualizar_avancado.html#exercícios",
+    "href": "material/aula06-visualizar_avancado.html#exercícios",
+    "title": "Aula 06 – Visualizações Estatísticas com ggpubr e pheatmap",
+    "section": "Exercícios",
+    "text": "Exercícios\n\nReproduza um boxplot com ggboxplot() comparando mpg entre grupos de cyl.\nAdicione comparações manuais entre pares com stat_compare_means().\nSimule uma matriz de expressão e crie um pheatmap com escala por linha.\nAdicione uma anotação de grupo de amostras.\nExperimente diferentes métodos de clusterização e paletas de cores."
+  },
+  {
+    "objectID": "material/desafio01-barplot_expressao.html",
+    "href": "material/desafio01-barplot_expressao.html",
+    "title": "Desafio 01 – Gráfico de expressão gênica",
+    "section": "",
+    "text": "Desenvolver um script em R que, dado um identificador de gene (Ensembl ID), gere automaticamente um gráfico de barras representando os níveis de expressão (em TPM) desse gene em diferentes subáreas do cérebro humano, utilizando dados da plataforma Human Protein Atlas."
+  },
+  {
+    "objectID": "material/desafio01-barplot_expressao.html#objetivo",
+    "href": "material/desafio01-barplot_expressao.html#objetivo",
+    "title": "Desafio 01 – Gráfico de expressão gênica",
+    "section": "",
+    "text": "Desenvolver um script em R que, dado um identificador de gene (Ensembl ID), gere automaticamente um gráfico de barras representando os níveis de expressão (em TPM) desse gene em diferentes subáreas do cérebro humano, utilizando dados da plataforma Human Protein Atlas."
+  },
+  {
+    "objectID": "material/desafio01-barplot_expressao.html#requisitos-técnicos",
+    "href": "material/desafio01-barplot_expressao.html#requisitos-técnicos",
+    "title": "Desafio 01 – Gráfico de expressão gênica",
     "section": "Requisitos Técnicos",
-    "text": "Requisitos Técnicos\nUtilizar os pacotes tidyverse, especialmente ggplot2, para manipulação e visualização dos dados.\n\nUtilizar os pacotes tidyverse, especialmente ggplot2, para manipulação e visualização dos dados.\nO script deve aceitar como entrada um Ensembl Gene ID (exemplo: ENSG00000146648 para EGFR).\nA saída deve ser um boxplot, onde:\n\nO eixo X representa os tipos de câncer.\nO eixo Y representa os valores de expressão (em TPM).\nCada ponto individual pode ser visualizado com geom_jitter() para enriquecer a visualização (opcional).\n\nO gráfico deve conter título, rótulos de eixos e tema limpo (theme_minimal() ou similar).\nO script deve incluir legenda e cores diferenciadas por tipo de câncer (opcional, com fill)."
+    "text": "Requisitos Técnicos\n\nUtilizar os pacotes tidyverse, especialmente ggplot2, para manipulação e visualização dos dados.\nO script deve aceitar como entrada um Ensembl Gene ID (por exemplo, ENSG00000146648 para o gene EGFR).\nA saída deve ser um gráfico de barras onde:\n\nO eixo X representa as subáreas do cérebro (por exemplo, córtex cerebral, cerebelo, hipotálamo).\nO eixo Y representa os níveis de expressão em TPM (Transcripts Per Million).\n\nO gráfico deve ser estilizado de forma clara e informativa, semelhante aos gráficos apresentados na plataforma Human Protein Atlas. Ver exemplo, aqui."
   },
   {
-    "objectID": "material/desafio02-boxplot_expressao_cancer.html#instruções-para-obtenção-dos-dados",
-    "href": "material/desafio02-boxplot_expressao_cancer.html#instruções-para-obtenção-dos-dados",
-    "title": "Desafio 02 – Gráfico de expressão em cancer",
+    "objectID": "material/desafio01-barplot_expressao.html#instruções-para-obtenção-dos-dados",
+    "href": "material/desafio01-barplot_expressao.html#instruções-para-obtenção-dos-dados",
+    "title": "Desafio 01 – Gráfico de expressão gênica",
     "section": "Instruções para Obtenção dos Dados",
-    "text": "Instruções para Obtenção dos Dados\n\nBaixe o arquivo de expressão por amostra de câncer diretamente do link: rna_cancer_sample.tsv.gz\nDescompacte o arquivo (caso necessário) e leia-o no R:"
+    "text": "Instruções para Obtenção dos Dados\n\nAcesse o portal a pagina Human Protein Atlas – Brain Atlas.\nClique em rna_brain_region_hpa.tsv.zip.\nExtrai o arquivo dentro da pasta data.\nCarregue o arquivo no R com:\n\n\nlibrary(readr)\n\n# Substitua o caminho conforme necessário\nbrain_data &lt;- read_tsv(here::here(\"data/rna_brain_region_hpa.tsv\"))\n\n\n\n\nGene\nGene name\nBrain region\nTPM\npTPM\nnTPM\n\n\n\n\nENSG00000000003\nTSPAN6\namygdala\n4.5\n6.1\n7.0\n\n\nENSG00000000003\nTSPAN6\nbasal ganglia\n6.8\n10.2\n7.6\n\n\nENSG00000000003\nTSPAN6\ncerebellum\n6.5\n9.2\n7.2\n\n\nENSG00000000003\nTSPAN6\ncerebral cortex\n4.4\n6.7\n5.6\n\n\nENSG00000000003\nTSPAN6\nchoroid plexus\n26.8\n34.9\n48.2\n\n\n…\n…\n…\n…\n…\n…"
   },
   {
-    "objectID": "material/desafio02-boxplot_expressao_cancer.html#entregáveis",
-    "href": "material/desafio02-boxplot_expressao_cancer.html#entregáveis",
-    "title": "Desafio 02 – Gráfico de expressão em cancer",
+    "objectID": "material/desafio01-barplot_expressao.html#entregáveis",
+    "href": "material/desafio01-barplot_expressao.html#entregáveis",
+    "title": "Desafio 01 – Gráfico de expressão gênica",
     "section": "Entregáveis",
-    "text": "Entregáveis\n\nScript R (boxplot_expressao_cancer.R) que realiza:\n\nLeitura dos dados.\nFiltragem por Ensembl Gene ID fornecido.\nGeração de boxplot com os níveis de expressão em TPM por tipo de câncer.\n\nGráfico de Exemplo (ex: EGFR_boxplot.png) exportado.\nREADME.md com instruções de uso, incluindo:\n\nInstalação dos pacotes.\nComo fornecer o gene de interesse.\nDescrição dos outputs gerados."
+    "text": "Entregáveis\n\nScript R (expressao_gene_cerebro.R): Script funcional que realiza as seguintes etapas:\n\nRecebe um o identificador como entrada.\nObtém os dados de expressão gênica correspondentes às subáreas do cérebro humano.\nGera e salva um gráfico de barras representando os níveis de expressão.\n\nGráfico de Exemplo: Imagem do gráfico gerado para um gene de exemplo (por exemplo, EGFR), salva em formato PNG ou PDF."
   },
   {
-    "objectID": "material/desafio02-boxplot_expressao_cancer.html#dicas",
-    "href": "material/desafio02-boxplot_expressao_cancer.html#dicas",
-    "title": "Desafio 02 – Gráfico de expressão em cancer",
+    "objectID": "material/desafio01-barplot_expressao.html#dicas",
+    "href": "material/desafio01-barplot_expressao.html#dicas",
+    "title": "Desafio 01 – Gráfico de expressão gênica",
     "section": "Dicas",
-    "text": "Dicas\n\ngeom_boxplot(): https://ggplot2.tidyverse.org/reference/geom_boxplot.html\ntheme_minimal() e outros temas: https://ggplot2.tidyverse.org/reference/ggtheme.html\ngeom_jitter() para sobreposição de pontos: https://ggplot2.tidyverse.org/reference/geom_jitter.html"
+    "text": "Dicas\n\nCertifique-se de que os dados estão no formato adequado para o ggplot2.\nPara garantir a reprodutibilidade, inclua no script a instalação e carregamento dos pacotes necessários.(Bioconductor, Stack Overflow)"
+  },
+  {
+    "objectID": "material/desafio03-heatmap.html",
+    "href": "material/desafio03-heatmap.html",
+    "title": "Desafio 03 – Heatmap de expressão de oncogenes",
+    "section": "",
+    "text": "Construir um heatmap com o pacote pheatmap em R, representando os níveis de expressão gênica de oncogenes clássicos em diferentes amostras de câncer, com anotação por tipo tumoral.\nO foco do desafio é destacar diferenças de expressão entre os tipos de câncer, com atenção à legibilidade e clareza da visualização."
+  },
+  {
+    "objectID": "material/desafio03-heatmap.html#objetivo",
+    "href": "material/desafio03-heatmap.html#objetivo",
+    "title": "Desafio 03 – Heatmap de expressão de oncogenes",
+    "section": "",
+    "text": "Construir um heatmap com o pacote pheatmap em R, representando os níveis de expressão gênica de oncogenes clássicos em diferentes amostras de câncer, com anotação por tipo tumoral.\nO foco do desafio é destacar diferenças de expressão entre os tipos de câncer, com atenção à legibilidade e clareza da visualização."
+  },
+  {
+    "objectID": "material/desafio03-heatmap.html#requisitos-técnicos",
+    "href": "material/desafio03-heatmap.html#requisitos-técnicos",
+    "title": "Desafio 03 – Heatmap de expressão de oncogenes",
+    "section": "Requisitos Técnicos",
+    "text": "Requisitos Técnicos\n\nUtilizar os pacotes tidyverse para manipulação de dados e pheatmap para visualização.\nO heatmap deve mostrar:\n\nLinhas: genes de interesse (oncogenes clássicos).\nColunas: amostras de câncer.\nValores: níveis de expressão gênica (TPM).\n\nAdicionar uma anotação categórica (annotation_col) com o tipo de câncer para cada amostra.\nAplicar escala de cor apropriada (colorRampPalette) e realizar o agrupamento hierárquico.\nConsiderar boas práticas de legibilidade:\n\nReduzir o número de genes e amostras, se necessário.\nAjustar o tamanho da fonte com os argumentos fontsize_row e fontsize_col.\nAvaliar se deve ou não mostrar os nomes de colunas com show_colnames."
+  },
+  {
+    "objectID": "material/desafio03-heatmap.html#dados",
+    "href": "material/desafio03-heatmap.html#dados",
+    "title": "Desafio 03 – Heatmap de expressão de oncogenes",
+    "section": "Dados",
+    "text": "Dados\n\nBaixe os dados diretamente da plataforma Human Protein Atlas, rna_cancer_sample.tsv.gz\nLeitura dos dados no R:\nEstrutura esperada dos dados:\n\n\n\n\nGene\nGene name\nSample\nCancer\nTPM\n\n\n\n\nENSG00000146648\nEGFR\nTCGA-EG-XXXX\nGlioma\n20.1\n\n\nENSG00000141510\nTP53\nTCGA-BR-YYYY\nBreast cancer\n5.6"
+  },
+  {
+    "objectID": "material/desafio03-heatmap.html#lista-sugerida-de-oncogenes",
+    "href": "material/desafio03-heatmap.html#lista-sugerida-de-oncogenes",
+    "title": "Desafio 03 – Heatmap de expressão de oncogenes",
+    "section": "Lista Sugerida de Oncogenes",
+    "text": "Lista Sugerida de Oncogenes\nUtilize ao menos alguns dos seguintes genes:\n\nEGFR\nTP53\nMYC\nKRAS\nBRAF\nPIK3CA\nCDKN2A\nMDM2\nRB1\nERBB2"
+  },
+  {
+    "objectID": "material/desafio03-heatmap.html#documentação",
+    "href": "material/desafio03-heatmap.html#documentação",
+    "title": "Desafio 03 – Heatmap de expressão de oncogenes",
+    "section": "Documentação",
+    "text": "Documentação\n\npheatmap: https://cran.r-project.org/web/packages/pheatmap/pheatmap.pdf"
+  },
+  {
+    "objectID": "material/desafio03-heatmap.html#entregáveis",
+    "href": "material/desafio03-heatmap.html#entregáveis",
+    "title": "Desafio 03 – Heatmap de expressão de oncogenes",
+    "section": "Entregáveis",
+    "text": "Entregáveis\n\nScript R (heatmap_oncogenes.R) que:\n\nLê e filtra os dados.\nGera uma matriz de expressão (genes x amostras).\nCria o heatmap com anotação por tipo de câncer.\n\nImagem do Heatmap exportada (heatmap_oncogenes.png).\nREADME.md com:\n\nInstruções de instalação dos pacotes.\nOrientações sobre como rodar o script.\nExplicações sobre a escolha dos genes e como interpretar o heatmap."
   },
   {
     "objectID": "material/aula04-transformar.html",

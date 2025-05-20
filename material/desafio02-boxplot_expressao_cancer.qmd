@@ -44,6 +44,36 @@ Utilizar os pacotes tidyverse, especialmente ggplot2, para manipulação e visua
 
 ## Dicas
 
+-   Problemas para ler o arquivo?
+
+:::{.callout-tip collapse="true"}
+
+Abrir o arquivo **descompactado** de maneira eficiente é possível. Para isso, podemos ler o arquivo dividindo-o em lotes (chunks) com número fixo de linhas (n = 5000). Dessa maneira, o R apenas ira olhar para 5 mil linhas por vez, operar sobre elas, manter apenas as que atendem determinada condição, por exemplo, o identificador ser igual a `ENSG00000146648`.
+
+```{r}
+#| eval: false
+
+library(tidyverse)
+
+# Callback para filtrar os chunks (EGFR == ENSG00000146648)
+callback <- function(x, pos) {
+  print(paste("Processando chunk", pos))
+  x %>% filter(Gene == "c")
+}
+
+# Leitura em chunks
+result <- read_tsv_chunked(
+  file = "caminho/para/o/arquivo.tsv",
+  callback = DataFrameCallback$new(callback),
+  chunk_size = 5000 # Reduzir em caso de pouca memoria
+)
+
+# Combina resultados dos chunks (caso múltiplos batam a condição)
+final_result <- bind_rows(result)
+```
+
+:::
+
 -   geom_boxplot(): https://ggplot2.tidyverse.org/reference/geom_boxplot.html
 -   theme_minimal() e outros temas: https://ggplot2.tidyverse.org/reference/ggtheme.html
 -   geom_jitter() para sobreposição de pontos: https://ggplot2.tidyverse.org/reference/geom_jitter.html
