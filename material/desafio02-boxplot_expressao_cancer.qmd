@@ -69,7 +69,8 @@ result <- read_tsv_chunked(
 )
 
 # Combina resultados dos chunks (caso múltiplos batam a condição)
-final_result <- bind_rows(result)
+final_result <- bind_rows
+
 ```
 
 :::

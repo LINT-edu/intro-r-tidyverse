@@ -1,0 +1,50 @@
+---
+title: "Desafio 04 – Top genes compartilhados por cancer"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+execute: 
+  cache: true
+---
+
+## Objetivo
+
+Analisar e visualizar os **genes com maior expressão (coluna `pTPM`) em diferentes tipos de câncer**, utilizando o dataset do Human Protein Atlas. O desafio envolve identificar os **top N genes mais expressos** por tumor e criar visualizações que facilitem a **comparação entre os perfis moleculares** de diferentes tipos de câncer.
+
+## Requisitos Técnicos
+
+- Utilizar os pacotes `tidyverse` e `UpSetR`.
+- Para cada tipo de câncer, calcular os **20 genes mais expressos** com base na média de `pTPM`.
+- Organizar os resultados como uma lista de conjuntos (`list`) com os nomes dos genes mais expressos para cada câncer.
+- Utilizar a função `fromList()` para converter a lista em um formato adequado para o `upset()`.
+- Gerar um gráfico de interseções com `UpSetR::upset()` com foco em **clareza e legibilidade**, controlando os argumentos `nsets` e `nintersects`.
+
+## Dados
+
+1. Baixe os dados diretamente da plataforma Human Protein Atlas, [rna_cancer_sample.tsv.gz](https://www.proteinatlas.org/download/tsv/rna_cancer_sample.tsv.gz)
+2. Leitura dos dados no R:
+3. Estrutura esperada dos dados:
+
+| Gene            | Gene name | Sample       | Cancer        | TPM  | pTPM |
+| --------------- | --------- | ------------ | ------------- | ---- | ---- |
+| ENSG00000146648 | EGFR      | TCGA-EG-XXXX | Glioma        | 19.8 | 21.2 |
+| ENSG00000141510 | TP53      | TCGA-BR-YYYY | Breast cancer | 7.3  | 8.1  |
+| ...             | ...       | ...          | ...           | ...  | ...  |
+
+## Documentação
+  
+* [UpSetR no CRAN](https://cran.r-project.org/package=UpSetR)
+* [Vignette oficial do UpSetR](https://cran.r-project.org/web/packages/UpSetR/vignettes/basic.usage.html)
+
+## Entregáveis
+  
+* **Script R (`intersecoes_upsetr.R`)** contendo:
+* Leitura e manipulação dos dados.
+* Seleção dos genes mais expressos por tumor.
+* Geração do gráfico com `UpSetR`.
+* **Gráfico UpSet** exportado como imagem (PNG ou PDF).
+* **README.md** contendo:
+  * Instruções de execução.
+  * Explicação sobre os dados utilizados.
+  * Interpretação dos resultados do gráfico de interseção.

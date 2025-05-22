@@ -1,8 +1,0 @@
----
-title: "Aula 07"
-format: html
----
-
-# Em construção
-
-Conteúdo da aula 07.

@@ -270,7 +270,7 @@
     "href": "material/desafio02-boxplot_expressao_cancer.html#dicas",
     "title": "Desafio 02 – Gráfico de expressão em cancer",
     "section": "Dicas",
-    "text": "Dicas\n\nProblemas para ler o arquivo?\n\n\n\n\n\n\n\nTip\n\n\n\n\n\nAbrir o arquivo descompactado de maneira eficiente é possível. Para isso, podemos ler o arquivo dividindo-o em lotes (chunks) com número fixo de linhas (n = 5000). Dessa maneira, o R apenas ira olhar para 5 mil linhas por vez, operar sobre elas, manter apenas as que atendem determinada condição, por exemplo, o identificador ser igual a ENSG00000146648.\n\nlibrary(tidyverse)\n\n# Callback para filtrar os chunks (EGFR == ENSG00000146648)\ncallback &lt;- function(x, pos) {\n  print(paste(\"Processando chunk\", pos))\n  x %&gt;% filter(Gene == \"c\")\n}\n\n# Leitura em chunks\nresult &lt;- read_tsv_chunked(\n  file = \"caminho/para/o/arquivo.tsv\",\n  callback = DataFrameCallback$new(callback),\n  chunk_size = 5000 # Reduzir em caso de pouca memoria\n)\n\n# Combina resultados dos chunks (caso múltiplos batam a condição)\nfinal_result &lt;- bind_rows(result)\n\n\n\n\n\ngeom_boxplot(): https://ggplot2.tidyverse.org/reference/geom_boxplot.html\ntheme_minimal() e outros temas: https://ggplot2.tidyverse.org/reference/ggtheme.html\ngeom_jitter() para sobreposição de pontos: https://ggplot2.tidyverse.org/reference/geom_jitter.html"
+    "text": "Dicas\n\nProblemas para ler o arquivo?\n\n\n\n\n\n\n\nTip\n\n\n\n\n\nAbrir o arquivo descompactado de maneira eficiente é possível. Para isso, podemos ler o arquivo dividindo-o em lotes (chunks) com número fixo de linhas (n = 5000). Dessa maneira, o R apenas ira olhar para 5 mil linhas por vez, operar sobre elas, manter apenas as que atendem determinada condição, por exemplo, o identificador ser igual a ENSG00000146648.\n\nlibrary(tidyverse)\n\n# Callback para filtrar os chunks (EGFR == ENSG00000146648)\ncallback &lt;- function(x, pos) {\n  print(paste(\"Processando chunk\", pos))\n  x %&gt;% filter(Gene == \"c\")\n}\n\n# Leitura em chunks\nresult &lt;- read_tsv_chunked(\n  file = \"caminho/para/o/arquivo.tsv\",\n  callback = DataFrameCallback$new(callback),\n  chunk_size = 5000 # Reduzir em caso de pouca memoria\n)\n\n# Combina resultados dos chunks (caso múltiplos batam a condição)\nfinal_result &lt;- bind_rows\n\n\n\n\n\ngeom_boxplot(): https://ggplot2.tidyverse.org/reference/geom_boxplot.html\ntheme_minimal() e outros temas: https://ggplot2.tidyverse.org/reference/ggtheme.html\ngeom_jitter() para sobreposição de pontos: https://ggplot2.tidyverse.org/reference/geom_jitter.html"
   },
   {
     "objectID": "material/aula02-importar.html",
@@ -674,6 +674,125 @@
   {
     "objectID": "material/aula07-comunicar.html",
     "href": "material/aula07-comunicar.html",
+    "title": "Aula 07",
+    "section": "",
+    "text": "Em construção\nConteúdo da aula 07."
+  },
+  {
+    "objectID": "material/desafio04-top_compartilhados.html",
+    "href": "material/desafio04-top_compartilhados.html",
+    "title": "Desafio 04 – Top genes compartilhados por cancer",
+    "section": "",
+    "text": "Analisar e visualizar os genes com maior expressão (coluna pTPM) em diferentes tipos de câncer, utilizando o dataset do Human Protein Atlas. O desafio envolve identificar os top N genes mais expressos por tumor e criar visualizações que facilitem a comparação entre os perfis moleculares de diferentes tipos de câncer."
+  },
+  {
+    "objectID": "material/desafio04-top_compartilhados.html#objetivo",
+    "href": "material/desafio04-top_compartilhados.html#objetivo",
+    "title": "Desafio 04 – Top genes compartilhados por cancer",
+    "section": "",
+    "text": "Analisar e visualizar os genes com maior expressão (coluna pTPM) em diferentes tipos de câncer, utilizando o dataset do Human Protein Atlas. O desafio envolve identificar os top N genes mais expressos por tumor e criar visualizações que facilitem a comparação entre os perfis moleculares de diferentes tipos de câncer."
+  },
+  {
+    "objectID": "material/desafio04-top_compartilhados.html#requisitos-técnicos",
+    "href": "material/desafio04-top_compartilhados.html#requisitos-técnicos",
+    "title": "Desafio 04 – Top genes compartilhados por cancer",
+    "section": "Requisitos Técnicos",
+    "text": "Requisitos Técnicos\n\nUtilizar os pacotes tidyverse e UpSetR.\nPara cada tipo de câncer, calcular os 20 genes mais expressos com base na média de pTPM.\nOrganizar os resultados como uma lista de conjuntos (list) com os nomes dos genes mais expressos para cada câncer.\nUtilizar a função fromList() para converter a lista em um formato adequado para o upset().\nGerar um gráfico de interseções com UpSetR::upset() com foco em clareza e legibilidade, controlando os argumentos nsets e nintersects."
+  },
+  {
+    "objectID": "material/desafio04-top_compartilhados.html#dados",
+    "href": "material/desafio04-top_compartilhados.html#dados",
+    "title": "Desafio 04 – Top genes compartilhados por cancer",
+    "section": "Dados",
+    "text": "Dados\n\nBaixe os dados diretamente da plataforma Human Protein Atlas, rna_cancer_sample.tsv.gz\nLeitura dos dados no R:\nEstrutura esperada dos dados:\n\n\n\n\n\n\n\n\n\n\n\n\nGene\nGene name\nSample\nCancer\nTPM\npTPM\n\n\n\n\nENSG00000146648\nEGFR\nTCGA-EG-XXXX\nGlioma\n19.8\n21.2\n\n\nENSG00000141510\nTP53\nTCGA-BR-YYYY\nBreast cancer\n7.3\n8.1\n\n\n…\n…\n…\n…\n…\n…"
+  },
+  {
+    "objectID": "material/desafio04-top_compartilhados.html#documentação",
+    "href": "material/desafio04-top_compartilhados.html#documentação",
+    "title": "Desafio 04 – Top genes compartilhados por cancer",
+    "section": "Documentação",
+    "text": "Documentação\n\nUpSetR no CRAN\nVignette oficial do UpSetR"
+  },
+  {
+    "objectID": "material/desafio04-top_compartilhados.html#entregáveis",
+    "href": "material/desafio04-top_compartilhados.html#entregáveis",
+    "title": "Desafio 04 – Top genes compartilhados por cancer",
+    "section": "Entregáveis",
+    "text": "Entregáveis\n\nScript R (intersecoes_upsetr.R) contendo:\nLeitura e manipulação dos dados.\nSeleção dos genes mais expressos por tumor.\nGeração do gráfico com UpSetR.\nGráfico UpSet exportado como imagem (PNG ou PDF).\nREADME.md contendo:\n\nInstruções de execução.\nExplicação sobre os dados utilizados.\nInterpretação dos resultados do gráfico de interseção."
+  },
+  {
+    "objectID": "material/aula07-visualizar_intersecoes.html",
+    "href": "material/aula07-visualizar_intersecoes.html",
+    "title": "Aula 07 – Visualização de Interseções com Venn Diagramas e UpSetR",
+    "section": "",
+    "text": "Gerar diagramas de Venn com bibliotecas compatíveis com ggplot2.\nUtilizar o pacote ggVennDiagram para representar conjuntos.\nCriar gráficos do tipo UpSet com o pacote UpSetR para conjuntos complexos.\nComparar as vantagens de Venn vs. UpSet para múltiplos conjuntos."
+  },
+  {
+    "objectID": "material/aula07-visualizar_intersecoes.html#objetivos-da-aula",
+    "href": "material/aula07-visualizar_intersecoes.html#objetivos-da-aula",
+    "title": "Aula 07 – Visualização de Interseções com Venn Diagramas e UpSetR",
+    "section": "",
+    "text": "Gerar diagramas de Venn com bibliotecas compatíveis com ggplot2.\nUtilizar o pacote ggVennDiagram para representar conjuntos.\nCriar gráficos do tipo UpSet com o pacote UpSetR para conjuntos complexos.\nComparar as vantagens de Venn vs. UpSet para múltiplos conjuntos."
+  },
+  {
+    "objectID": "material/aula07-visualizar_intersecoes.html#introdução",
+    "href": "material/aula07-visualizar_intersecoes.html#introdução",
+    "title": "Aula 07 – Visualização de Interseções com Venn Diagramas e UpSetR",
+    "section": "Introdução",
+    "text": "Introdução\nVisualizar interseções entre conjuntos é uma tarefa comum na bioinformática, como na comparação de listas de genes diferencialmente expressos.\nEnquanto diagramas de Venn são úteis para poucos conjuntos (2–4), os gráficos UpSet escalam melhor para conjuntos maiores, mantendo clareza na visualização."
+  },
+  {
+    "objectID": "material/aula07-visualizar_intersecoes.html#instalando-os-pacotes-necessários",
+    "href": "material/aula07-visualizar_intersecoes.html#instalando-os-pacotes-necessários",
+    "title": "Aula 07 – Visualização de Interseções com Venn Diagramas e UpSetR",
+    "section": "Instalando os pacotes necessários",
+    "text": "Instalando os pacotes necessários\n\ninstall.packages(\"ggVennDiagram\")\ninstall.packages(\"UpSetR\")\ninstall.packages(\"tidyverse\")\n\nlibrary(ggVennDiagram)\nlibrary(UpSetR)\nlibrary(tidyverse)"
+  },
+  {
+    "objectID": "material/aula07-visualizar_intersecoes.html#criando-conjuntos-simulados",
+    "href": "material/aula07-visualizar_intersecoes.html#criando-conjuntos-simulados",
+    "title": "Aula 07 – Visualização de Interseções com Venn Diagramas e UpSetR",
+    "section": "Criando conjuntos simulados",
+    "text": "Criando conjuntos simulados\nVamos simular três listas de genes com sobreposição parcial.\n\nset.seed(123)\nA &lt;- sample(LETTERS, 15)\nB &lt;- sample(LETTERS, 15)\nC &lt;- sample(LETTERS, 15)\n\ngenes &lt;- list(Grupo_A = A, Grupo_B = B, Grupo_C = C)"
+  },
+  {
+    "objectID": "material/aula07-visualizar_intersecoes.html#gerando-um-diagrama-de-venn-com-ggvenndiagram",
+    "href": "material/aula07-visualizar_intersecoes.html#gerando-um-diagrama-de-venn-com-ggvenndiagram",
+    "title": "Aula 07 – Visualização de Interseções com Venn Diagramas e UpSetR",
+    "section": "Gerando um diagrama de Venn com ggVennDiagram",
+    "text": "Gerando um diagrama de Venn com ggVennDiagram\nO pacote ggVennDiagram é baseado em ggplot2 e permite personalização estética avançada.\n\nggVennDiagram(genes, label_alpha = 0.5) +\n  scale_fill_gradient(low = \"white\", high = \"skyblue\")"
+  },
+  {
+    "objectID": "material/aula07-visualizar_intersecoes.html#alternativas-com-até-2-ou-3-conjuntos",
+    "href": "material/aula07-visualizar_intersecoes.html#alternativas-com-até-2-ou-3-conjuntos",
+    "title": "Aula 07 – Visualização de Interseções com Venn Diagramas e UpSetR",
+    "section": "Alternativas com até 2 ou 3 conjuntos",
+    "text": "Alternativas com até 2 ou 3 conjuntos\nSe desejar, também é possível extrair os subconjuntos explicitamente:\n\nintersect(A, B)\nsetdiff(B, C)"
+  },
+  {
+    "objectID": "material/aula07-visualizar_intersecoes.html#preparando-dados-para-upsetr",
+    "href": "material/aula07-visualizar_intersecoes.html#preparando-dados-para-upsetr",
+    "title": "Aula 07 – Visualização de Interseções com Venn Diagramas e UpSetR",
+    "section": "Preparando dados para UpSetR",
+    "text": "Preparando dados para UpSetR\nO UpSetR requer os dados em formato de lista ou como data.frame binário com indicação de presença (1/0).\n\nfromList(genes) %&gt;%\n  as.data.frame() %&gt;%\n  UpSetR::upset(sets = c(\"Grupo_A\", \"Grupo_B\", \"Grupo_C\"), order.by = \"freq\")"
+  },
+  {
+    "objectID": "material/aula07-visualizar_intersecoes.html#comparando-venn-vs.-upset",
+    "href": "material/aula07-visualizar_intersecoes.html#comparando-venn-vs.-upset",
+    "title": "Aula 07 – Visualização de Interseções com Venn Diagramas e UpSetR",
+    "section": "Comparando Venn vs. UpSet",
+    "text": "Comparando Venn vs. UpSet\n\n\n\n\n\n\n\n\nMétodo\nVantagem\nLimitação\n\n\n\n\nVenn\nVisual direto (2–3 conjuntos)\nNão escala bem para &gt;4 grupos\n\n\nUpSet\nEscala para muitos conjuntos\nMais abstrato para leigos"
+  },
+  {
+    "objectID": "material/aula07-visualizar_intersecoes.html#exercícios",
+    "href": "material/aula07-visualizar_intersecoes.html#exercícios",
+    "title": "Aula 07 – Visualização de Interseções com Venn Diagramas e UpSetR",
+    "section": "Exercícios",
+    "text": "Exercícios\n\nSimule 4 conjuntos de letras com sobreposição parcial e visualize com ggVennDiagram.\nUse UpSetR para representar os mesmos dados.\nModifique as cores e transparência dos círculos no Venn.\nGere um gráfico UpSet ordenado por número de interseções."
+  },
+  {
+    "objectID": "material/aula08-comunicar.html",
+    "href": "material/aula08-comunicar.html",
     "title": "Aula 07",
     "section": "",
     "text": "Em construção\nConteúdo da aula 07."

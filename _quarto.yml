@@ -22,6 +22,8 @@ website:
             href: material/aula05-visualizar.qmd
           - text: "Aula 06: Visualizar Dados - Avançado"
             href: material/aula06-visualizar_avancado.qmd
+          - text: "Aula 07: Visualizar Dados - Interseções"
+            href: material/aula07-visualizar_intersecoes.qmd
       - text: "Desafio"
         menu:
           - text: "Desafio 01: Barplot de expressão"
@@ -30,7 +32,8 @@ website:
             href: material/desafio02-boxplot_expressao_cancer.qmd
           - text: "Desafio 03: Heatmap de expressão de oncogenes"
             href: material/desafio03-heatmap.qmd
-
+          - text: "Desafio 04: Top genes compartilhados"
+            href: material/desafio04-top_compartilhados.qmd
 format:
   html:
     theme: cosmo

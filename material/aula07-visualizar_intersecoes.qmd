@@ -1,0 +1,94 @@
+---
+title: "Aula 07 – Visualização de Interseções com Venn Diagramas e UpSetR "
+format:
+  html:
+    toc: true
+    toc-depth: 3
+execute:
+  cache: true
+---
+
+## Objetivos da Aula
+
+- Gerar diagramas de Venn com bibliotecas compatíveis com `ggplot2`.
+- Utilizar o pacote `ggVennDiagram` para representar conjuntos.
+- Criar gráficos do tipo UpSet com o pacote `UpSetR` para conjuntos complexos.
+- Comparar as vantagens de Venn vs. UpSet para múltiplos conjuntos.
+
+## Introdução
+
+Visualizar interseções entre conjuntos é uma tarefa comum na bioinformática, como na comparação de listas de genes diferencialmente expressos.
+
+Enquanto diagramas de **Venn** são úteis para poucos conjuntos (2–4), os gráficos **UpSet** escalam melhor para conjuntos maiores, mantendo clareza na visualização.
+
+## Instalando os pacotes necessários
+
+```{r}
+#| eval: false
+install.packages("ggVennDiagram")
+install.packages("UpSetR")
+install.packages("tidyverse")
+
+library(ggVennDiagram)
+library(UpSetR)
+library(tidyverse)
+```
+
+## Criando conjuntos simulados
+
+Vamos simular três listas de genes com sobreposição parcial.
+
+```{r}
+#| eval: false
+set.seed(123)
+A <- sample(LETTERS, 15)
+B <- sample(LETTERS, 15)
+C <- sample(LETTERS, 15)
+
+genes <- list(Grupo_A = A, Grupo_B = B, Grupo_C = C)
+```
+
+## Gerando um diagrama de Venn com `ggVennDiagram`
+
+O pacote `ggVennDiagram` é baseado em `ggplot2` e permite personalização estética avançada.
+
+```{r}
+#| eval: false
+ggVennDiagram(genes, label_alpha = 0.5) +
+  scale_fill_gradient(low = "white", high = "skyblue")
+```
+
+## Alternativas com até 2 ou 3 conjuntos
+
+Se desejar, também é possível extrair os subconjuntos explicitamente:
+
+```{r}
+#| eval: false
+intersect(A, B)
+setdiff(B, C)
+```
+
+## Preparando dados para `UpSetR`
+
+O `UpSetR` requer os dados em formato de lista ou como `data.frame` binário com indicação de presença (1/0).
+
+```{r}
+#| eval: false
+fromList(genes) %>%
+  as.data.frame() %>%
+  UpSetR::upset(sets = c("Grupo_A", "Grupo_B", "Grupo_C"), order.by = "freq")
+```
+
+## Comparando Venn vs. UpSet
+
+| Método      | Vantagem                           | Limitação                     |
+|-------------|------------------------------------|-------------------------------|
+| Venn        | Visual direto (2–3 conjuntos)      | Não escala bem para >4 grupos|
+| UpSet       | Escala para muitos conjuntos       | Mais abstrato para leigos     |
+
+## Exercícios
+
+1. Simule 4 conjuntos de letras com sobreposição parcial e visualize com `ggVennDiagram`.
+2. Use `UpSetR` para representar os mesmos dados.
+3. Modifique as cores e transparência dos círculos no Venn.
+4. Gere um gráfico UpSet ordenado por número de interseções.
